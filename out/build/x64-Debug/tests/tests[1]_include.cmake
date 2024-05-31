@@ -1,5 +1,0 @@
-if(EXISTS "D:/Users/AdriKat/Desktop/Work/TSP/JIN/CPPFight/out/build/x64-Debug/tests/tests[1]_tests.cmake")
-  include("D:/Users/AdriKat/Desktop/Work/TSP/JIN/CPPFight/out/build/x64-Debug/tests/tests[1]_tests.cmake")
-else()
-  add_test(tests_NOT_BUILT tests_NOT_BUILT)
-endif()
