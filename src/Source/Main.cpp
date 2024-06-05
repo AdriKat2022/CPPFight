@@ -1,7 +1,10 @@
-#include "Game.hpp"
+#include <Game.h>
+#include <iostream>
 
-int main()
-{
+int main() {
+	std::cout << "Starting !" << std::endl;
+
 	Game game;
-    game.run();
+	game.Run();
+
 }
