@@ -15,7 +15,7 @@ Cependant, n'oubliez pas que votre enfant est juste à côté !! Il n'aime vraim
 Additionnellement, votre **mental** est lié à celui de votre bébé. S'il aperçoit *trop de violence*, il se sentira en danger, et vous serez probablement moins puissant à cause du stress qu'il vous provoquera.  
 En revanche, certaines **actions** peuvent le rassurer, et en conséquence peuvent vous rendre plus fort.
 
-# Pseudo GGD
+# Pseudo GDD
 ## Histoire
 Comme indiqué dans le synopsis, le joueur incarne une figure parentale devant protéger son bébé et elle-même.  
 Les méchants monstres, qui sont en réalités des **C** et des **P**, ne savent qu'une chose : frapper pour devenir plus fort. Le joueur doit alors les empêcher de provoquer le mal et rendre inoffensif ces misérables créatures qui ne souhaitent que le chaos.  
