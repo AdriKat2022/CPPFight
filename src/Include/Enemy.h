@@ -1,28 +1,22 @@
 #pragma once
 
-#include "IDamageable.h"
+#include "Damageable.h"
 #include "Dialogue.h"
 #include <string>
 #include <vector>
 
-class Enemy : public IDamageable {
+class Enemy : public Damageable {
 
 public:
-	Enemy(std::string name, int health, int damage);
-	~Enemy();
+	Enemy(const std::string& name, int health, int damage);
 
-	std::string GetName() const;
-
-	// IDamageable
-	void Damage(int);
-	bool IsDead() const;
+	const std::string& GetName() const;
+	int GetAttackPower() const;
 
 private:
-	int m_maxHealth;
-	int m_health;
-	int m_power;
-
 	std::string m_name;
+	int m_attackPower;
+
 	std::vector<Dialogue> m_dialogues;
 
 };

@@ -1,20 +1,15 @@
 #pragma once
 
-#include "IDamageable.h"
+#include "Damageable.h"
 #include <string>
 
-class Player : public IDamageable {
+class Player : public Damageable {
 
 public:
-	Player();
+	explicit Player(const std::string& playerName, int maxHP);
 
-	// IDamageable
-	void Damage(int) override;
-	bool IsDead() const override;
+	const std::string& GetName() const;
 
 private:
-	int m_maxHP;
-	int m_HP;
 	std::string m_name;
-
 };

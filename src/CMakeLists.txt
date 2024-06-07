@@ -7,7 +7,7 @@ add_library(lib_cppfight
 	"Source/Dialogue.cpp"
 	"Include/Player.h"
 	"Source/Player.cpp"
-	"Include/IDamageable.h"
+	"Include/Damageable.h"
 	"Include/Enemy.h"
 	"Include/ActionData.h"
 	"Include/Action.h"
@@ -18,7 +18,7 @@ add_library(lib_cppfight
 	"Include/Button.h"
 	"Include/FightButton.h"
 	"Include/ActionButton.h"
-)
+ "Source/Damageable.cpp" "Source/Enemy.cpp")
 
 target_include_directories(lib_cppfight
 	PRIVATE
