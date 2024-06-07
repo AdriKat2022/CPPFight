@@ -4,19 +4,20 @@
 #include "Baby.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 
 class Game {
 
 public:
-	Game();
+	explicit Game(sf::RenderWindow*);
 
-	void Render() const;
-	void Initialize();
 	void Run();
+	void Render() const;
 
 private:
-	sf::RenderWindow m_window;
+	sf::RenderWindow* m_window;
+	sf::Music m_currentMusic;
 	Player m_player;
 	Baby m_baby;
 

@@ -19,7 +19,7 @@ public:
 
 
 	// IDrawable
-	void Draw() override;
+	void Draw(sf::RenderWindow&) override;
 
 
 private:
