@@ -18,7 +18,7 @@ Game::Game(sf::RenderWindow* rWindow) :
 
 
 void Game::Render() const {
-
+	// Render the game
 }
 
 void Game::Run() {

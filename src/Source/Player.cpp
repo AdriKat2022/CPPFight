@@ -8,6 +8,13 @@ Player::Player(const std::string& playerName, int maxHP) :
 	// Construct the player
 }
 
+
+void Player::Draw(sf::RenderWindow& window) const
+{
+	// Draw the player
+}
+
+
 const std::string& Player::GetName() const
 {
 	return m_name;

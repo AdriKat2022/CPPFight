@@ -18,6 +18,7 @@ public:
 private:
 	sf::RenderWindow* m_window;
 	sf::Music m_currentMusic;
+
 	Player m_player = Player{ std::string("Chara"), 20 };
 	Baby m_baby;
 
