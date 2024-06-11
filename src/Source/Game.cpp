@@ -27,7 +27,7 @@ void Game::Run() {
 	
 	// définition du menu dans un premier temps
 	// définition du background du menu
-	sf::RectangleShape background_menu(static_cast<sf::Vector2f> ((*m_window).getSize()));
+	sf::RectangleShape background_menu(static_cast<sf::Vector2f>(m_window->getSize()));
 	sf::Texture texture;
 	texture.loadFromFile("resources/Sprites/P.png");
 	background_menu.setTexture(&texture);
@@ -44,9 +44,9 @@ void Game::Run() {
 	quit_button.setPosition(sf::Vector2f(300, 450));
 	quit_button.setTexture(&texture);
 	// affichage du menu
-	(*m_window).clear();
-	(*m_window).draw(background_menu);
-	(*m_window).draw(play_button);
-	(*m_window).draw(rules_button);
-	(*m_window).draw(quit_button);
+	m_window->clear();
+	m_window->draw(background_menu);
+	m_window->draw(play_button);
+	m_window->draw(rules_button);
+	m_window->draw(quit_button);
 }

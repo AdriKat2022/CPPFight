@@ -1,7 +1,7 @@
 #include "EnemyLoader.h"
 
 
-std::unique_ptr<std::vector<EnemyData>> EnemyLoader::ReadFromFile(const std::string& fileName)
+void EnemyLoader::ReadFromFile(const std::string& fileName, std::unique_ptr<std::vector<EnemyData>>& enemyVector)
 {
 	// Reset the EnemyData vector (in case it was already used)
 	m_enemies = std::make_unique<std::vector<EnemyData>>();
@@ -10,7 +10,7 @@ std::unique_ptr<std::vector<EnemyData>> EnemyLoader::ReadFromFile(const std::str
 
 	if (!file.is_open()) {
 		std::cout << "Failed to open file: " << fileName << std::endl;
-		return nullptr;
+		return;
 	}
 
 	std::string buffer;
@@ -19,23 +19,23 @@ std::unique_ptr<std::vector<EnemyData>> EnemyLoader::ReadFromFile(const std::str
 	{
 		std::getline(file, buffer);
 
-		if (buffer == "[Enemy]")
-		{
+		if(buffer[0] == '#') // Comment
+			continue;
+
+		else if (buffer == "[Enemy]")
 			LoadEnemy(file);
-		}
+
 		else if (buffer == "[Action]")
-		{
 			CacheAction(file);
-		}
+
 		else if (buffer != "")
-		{
 			std::cout << "(Warning) Unknown section: " << buffer << ". Ignoring." << std::endl;
-		}
+
 		// Else ignore it without warning
 	}
 
 
-	return std::move(m_enemies);
+	enemyVector = std::move(m_enemies);
 }
 
 void EnemyLoader::LoadEnemy(std::ifstream& stream)
@@ -71,7 +71,7 @@ void EnemyLoader::LoadEnemy(std::ifstream& stream)
 				if (!isdigit(buffer.at(0)))
 					break;
 
-				int actionID = std::stoi(buffer);
+				std::string actionID = buffer;
 
 				// Check if the action ID exists as a key in the cached actions
 				if (!m_cachedActions.contains(actionID))
@@ -87,7 +87,7 @@ void EnemyLoader::LoadEnemy(std::ifstream& stream)
 void EnemyLoader::CacheAction(std::ifstream& stream)
 {
 	std::string buffer;
-	int actionID = -1;
+	std::string actionID = "";
 
 	ActionData actionData;
 
@@ -97,10 +97,15 @@ void EnemyLoader::CacheAction(std::ifstream& stream)
 
 		if (buffer == "[/Action]")
 		{
-			if (actionID < 0)
-				std::cout << "Action ID not found or invalid. (ID must be positive) Ignoring.\n";
-			else
-				m_cachedActions[actionID] = actionData;
+			if (actionID == "") {
+				std::cout << "Action ID not found. Ignoring action.\n";
+				break;
+			}
+			
+			if(m_cachedActions.contains(actionID))
+				std::cout << "(Warning) Action ID " << actionID << " already exists. Overriding.\n";
+
+			m_cachedActions[actionID] = actionData;
 
 			break;
 		}

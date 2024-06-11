@@ -3,7 +3,7 @@
 #include "EnemyData.h"
 
 
-std::vector<EnemyData> ENEMIES;
+std::unique_ptr<std::vector<EnemyData>> ENEMIES;
 
 
 int main() {

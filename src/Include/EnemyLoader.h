@@ -12,7 +12,7 @@
 class EnemyLoader {
 
 public:
-	std::unique_ptr<std::vector<EnemyData>> ReadFromFile(const std::string& fileName);
+	void ReadFromFile(const std::string& fileName, std::unique_ptr<std::vector<EnemyData>>& enemyVector);
 
 
 private:
@@ -23,6 +23,6 @@ private:
 
 
 private:
-	std::map<int, ActionData> m_cachedActions;
+	std::map<std::string, ActionData, std::less<>> m_cachedActions;
 	std::unique_ptr<std::vector<EnemyData>> m_enemies;
 };

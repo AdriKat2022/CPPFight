@@ -45,7 +45,8 @@ Actions: 1 1
 
 		auto loader = EnemyLoader();
 
-		auto enemies = loader.ReadFromFile(FILE_NAME);
+		std::unique_ptr<std::vector<EnemyData>> enemies;
+		loader.ReadFromFile(FILE_NAME, enemies);
 
 		if (enemies == nullptr)
 		{
@@ -98,9 +99,10 @@ Actions: 5
 
 		WRITE_IN_FILE(FILE_NAME, content)
 
-			auto loader = EnemyLoader();
+		auto loader = EnemyLoader();
 
-		auto enemies = loader.ReadFromFile(FILE_NAME);
+		std::unique_ptr<std::vector<EnemyData>> enemies;
+		loader.ReadFromFile(FILE_NAME, enemies);
 
 		if (enemies == nullptr)
 		{
@@ -178,9 +180,11 @@ Actions: 4 4 4 4
 
 		WRITE_IN_FILE(FILE_NAME, content)
 
-			auto loader = EnemyLoader();
+		
+		auto loader = EnemyLoader();
 
-		auto enemies = loader.ReadFromFile(FILE_NAME);
+		std::unique_ptr<std::vector<EnemyData>> enemies;
+		loader.ReadFromFile(FILE_NAME, enemies);
 
 		if (enemies == nullptr)
 		{
