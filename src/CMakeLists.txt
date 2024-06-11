@@ -18,7 +18,7 @@ add_library(lib_cppfight
 	"Include/Button.h"
 	"Include/FightButton.h"
 	"Include/ActionButton.h"
- "Source/Damageable.cpp" "Source/Enemy.cpp" "Include/EncounterState.h" "Include/Encounter.h" "Include/EncounterFighting.h" "Include/EncounterActing.h" "Include/EncounterIdle.h" "Include/EncounterMonsterTurn.h")
+ "Source/Damageable.cpp" "Source/Enemy.cpp" "Include/EncounterState.h" "Include/Encounter.h" "Include/EncounterFighting.h" "Include/EncounterActing.h" "Include/EncounterIdle.h" "Include/EncounterMonsterTurn.h" "Include/EnemyData.h" "Include/EnemyLoader.h" "Source/EnemyLoader.cpp")
 
 target_include_directories(lib_cppfight
 	PRIVATE

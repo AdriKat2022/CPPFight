@@ -4,9 +4,9 @@
 #include <string>
 
 struct ActionData {
-	std::string ActionName;
+	std::string Name;
 
 	Dialogue AssociatedDialogue;
 	
-	int HappinessMultiplier;
+	int HappinessShift;
 };

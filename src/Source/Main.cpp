@@ -1,5 +1,10 @@
 #include <Game.h>
 #include <iostream>
+#include "EnemyData.h"
+
+
+std::vector<EnemyData> ENEMIES;
+
 
 int main() {
 	std::cout << "Starting !" << std::endl;
@@ -40,4 +45,9 @@ int main() {
 		window.draw(sprite);
 		window.display();
 	}
+}
+
+
+void LoadEnemiesData() {
+
 }

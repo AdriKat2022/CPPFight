@@ -1,0 +1,17 @@
+[Enemy]
+Name: Hello
+Health: 100
+Damage: 10
+Speed: 1
+Actions: 1 3 4 5
+[/Enemy]
+
+[Enemy]
+Name: World
+Health: 50
+Damage: 2
+
+
+[Action]
+Id: 1
+Dialogue:

@@ -6,13 +6,13 @@
 class Dialogue {
 
 public:
-	Dialogue();
+	const std::string& GetNext();
 
-	const std::string_view& GetNext();
+	std::vector<std::string>& GetLinesReference();
 
 
 private:
 	size_t m_current = 0;
-	std::vector<std::string_view> m_lines;
+	std::vector<std::string> m_lines;
 
 };
