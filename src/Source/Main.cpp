@@ -41,7 +41,7 @@ int main() {
 
 		game.Run();
 		game.Render();
-		window.clear();
+		//window.clear();
 		window.draw(sprite);
 		window.display();
 	}
