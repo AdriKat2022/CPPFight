@@ -10,7 +10,7 @@ float Baby::GetMult() const
 		//Erreur?
 		return 0.0f;
 	}
-	else if (m_happinessLvl<10)
+	else if (m_happinessLvl < 10)
 	{
 		return 0.25f;
 	}
@@ -22,11 +22,11 @@ float Baby::GetMult() const
 	{
 		return 1.0f;
 	}
-	else if (m_happinessLvl< 40)
+	else if (m_happinessLvl < 40)
 	{
 		return 1.25f;
 	}
-	else if (m_happinessLvl< 50)
+	else if (m_happinessLvl < 50)
 	{
 		return 1.5f;
 	}
@@ -46,13 +46,26 @@ float Baby::GetMult() const
 	{
 		return 2.5f;
 	}
-	else 
+	else if (m_happinessLvl < 100)
 	{
 		return 3.0f;
+	}
+	else
+	{
+		return 3.5f;
 	}
 }
 
 void Baby::Modify(int modifier)
 {
 	m_happinessLvl += modifier;
+
+	if (m_happinessLvl > 100)
+	{
+		m_happinessLvl = 100;
+	}
+	else if (m_happinessLvl < 0)
+	{
+		m_happinessLvl = 0;
+	}
 }

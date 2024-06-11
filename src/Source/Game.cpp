@@ -18,8 +18,7 @@ Game::Game(sf::RenderWindow* rWindow) :
 
 
 void Game::Render() const {
-	// Render the game
-	//std::cout << "Rendering game" << std::endl;
+
 }
 
 void Game::Run() {
