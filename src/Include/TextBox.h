@@ -4,6 +4,7 @@
 #include "Dialogue.h"
 #include <memory>
 #include <SFML/Graphics.hpp>
+#include <sstream>
 
 class TextBox : public IDrawable {
 	
@@ -27,5 +28,8 @@ private:
 	Dialogue* m_currentDialogue;
 	sf::Color m_backgroundColor;
 	sf::Vector2i m_position;
-	sf::Vector2i m_size;
+	sf::Vector2i m_size = {300, 200 };
+	sf::Text texte;
+	sf::RectangleShape(msize);
+
 };
