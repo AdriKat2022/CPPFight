@@ -117,22 +117,25 @@ Vous avez déclenché la colère du monstre.
 Votre bébé a maintenant appris des mots interdits. Bravo l'éducation.
 (-30 PB)
 ---
-HappinessModifier: -30
+HappinessModifier: -20
 [/Action]
 
 
 [Action]
-Id: insulter_3_trap
+Id: insulter_4_trap
 Name: Insulter
 Dialogue:
 Vous insultez le monstre...
 -
-"** **** ** ****"
-Beaucoup trop violent !!!
+...
 -
-Vous avez déclenché la colère du monstre.
-Votre bébé a maintenant appris des mots interdits. Bravo l'éducation.
-(-30 PB)
+On attend toujours.
+-
+...
+-
+Vous n'avez aucune idée en fait.
+Votre bébé est déçu, le monstre aussi.
+(-10 PB)
 ---
 HappinessModifier: 30
 [/Action]
@@ -224,6 +227,39 @@ HappinessModifier: 0
 [/Action]
 
 
+[Action]
+Id: coder_2
+Name: Coder
+Dialogue:
+Vous sortez votre clavier, et commencez à écrire.
+Votre bébé est intrigué.
+Le monstre semble effrayé.
+-
+Vous venez de recoder minecraft en 5 minutes.
+Wow. Le monstre et le bébé sont impressionnés.
+(+50 PB)
+---
+HappinessModifier: 50
+[/Action]
+
+
+[Action]
+Id: coder_3
+Name: Coder
+Dialogue:
+Vous sortez votre clavier, et commencez à écrire.
+Votre bébé est intrigué.
+Le monstre semble effrayé.
+-
+Seg fault.
+Le monstre et le bébé sont déçus.
+(-35 PB)
+---
+HappinessModifier: -10
+[/Action]
+
+
+
 # ENEMIES ARE DEFINED HERE
 # You technically could add enemies before actions, but it's better to have actions first since you can reference them in the enemies
 # YOU CANNOT REFERENCE AN ACTION THAT IS NOT DEFINED YET, so make sure to define them before the enemies
@@ -255,4 +291,24 @@ Damage: 5
 Defense: 0
 Speed: 2
 Actions: calin_1 pleurer_2 insulter_2 coder_1
+[/Enemy]
+
+
+[Enemy]
+Name: P
+Health: 35
+Damage: 5
+Defense: 0
+Speed: 2
+Actions: calin_1 pleurer_2 insulter_1 coder_3
+[/Enemy]
+
+
+[Enemy]
+Name: CCP
+Health: 35
+Damage: 5
+Defense: 0
+Speed: 2
+Actions: calin_1 pleurer_2 insulter_1 coder_3
 [/Enemy]
