@@ -1,0 +1,314 @@
+# ACTIONS ARE DEFINED HERE
+# You can comment with '#' at the beginning of the line
+# You can add as many actions as you want defined by their ID which is stored as a string
+
+# Each action has a :
+#	Id (the unique identifier of the action, not shown to the player)
+#	name (the name of the action displayed at the player)
+#	dialogue (what is displayed when the action is selected)
+#	happiness modifier (how much the action affects the happiness of the baby)
+
+
+
+[Action]
+Id: pleurer_1
+Name: Pleurer
+Dialogue:
+Vous vous mettez à pleurer.
+Pour sensiblement aucune raison ?
+-
+Le monstre et votre bébé ne comprennent rien à ce qui se passe.
+Ils se mettent à pleurer eux aussi.
+-
+(-10 PB)
+---
+HappinessModifier: -10
+[/Action]
+
+
+[Action]
+Id: pleurer_2
+Name: Pleurer
+Dialogue:
+Vous vous mettez à pleurer.
+Je sais je sais, "Build Failed" ça fait mal.
+-
+Ssh ça va aller. Votre bébé vous console.
+Après tout, c'est juste un jeu.
+(+5 PB)
+-
+Le monstre est pris d'un rire maléfique.
+---
+HappinessModifier: 5
+[/Action]
+
+
+[Action]
+Id: calin_1
+Name: Câliner
+Dialogue:
+Vous prenez votre bébé dans vos bras et le câlinez.
+-
+Il est tout content !
+(+10 PB)
+---
+HappinessModifier: 10
+[/Action]
+
+
+[Action]
+Id: calin_2
+Name: Câliner
+Dialogue:
+Vous prenez le monstre dans vos bras et le câli...
+Attendez, quoi ?
+-
+Le monstre et vous êtes confus.
+Votre bébé rigole de la situation.
+(+25 PB)
+---
+HappinessModifier: 25
+[/Action]
+
+
+[Action]
+Id: insulter_1
+Name: Insulter
+Dialogue:
+Vous insultez le monstre...
+-
+"Espèce de chou-fleur"... Vraiment ?
+-
+Le monstre réussi à être vexé.
+Bébé vous regarde avec des yeux ronds.
+(+1 PB ?)
+---
+HappinessModifier: 1
+[/Action]
+
+
+[Action]
+Id: insulter_2
+Name: Insulter
+Dialogue:
+Vous insultez le monstre...
+-
+"Au niveau du bagage intellectuel on peut dire que tu voyages léger."
+Pas mal celle là !
+-
+Le monstre est à terre pendant un court instant.
+Bébé adore !
+(+30 PB)
+---
+HappinessModifier: 30
+[/Action]
+
+
+[Action]
+Id: insulter_3_trap
+Name: Insulter
+Dialogue:
+Vous insultez le monstre...
+-
+"** **** ** ****"
+Beaucoup trop violent !!!
+-
+Vous avez déclenché la colère du monstre.
+Votre bébé a maintenant appris des mots interdits. Bravo l'éducation.
+(-30 PB)
+---
+HappinessModifier: -20
+[/Action]
+
+
+[Action]
+Id: insulter_4_trap
+Name: Insulter
+Dialogue:
+Vous insultez le monstre...
+-
+...
+-
+On attend toujours.
+-
+...
+-
+Vous n'avez aucune idée en fait.
+Votre bébé est déçu, le monstre aussi.
+(-10 PB)
+---
+HappinessModifier: 30
+[/Action]
+
+
+[Action]
+Id: gouter_monstre
+Name: Goûter
+Dialogue:
+Vous... goûtez le monstre ?
+-
+Il est délicieux, mais le monstre n'a pas l'air d'accord.
+-
+Votre bébé a faim maintenant.
+(-10 PB)
+---
+HappinessModifier: -10
+[/Action]
+
+
+[Action]
+Id: gouter_bebe
+Name: Goûter
+Dialogue:
+Vous donnez un goûter à votre bébé avec une barre de chocolat
+qui traînait dans votre poche.
+-
+Il se régale !
+(+15 PB)
+---
+HappinessModifier: 15
+[/Action]
+
+
+[Action]
+Id: pablo
+Name: Pablo
+Dialogue:
+Pablo.
+-
+Votre bébé est d'accord.
+(+20 PB)
+---
+HappinessModifier: 20
+[/Action]
+
+
+[Action]
+Id: pablo_2
+Name: Pablo
+Dialogue:
+La... légende de Pablo ?
+-
+Votre bébé a la réf.
+(+15 PB)
+---
+HappinessModifier: 15
+[/Action]
+
+
+[Action]
+Id: salto
+Name: FaireUnSalto
+Dialogue:
+Vous faites un salto arrière.
+-
+Impressionnant. Votre bébé est épaté.
+Mais il ne comprend pas pourquoi vous avez fait ça.
+(+20 PB)
+---
+HappinessModifier: 20
+[/Action]
+
+
+[Action]
+Id: coder_1
+Name: Coder
+Dialogue:
+Vous sortez votre clavier, et commencez à écrire.
+Votre bébé est intrigué.
+Le monstre semble effrayé.
+-
+Vous avez fait un "Hello World" en 5 minutes.
+Malheureusement, le monstre a détruit votre ordinateur.
+Votre bébé se moque de vous.
+(C++ PB)
+---
+HappinessModifier: 0
+[/Action]
+
+
+[Action]
+Id: coder_2
+Name: Coder
+Dialogue:
+Vous sortez votre clavier, et commencez à écrire.
+Votre bébé est intrigué.
+Le monstre semble effrayé.
+-
+Vous venez de recoder minecraft en 5 minutes.
+Wow. Le monstre et le bébé sont impressionnés.
+(+50 PB)
+---
+HappinessModifier: 50
+[/Action]
+
+
+[Action]
+Id: coder_3
+Name: Coder
+Dialogue:
+Vous sortez votre clavier, et commencez à écrire.
+Votre bébé est intrigué.
+Le monstre semble effrayé.
+-
+Seg fault.
+Le monstre et le bébé sont déçus.
+(-35 PB)
+---
+HappinessModifier: -10
+[/Action]
+
+
+
+# ENEMIES ARE DEFINED HERE
+# You technically could add enemies before actions, but it's better to have actions first since you can reference them in the enemies
+# YOU CANNOT REFERENCE AN ACTION THAT IS NOT DEFINED YET, so make sure to define them before the enemies
+
+# Each enemy has a :
+#	Name (the name of the enemy displayed at the player)
+#	Health (how much health the enemy has)
+#	Damage (how much damage the enemy does)
+#	Defense (how much the enemy will resist the player's hits)
+#	Speed (how fast the enemy is, the higher the faster)
+#	Actions (what actions the player could do against the monster) (referenced by their ID separated by a space)
+#		Like this : "Actions: pleurer_1 calin_1 insulter_1"
+
+
+[Enemy]
+Name: MonstreCookie
+Health: 15
+Damage: 3
+Defense: 0
+Speed: 1
+Actions: calin_1 pleurer_1 insulter_1 calin_1
+[/Enemy]
+
+
+[Enemy]
+Name: C
+Health: 20
+Damage: 5
+Defense: 0
+Speed: 2
+Actions: calin_1 pleurer_2 insulter_2 coder_1
+[/Enemy]
+
+
+[Enemy]
+Name: P
+Health: 35
+Damage: 5
+Defense: 0
+Speed: 2
+Actions: calin_1 pleurer_2 insulter_1 coder_3
+[/Enemy]
+
+
+[Enemy]
+Name: CCP
+Health: 35
+Damage: 5
+Defense: 0
+Speed: 2
+Actions: calin_1 pleurer_2 insulter_1 coder_3
+[/Enemy]

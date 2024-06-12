@@ -1,5 +1,6 @@
 #pragma once
 
+#include "EnemyData.h"
 #include "Damageable.h"
 #include "Dialogue.h"
 #include <string>
@@ -8,6 +9,7 @@
 class Enemy : public Damageable {
 
 public:
+	explicit Enemy(const EnemyData&);
 	Enemy(const std::string& name, int health, int damage);
 
 	const std::string& GetName() const;
