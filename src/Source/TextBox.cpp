@@ -1,7 +1,18 @@
 #include "TextBox.h"
 
 TextBox::TextBox() {
+	m_position = sf::Vector2f(150, 150);
+	background_text.setSize(sf::Vector2f(300, 200));
+	background_text.setPosition(m_position);
+	background_text.setFillColor(sf::Color::Black);
 
+	text.setPosition(m_position);
+	text.setFillColor(sf::Color::White);
+	text.setCharacterSize(20);
+	sf::Font undertale_font;
+	undertale_font.loadFromFile("resources/Font/HachicroUndertaleBattleFontRegular-L3zlg.ttf");
+	text.setFont(undertale_font);
+	text.setString(dialogue.getNext());
 }
 
 void TextBox::Show() {
