@@ -1,13 +1,17 @@
 #include <Game.h>
 #include <iostream>
 #include "EnemyData.h"
+#include "EnemyLoader.h"
 
+#include "FilePaths.h"
 
 std::unique_ptr<std::vector<EnemyData>> ENEMIES;
 
 
 int main() {
 	std::cout << "Starting !" << std::endl;
+
+	LoadEnemiesData();
 
 	// Create a window to pass to game
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
@@ -49,5 +53,6 @@ int main() {
 
 
 void LoadEnemiesData() {
-
+	EnemyLoader loader;
+	loader.ReadFromFile(FilePaths::ENEMY_DATA_LIST, ENEMIES);
 }

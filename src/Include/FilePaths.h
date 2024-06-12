@@ -8,6 +8,7 @@ namespace FilePaths {
 	constexpr char SP_SH_FIGHT_BTN[] = "resources/Sprites/UI/fight_btn.png";
 	constexpr char SP_SH_ACTION_BTN[] = "resources/Sprites/UI/fight.png";
 
+	constexpr char ENEMY_DATA_LIST[] = "resources/Enemies/Enemies.txt";
 
 }
 
