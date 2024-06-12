@@ -7,12 +7,12 @@
 class Button : public Clickable, public IDrawable
 {
 public:
-	Button(sf::Texture& texture, sf::Vector2f position);
+	using IDrawable::IDrawable;
 
-	void Draw(sf::RenderWindow& window) const override;
+	void SetActive(bool isActive);
+	bool IsActive() const;
 
-
-protected:
-	sf::Sprite m_sprite;
+private:
+	bool m_isActive = true;
 
 };

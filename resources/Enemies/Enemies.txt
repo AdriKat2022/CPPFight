@@ -280,7 +280,7 @@ Health: 15
 Damage: 3
 Defense: 0
 Speed: 1
-Actions: calin_1 pleurer_1 insulter_1 calin_1
+Actions: calin_1 pleurer_1 insulter_1
 [/Enemy]
 
 
@@ -310,5 +310,5 @@ Health: 35
 Damage: 5
 Defense: 0
 Speed: 2
-Actions: calin_1 pleurer_2 insulter_1 coder_3
+Actions: calin_2 pleurer_2 insulter_3_trap coder_2
 [/Enemy]

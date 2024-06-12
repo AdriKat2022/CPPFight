@@ -1,12 +1,11 @@
 #pragma once
 
-#include "EncounterState.h"
+#include "Game.h"
 #include "IDrawable.h"
 #include "Enemy.h"
-#include "FightButton.h"
-#include "ActionButton.h"
 #include <memory>
 
+class EncounterState;
 
 enum class EncounterStateType {
 	Idle,
@@ -20,13 +19,11 @@ class Encounter : public IDrawable {
 
 public:
 	// Initialize an encounter with an enemy
-	Encounter(Game* m_parentGame);
+	//Encounter(Game* m_parentGame, EnemyData* enemyData);
 
 	void Update();
 	void Draw(sf::RenderWindow&) const override;
 
-
-private:
 	// State management
 	void SetState(EncounterStateType);
 
@@ -43,7 +40,7 @@ private:
 
 	Enemy m_enemy;
 
-	FightButton m_fightBtn;
-	ActionButton m_actionBtn;
+	//FightButton m_fightBtn;
+	//ActionButton m_actionBtn;
 
 };
