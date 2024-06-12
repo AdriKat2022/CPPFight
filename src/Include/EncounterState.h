@@ -2,7 +2,6 @@
 
 #include "Encounter.h"
 
-
 class EncounterState {
 
 public:

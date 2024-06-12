@@ -8,6 +8,8 @@
 #include <SFML/Audio.hpp>
 #include <vector>
 
+
+
 class Game {
 
 public:
@@ -26,6 +28,8 @@ private:
 	Baby m_baby;
 
 	std::vector<std::unique_ptr<Enemy>> m_enemies;
+
+
 
 	int m_currentEncounter = 0;
 };

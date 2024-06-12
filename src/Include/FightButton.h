@@ -1,17 +1,19 @@
 #pragma once
 
 #include "Button.h"
-#include "Encounter.h"
+
+
+class Encounter;
+
 
 class FightButton : public Button
 {
-
 public:
 
-	FightButton(int x, int y, Encounter* parentEncounter);
+	FightButton(sf::Vector2f position, Encounter* parentEncounter);
 
-	bool IsInBounds(sf::Vector2i position);
-	void OnClick(sf::Vector2i position);
+	bool IsInBounds(sf::Vector2f position);
+	void OnClick(sf::Vector2f position);
 
 
 private:

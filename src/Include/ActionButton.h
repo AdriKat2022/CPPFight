@@ -2,14 +2,18 @@
 
 #include "Button.h"
 
+
+class Encounter;
+
+
 class ActionButton : public Button
 {
 public:
 
-	ActionButton(int x, int y, Encounter* parentEncounter);
+	ActionButton(sf::Vector2f position, Encounter* parentEncounter);
 
-	bool IsInBounds(sf::Vector2i position);
-	void OnClick(sf::Vector2i position);
+	bool IsInBounds(sf::Vector2f position) override;
+	void OnClick(sf::Vector2f position) override;
 
 
 private:
