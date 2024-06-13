@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game.h"
+#include "GameRun.h"
 #include <SFML/Graphics.hpp>
 
 class Clickable
@@ -13,7 +13,7 @@ public:
 	virtual bool IsInBounds(sf::Vector2f position) const = 0;
 	virtual void OnClick(sf::Vector2f position) = 0;
 
-	virtual void Update(Game& game, float deltaTime) = 0;
+	virtual void Update(GameRun& gameRun, float deltaTime) = 0;
 
 	void SetActive(bool isActive);
 	bool IsActive() const;

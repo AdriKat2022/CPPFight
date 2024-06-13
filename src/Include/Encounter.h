@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game.h"
+#include "GameRun.h"
 #include "IDrawable.h"
 #include "Enemy.h"
 #include <memory>
@@ -19,7 +19,7 @@ class Encounter : public IDrawable {
 
 public:
 	// Initialize an encounter with an enemy
-	//Encounter(Game* m_parentGame, EnemyData* enemyData);
+	//Encounter(GameRun* m_parentGame, EnemyData* enemyData);
 
 	void Update();
 	void Draw(sf::RenderWindow&) const override;
@@ -29,7 +29,7 @@ public:
 
 
 private:
-	Game* m_parentGame;
+	GameRun* m_parentGame;
 
 	std::shared_ptr<EncounterState> m_currentEncounterState;
 

@@ -1,5 +1,5 @@
 #include "Main.h"
-#include <Game.h>
+#include "GameRun.h"
 #include <iostream>
 
 #include "Main.h"
@@ -14,7 +14,7 @@
 struct EnemyData;
 
 
-// TODO: Move those global variables to the Game class (yet to be created: the current Game.h will be renamed to GameRun.h)
+// TODO: Move those global variables to the Game class
 
 std::unique_ptr<std::vector<EnemyData>> ENEMIES;
 
@@ -29,7 +29,7 @@ enum class GameState {
 	Paused
 };
 
-// TODO: Move the logic of the menu and most of the functions of this file to the Game class (yet to be created: the current Game.h will be renamed to GameRun.h)
+// TODO: Move the logic of the menu and most of the functions of this file to the Game class
 
 int main() {
 	std::cout << "Starting !" << std::endl;
@@ -40,7 +40,7 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 	
 	// Create the game
-	Game game(window);
+	GameRun gameRun(window);
 
 	// Test button
 	CreateMenuButton(FilePaths::SP_SH_PLAY_BTN, { 100, 100 }, ExampleFunction);
@@ -59,10 +59,10 @@ int main() {
 		float deltaTime = elapsed.asSeconds();
 
 
-		Update(game, deltaTime);
-		UpdateRun(game, deltaTime);
+		Update(gameRun, deltaTime);
+		UpdateRun(gameRun, deltaTime);
 
-		Render(game, window);
+		Render(gameRun, window);
 
 		window.display();
 	}
@@ -90,9 +90,9 @@ void ManageEvents(sf::RenderWindow& window, sf::Event& event)
 }
 
 // Begins a new run of the game
-std::unique_ptr<Game> NewRun(sf::RenderWindow & renderWindow)
+std::unique_ptr<GameRun> NewRun(sf::RenderWindow & renderWindow)
 {
-	auto game = std::make_unique<Game>(renderWindow);
+	auto game = std::make_unique<GameRun>(renderWindow);
 
 	// TODO: Init the game (select some enemies, etc)
 
@@ -102,22 +102,22 @@ std::unique_ptr<Game> NewRun(sf::RenderWindow & renderWindow)
 }
 
 // This function is used to update the menu and framework of the game, it is not used to update the game itself (which is done in UpdateRun)
-void Update(Game& game, float deltaTime) {
+void Update(GameRun& gameRun, float deltaTime) {
 	
-	// TODO: Update the application according to the current state
+	// TODO: Update the application according to the current state (menu, inRun, paused)
 
 	for (const auto& clickable : MENU_BUTTONS) {
-		clickable->Update(game, deltaTime);
+		clickable->Update(gameRun, deltaTime);
 	}
 
 }
 
 // This function is used to update the current run of the game
-void UpdateRun(Game& game, float deltaTime) {
-	game.Run(deltaTime);
+void UpdateRun(GameRun& gameRun, float deltaTime) {
+	gameRun.Run(deltaTime);
 }
 
-void Render(const Game & game, sf::RenderWindow& window) {
+void Render(const GameRun & game, sf::RenderWindow& window) {
 	game.Render();
 
 	// TODO: Render the application according to the current state
@@ -133,13 +133,15 @@ void CreateMenuButton(const std::string& spritePath, sf::Vector2f position, void
 	AddClickable(button);
 	AddDrawable(button);
 
-	// TODO: Make this Function more generic so it could also be used in the game class
+	// TODO: Make this Function more generic so it could also be used in the Game class
 }
 
 
 void ExampleFunction() {
+	// This function is called when the button is clicked (see example in CreateMenuButton and where it's called)
 	std::cout << "Button clicked !" << std::endl;
 }
+
 
 void AddClickable(std::shared_ptr<Clickable> clickable)
 {

@@ -14,7 +14,7 @@ Button::Button(const sf::Vector2f& position, const std::string& texturePath, sf:
 {}
 
 
-void Button::Update(Game& game, float deltaTime)
+void Button::Update(GameRun& gameRun, float deltaTime)
 {
 	if (!IsActive())
 	{
@@ -22,14 +22,14 @@ void Button::Update(Game& game, float deltaTime)
 		return;
 	}
 
-	HandleStates(game);
+	HandleStates(gameRun);
 	RenderButton(deltaTime);
 }
 
-void Button::HandleStates(const Game& game) {
+void Button::HandleStates(const GameRun& gameRun) {
 	using enum ButtonState;
 
-	auto mousePos = game.GetMousePosition();
+	auto mousePos = gameRun.GetMousePosition();
 
 	// Check for Hovering
 	if (IsInBounds(mousePos))

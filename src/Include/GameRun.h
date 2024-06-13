@@ -10,10 +10,10 @@
 
 
 // TODO: Rename this as GameRun since it corresponds to the game loop
-class Game {
+class GameRun {
 
 public:
-	explicit Game(sf::RenderWindow & rWindow);
+	explicit GameRun(sf::RenderWindow & rWindow);
 
 	void Run(float deltaTime);
 	void Render() const;

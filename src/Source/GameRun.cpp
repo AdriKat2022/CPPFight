@@ -1,7 +1,7 @@
-#include "Game.h"
+#include "GameRun.h"
 
 
-Game::Game(sf::RenderWindow & rWindow) :
+GameRun::GameRun(sf::RenderWindow & rWindow) :
 	m_window(&rWindow)
 {
 	// Construct the game
@@ -13,18 +13,18 @@ Game::Game(sf::RenderWindow & rWindow) :
 	m_currentMusic.play();
 	m_currentMusic.setLoop(true);
 
-	std::cout << "Game constructed." << std::endl;
+	std::cout << "GameRun constructed." << std::endl;
 }
 
-sf::Vector2f Game::GetMousePosition() const {
+sf::Vector2f GameRun::GetMousePosition() const {
 	return static_cast<sf::Vector2f>(sf::Mouse::getPosition(*m_window));
 }
 
-void Game::Render() const {
+void GameRun::Render() const {
 	// Render the game
 }
 
-void Game::Run(float deltaTime) {
+void GameRun::Run(float deltaTime) {
 	// Run the game
 	//std::cout << "Running game" << std::endl;
 	

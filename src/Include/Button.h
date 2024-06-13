@@ -4,7 +4,7 @@
 #include "IDrawable.h"
 #include <SFML/Graphics.hpp>
 
-class Game;
+class GameRun;
 
 
 enum class ButtonState
@@ -24,7 +24,7 @@ public:
 	Button(const sf::Vector2f& position, const std::string& texturePath, sf::Vector2i dimensions = { 1, 0 }, void (*OnClickEvent)() = nullptr);
 	
 
-	void Update(Game& game, float deltaTime) override;
+	void Update(GameRun& gameRun, float deltaTime) override;
 
 
 	// Clickable
@@ -34,7 +34,7 @@ public:
 	void SetOnClickEvent(void (*OnClickEvent)());
 
 private:
-	void HandleStates(const Game& game);
+	void HandleStates(const GameRun& gameRun);
 	void RenderButton(float deltaTime);
 	void SetState(ButtonState state);
 

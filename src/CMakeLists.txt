@@ -1,5 +1,5 @@
 add_library(lib_cppfight
-    "Include/Game.h"
+    "Include/GameRun.h"
     "Include/Baby.h"
     "Include/Dialogue.h"
     "Include/Player.h"
@@ -26,7 +26,7 @@ add_library(lib_cppfight
 
 target_sources(lib_cppfight
     PRIVATE
-    "Source/Game.cpp"
+    "Source/GameRun.cpp"
     "Source/Baby.cpp"
     "Source/Dialogue.cpp"
     "Source/Player.cpp"
