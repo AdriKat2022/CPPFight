@@ -9,7 +9,6 @@
 #include <vector>
 
 
-// TODO: Rename this as GameRun since it corresponds to the game loop
 class GameRun {
 
 public:
