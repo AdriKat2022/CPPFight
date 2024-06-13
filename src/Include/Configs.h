@@ -22,7 +22,17 @@ namespace FilePaths {
 
 namespace Config {
 
+	// Window config
 	constexpr char WINDOW_TITLE[] = "Cpp Game";
+	constexpr unsigned int WINDOW_WIDTH = 800;
+	constexpr unsigned int WINDOW_HEIGHT = 600;
 
+
+	// Buttons animations
+	constexpr float BUTTON_SCALE_SPEED = 20.0f;
+	constexpr float BUTTON_TARGET_SCALE_IDLE = 1.f;
+	constexpr float BUTTON_TARGET_SCALE_HOVER = 1.1f;
+	constexpr float BUTTON_TARGET_SCALE_PRESSED = 0.95f;
+	constexpr float BUTTON_TARGET_SCALE_DISABLED = 1.f;
 
 }

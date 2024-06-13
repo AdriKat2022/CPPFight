@@ -47,15 +47,21 @@ void IDrawable::DefineSpriteSheet(const sf::Vector2i& dimensions)
 
 void IDrawable::SwitchSprite(int xIndex, int yIndex)
 {
+	std::cout << "Switching sprite to " << xIndex << ", " << yIndex << std::endl;
+
 	m_xIndex = xIndex;
 	m_yIndex = yIndex;
 
+	// Set the texture rect
 	m_sprite.setTextureRect(sf::IntRect(
-		m_xIndex / m_dimensions.x * m_texture.getSize().x,
-		m_yIndex / m_dimensions.y * m_texture.getSize().y,
-		(m_xIndex+1) * m_texture.getSize().x / m_dimensions.x,
-		(m_xIndex+1) * m_texture.getSize().y / m_dimensions.y
+		m_xIndex * m_sprite.getTexture()->getSize().x / m_dimensions.x,
+		m_yIndex * m_sprite.getTexture()->getSize().y / m_dimensions.y,
+		m_sprite.getTexture()->getSize().x / m_dimensions.x,
+		m_sprite.getTexture()->getSize().y / m_dimensions.y
 	));
+	
+
+	std::cout << m_sprite.getTextureRect().left << ", " << m_sprite.getTextureRect().top << ", " << m_sprite.getTextureRect().width << ", " << m_sprite.getTextureRect().height << std::endl;
 }
 
 sf::Sprite& IDrawable::GetSprite()

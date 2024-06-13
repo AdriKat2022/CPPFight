@@ -1,5 +1,5 @@
 #include "ActionButton.h"
-#include "FilePaths.h"
+#include "Configs.h"
 
 
 ActionButton::ActionButton(sf::Vector2f position, Encounter* parentEncounter) :

@@ -1,5 +1,5 @@
 #include "FightButton.h"
-#include "FilePaths.h"
+#include "Configs.h"
 
 
 FightButton::FightButton(sf::Vector2f position, Encounter* parentEncounter) :

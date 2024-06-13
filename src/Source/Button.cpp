@@ -1,14 +1,16 @@
 #include "Button.h"
-
+#include "Configs.h"
 
 Button::Button(const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions, void(*OnClickEvent)()) :
 	IDrawable(position, texture, dimensions),
-	m_OnClickEvent(OnClickEvent)
+	m_OnClickEvent(OnClickEvent),
+	m_scaleSpeed(Config::BUTTON_SCALE_SPEED)
 {}
 
 Button::Button(const sf::Vector2f& position, const std::string& texturePath, sf::Vector2i dimensions, void(*OnClickEvent)()) :
 	IDrawable(position, texturePath, dimensions),
-	m_OnClickEvent(OnClickEvent)
+	m_OnClickEvent(OnClickEvent),
+	m_scaleSpeed(Config::BUTTON_SCALE_SPEED)
 {}
 
 
@@ -39,7 +41,7 @@ void Button::HandleStates(Game& game) {
 	}
 	else
 	{
-		if (m_state != Pressed && m_state != Idle) {
+		if (m_state != Idle) {
 			SetState(Idle);
 			SwitchSprite(0, 0);
 		}
@@ -64,16 +66,16 @@ void Button::RenderButton(float deltaTime)
 	{
 	using enum ButtonState;
 	case Idle:
-		m_targetScale = 1.0f;
+		m_targetScale = Config::BUTTON_TARGET_SCALE_IDLE;
 		break;
 	case Hover:
-		m_targetScale = 1.08f;
+		m_targetScale = Config::BUTTON_TARGET_SCALE_HOVER;
 		break;
 	case Pressed:
-		m_targetScale = 0.95f;
+		m_targetScale = Config::BUTTON_TARGET_SCALE_PRESSED;
 		break;
 	case Disabled:
-		m_targetScale = 1.0f;
+		m_targetScale = Config::BUTTON_TARGET_SCALE_DISABLED;
 		break;
 	default:
 

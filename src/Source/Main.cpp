@@ -4,11 +4,11 @@
 #include "Main.h"
 #include "EnemyData.h"
 #include "EnemyLoader.h"
-#include "FilePaths.h"
+#include "Configs.h"
 #include "Clickable.h"
 #include "IDrawable.h"
 #include "Button.h"
-#include "FilePaths.h"
+#include "Configs.h"
 
 struct EnemyData;
 
