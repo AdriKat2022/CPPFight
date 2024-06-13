@@ -34,7 +34,7 @@ public:
 	void SetOnClickEvent(void (*OnClickEvent)());
 
 private:
-	void HandleStates(Game& game);
+	void HandleStates(const Game& game);
 	void RenderButton(float deltaTime);
 	void SetState(ButtonState state);
 

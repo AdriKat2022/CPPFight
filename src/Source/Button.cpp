@@ -26,7 +26,7 @@ void Button::Update(Game& game, float deltaTime)
 	RenderButton(deltaTime);
 }
 
-void Button::HandleStates(Game& game) {
+void Button::HandleStates(const Game& game) {
 	using enum ButtonState;
 
 	auto mousePos = game.GetMousePosition();
