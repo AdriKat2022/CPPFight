@@ -12,7 +12,6 @@ public:
 
 	ActionButton(sf::Vector2f position, Encounter* parentEncounter);
 
-	bool IsInBounds(sf::Vector2f position) override;
 	void OnClick(sf::Vector2f position) override;
 
 

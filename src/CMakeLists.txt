@@ -22,7 +22,7 @@ add_library(lib_cppfight
     "Include/EncounterMonsterTurn.h"
     "Include/EnemyData.h"
     "Include/EnemyLoader.h"
- "Include/FilePaths.h")
+ "Include/FilePaths.h" "Include/Main.h")
 
 target_sources(lib_cppfight
     PRIVATE

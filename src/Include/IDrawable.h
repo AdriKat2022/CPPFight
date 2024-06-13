@@ -7,8 +7,8 @@ class IDrawable {
 
 public:
 	IDrawable() = default;
-	IDrawable(const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions = { 1, 0 });
-	IDrawable(const sf::Vector2f& position, const std::string& spritePath, sf::Vector2i dimensions = { 1, 0 });
+	IDrawable(const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions = { 1, 0 }, bool centerOrigin = true);
+	IDrawable(const sf::Vector2f& position, const std::string& spritePath, sf::Vector2i dimensions = { 1, 0 }, bool centerOrigin = true);
 
 	virtual ~IDrawable() = default;
 
@@ -16,8 +16,8 @@ public:
 	virtual void Draw(sf::RenderWindow&) const;
 	
 
-	void SetDimensions(const sf::Vector2i& dimensions);
-	void SwtichSprite(int xIndex, int yIndex = 0);
+	void DefineSpriteSheet(const sf::Vector2i& dimensions);
+	void SwitchSprite(int xIndex, int yIndex = 0);
 
 	// Getters
 	sf::Sprite& GetSprite();
@@ -25,6 +25,9 @@ public:
 	bool IsInBoundsOfSprite(sf::Vector2f position) const;
 
 private:
+
+	void CenterOrigin();
+
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 

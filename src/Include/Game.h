@@ -15,10 +15,12 @@ class Game {
 public:
 	explicit Game(sf::RenderWindow*);
 
-	void Run();
+	void Run(float deltaTime);
 	void Render() const;
 
 	void InitEncounter();
+
+	sf::Vector2f GetMousePosition() const;
 
 private:
 	sf::RenderWindow* m_window;

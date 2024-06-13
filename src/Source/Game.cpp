@@ -16,12 +16,15 @@ Game::Game(sf::RenderWindow* rWindow) :
 	std::cout << "Game constructed." << std::endl;
 }
 
+sf::Vector2f Game::GetMousePosition() const {
+	return static_cast<sf::Vector2f>(sf::Mouse::getPosition(*m_window));
+}
 
 void Game::Render() const {
 	// Render the game
 }
 
-void Game::Run() {
+void Game::Run(float deltaTime) {
 	// Run the game
 	//std::cout << "Running game" << std::endl;
 	

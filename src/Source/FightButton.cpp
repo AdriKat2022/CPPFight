@@ -9,12 +9,9 @@ FightButton::FightButton(sf::Vector2f position, Encounter* parentEncounter) :
 
 }
 
-bool FightButton::IsInBounds(sf::Vector2f position)
-{
-	return GetSprite().getGlobalBounds().contains(position.x, position.y);
-}
-
 void FightButton::OnClick(sf::Vector2f position)
 {
+	Button::OnClick(position);
+
 	// TODO : OnClick of FightButton
 }

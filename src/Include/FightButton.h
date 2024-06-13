@@ -12,8 +12,7 @@ public:
 
 	FightButton(sf::Vector2f position, Encounter* parentEncounter);
 
-	bool IsInBounds(sf::Vector2f position);
-	void OnClick(sf::Vector2f position);
+	void OnClick(sf::Vector2f position) override;
 
 
 private:
