@@ -1,3 +1,4 @@
+#include "Main.h"
 #include <Game.h>
 #include <iostream>
 
@@ -19,6 +20,13 @@ std::vector<std::shared_ptr<Clickable>> MENU_BUTTONS;
 std::vector<std::shared_ptr<IDrawable>> DRAWABLES;
 
 
+enum class GameState {
+	MainMenu,
+	InRun,
+	Paused
+};
+
+
 int main() {
 	std::cout << "Starting !" << std::endl;
 
@@ -26,11 +34,9 @@ int main() {
 
 	// Create a window to pass to game
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
-
-
-	// Create a new game
-	Game game(&window);
-
+	
+	// Create the game
+	Game game(window);
 
 	// Test button
 	CreateMenuButton(FilePaths::SP_SH_PLAY_BTN, { 100, 100 }, ExampleFunction);
@@ -38,47 +44,79 @@ int main() {
 	// To measure deltatime
 	sf::Clock clock;
 
+
 	while(window.isOpen()) {
 		sf::Event event;
-		while(window.pollEvent(event)) {
-			if(event.type == sf::Event::Closed) {
-				window.close();
-			}
-			else if(event.type == sf::Event::KeyPressed) {
-				if(event.key.code == sf::Keyboard::Escape) {
-					window.close();
-				}
-			}
-			else if (event.type == sf::Event::MouseButtonPressed) {
-				Clickable::IsMousePressed = true;
-			}
-			else if (event.type == sf::Event::MouseButtonReleased) {
-				Clickable::IsMousePressed = false;
-			}
-		}
+
+		ManageEvents(window, event);
 
 		// Get the elapsed time and restart the clock
 		sf::Time elapsed = clock.restart();
 		float deltaTime = elapsed.asSeconds();
 
+
 		Update(game, deltaTime);
+		UpdateRun(game, deltaTime);
 
 		Render(game, window);
 
-		//window.draw(sprite);
 		window.display();
 	}
 }
 
+void ManageEvents(sf::RenderWindow& window, sf::Event& event)
+{
+	while (window.pollEvent(event)) {
+
+		if (event.type == sf::Event::Closed) {
+			window.close();
+		}
+		else if (event.type == sf::Event::KeyPressed) {
+			if (event.key.code == sf::Keyboard::Escape) {
+				window.close();
+			}
+		}
+		else if (event.type == sf::Event::MouseButtonPressed) {
+			Clickable::IsMousePressed = true;
+		}
+		else if (event.type == sf::Event::MouseButtonReleased) {
+			Clickable::IsMousePressed = false;
+		}
+	}
+}
+
+// Begins a new run of the game
+std::unique_ptr<Game> NewRun(sf::RenderWindow & renderWindow)
+{
+	auto game = std::make_unique<Game>(renderWindow);
+
+	// TODO: Init the game (select some enemies, etc)
+
+	// TODO: Change application state to game
+
+	return std::move(game);
+}
+
+// This function is used to update the menu and framework of the game, it is not used to update the game itself (which is done in UpdateRun)
 void Update(Game& game, float deltaTime) {
+	
+	// TODO: Update the application according to the current state
+
 	for (const auto& clickable : MENU_BUTTONS) {
 		clickable->Update(game, deltaTime);
 	}
+
+}
+
+// This function is used to update the current run of the game
+void UpdateRun(Game& game, float deltaTime) {
 	game.Run(deltaTime);
 }
 
 void Render(const Game & game, sf::RenderWindow& window) {
 	game.Render();
+
+	// TODO: Render the application according to the current state
 
 	for (const auto& drawable : DRAWABLES) {
 		drawable->Draw(window);
@@ -90,6 +128,8 @@ void CreateMenuButton(const std::string& spritePath, sf::Vector2f position, void
 	auto button = std::make_shared<Button>(position, spritePath, sf::Vector2i(1, 2), OnClickEvent);
 	AddClickable(button);
 	AddDrawable(button);
+
+	// TODO: Make this Function more generic so it could also be used in the game class
 }
 
 

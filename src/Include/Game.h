@@ -13,7 +13,7 @@
 class Game {
 
 public:
-	explicit Game(sf::RenderWindow*);
+	explicit Game(sf::RenderWindow & rWindow);
 
 	void Run(float deltaTime);
 	void Render() const;

@@ -1,8 +1,8 @@
 #include "Game.h"
 
 
-Game::Game(sf::RenderWindow* rWindow) :
-	m_window(rWindow)
+Game::Game(sf::RenderWindow & rWindow) :
+	m_window(&rWindow)
 {
 	// Construct the game
 	std::cout << "Constructing game..." << std::endl;
