@@ -13,6 +13,9 @@
 
 struct EnemyData;
 
+
+// TODO: Move those global variables to the Game class (yet to be created: the current Game.h will be renamed to GameRun.h)
+
 std::unique_ptr<std::vector<EnemyData>> ENEMIES;
 
 // Only for the menu before the game starts
@@ -26,6 +29,7 @@ enum class GameState {
 	Paused
 };
 
+// TODO: Move the logic of the menu and most of the functions of this file to the Game class (yet to be created: the current Game.h will be renamed to GameRun.h)
 
 int main() {
 	std::cout << "Starting !" << std::endl;
