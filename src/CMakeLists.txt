@@ -23,7 +23,7 @@ add_library(lib_cppfight
     "Include/EnemyData.h"
     "Include/EnemyLoader.h"
     "Include/Configs.h"
-    "Include/Main.h"
+    
     "Include/Game.h"
 )
 

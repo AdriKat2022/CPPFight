@@ -12,8 +12,9 @@
 class EnemyLoader {
 
 public:
-	void ReadFromFile(const std::string& fileName, std::unique_ptr<std::vector<EnemyData>>& enemyVector);
+	std::unique_ptr<std::vector<EnemyData>> GetEnemies();
 
+	void ReadFromFile(const std::string& fileName, std::unique_ptr<std::vector<EnemyData>>& enemyVector);
 
 private:
 	void LoadEnemy(std::ifstream& stream);
@@ -25,4 +26,6 @@ private:
 private:
 	std::map<std::string, ActionData, std::less<>> m_cachedActions;
 	std::unique_ptr<std::vector<EnemyData>> m_enemies;
+
+	bool m_used = false;
 };

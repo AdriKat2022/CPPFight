@@ -1,12 +1,11 @@
 #pragma once
 
-#include "Player.h"
-#include "Baby.h"
-#include "Enemy.h"
-#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <vector>
+#include "Player.h"
+#include "Baby.h"
+#include "Enemy.h"
 
 
 class GameRun {
@@ -17,7 +16,7 @@ public:
 	void Run(float deltaTime);
 	void Render() const;
 
-	void InitEncounter();
+	void InitNextEncounter();
 
 	sf::Vector2f GetMousePosition() const;
 

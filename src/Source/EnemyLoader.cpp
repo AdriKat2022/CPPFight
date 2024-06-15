@@ -1,6 +1,11 @@
 #include "EnemyLoader.h"
 
 
+std::unique_ptr<std::vector<EnemyData>> EnemyLoader::GetEnemies()
+{
+	return std::move(m_enemies);
+}
+
 void EnemyLoader::ReadFromFile(const std::string& fileName, std::unique_ptr<std::vector<EnemyData>>& enemyVector)
 {
 	// Reset the EnemyData vector (in case it was already used)

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "GameRun.h"
 
 
@@ -5,7 +6,7 @@ GameRun::GameRun(sf::RenderWindow & rWindow) :
 	m_window(&rWindow)
 {
 	// Construct the game
-	std::cout << "Constructing game..." << std::endl;
+	std::cout << "Constructing run..." << std::endl;
 
 
 	// Main menu music
