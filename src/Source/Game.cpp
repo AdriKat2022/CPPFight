@@ -70,29 +70,35 @@ void Game::UpdateGameMenu()
 	// définition du background du menu
 	sf::RectangleShape background_menu(static_cast<sf::Vector2f> (m_window.getSize()));
 	sf::Texture texture_background;
-	texture_background.loadFromFile("resources/Sprites/P.png");
+	texture_background.loadFromFile(FilePaths::SP_SH_MENU_BG);
 	background_menu.setTexture(&texture_background);
 
 	// définition du bouton "play"
 	sf::RectangleShape play_button(sf::Vector2f(200, 100));
 	play_button.setPosition(sf::Vector2f(300, 50));
 	sf::Texture texture_play_button;
-	texture_play_button.loadFromFile("resources/Sprites/play_button.png");
+	texture_play_button.loadFromFile(FilePaths::SP_SH_PLAY_BTN);
 	play_button.setTexture(&texture_play_button);
+	/*auto play_button = std::make_shared<Button>(sf::Vector2f(400, 100), FilePaths::SP_SH_PLAY_BTN, sf::Vector2i(1, 2), ExampleFunction);
+	DRAWABLES.push_back(play_button);*/
 
 	// définition du bouton "rules"
 	sf::RectangleShape rules_button(sf::Vector2f(200, 100));
 	rules_button.setPosition(sf::Vector2f(300, 250));
 	sf::Texture texture_rules_button;
-	texture_rules_button.loadFromFile("resources/Sprites/rules_button.png");
+	texture_rules_button.loadFromFile(FilePaths::SP_SH_RULES_BTN);
 	rules_button.setTexture(&texture_rules_button);
+	/*auto rules_button = std::make_shared<Button>(sf::Vector2f(400, 300), FilePaths::SP_SH_RULES_BTN, sf::Vector2i(1, 2), ExampleFunction);
+	DRAWABLES.push_back(rules_button);*/
 
 	// définition du bouton "quit game"
 	sf::RectangleShape quit_button(sf::Vector2f(200, 100));
 	quit_button.setPosition(sf::Vector2f(300, 450));
 	sf::Texture texture_quit_button;
-	texture_quit_button.loadFromFile("resources/Sprites/quit_button.png");
+	texture_quit_button.loadFromFile(FilePaths::SP_SH_QUIT_BTN);
 	quit_button.setTexture(&texture_quit_button);
+	/*auto quit_button = std::make_shared<Button>(sf::Vector2f(400, 500), FilePaths::SP_SH_QUIT_BTN, sf::Vector2i(1, 2), ExampleFunction);
+	DRAWABLES.push_back(quit_button);*/
 
 	// affichage du menu
 	m_window.clear();
@@ -100,6 +106,9 @@ void Game::UpdateGameMenu()
 	m_window.draw(play_button);
 	m_window.draw(rules_button);
 	m_window.draw(quit_button);
+	/*for (const auto& drawable : DRAWABLES_2) {
+		drawable->Draw(*m_window);
+	}*/
 }
 
 void Game::ManageWindowEvents()
