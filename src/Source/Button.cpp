@@ -14,25 +14,25 @@ Button::Button(const sf::Vector2f& position, const std::string& texturePath, sf:
 {}
 
 
-void Button::Update(GameRun& gameRun, float deltaTime)
+void Button::Update(float deltaTime)
 {
-	if (!IsActive())
+	if (!m_isActive)
 	{
 		SetState(ButtonState::Disabled);
 		return;
 	}
 
-	HandleStates(gameRun);
+	HandleStates();
 	RenderButton(deltaTime);
 }
 
-void Button::HandleStates(const GameRun& gameRun) {
+void Button::HandleStates() {
 	using enum ButtonState;
 
-	auto mousePos = gameRun.GetMousePosition();
+	auto mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition());
 
 	// Check for Hovering
-	if (IsInBounds(mousePos))
+	if (IsInBoundsOfSprite(mousePos))
 	{
 		if (m_state != Pressed && m_state != Hover) {
 			SetState(Hover);
@@ -90,15 +90,10 @@ void Button::RenderButton(float deltaTime)
 
 void Button::OnClick(sf::Vector2f position)
 {
-	if (IsActive() && m_OnClickEvent)
+	if (m_isActive && m_OnClickEvent)
 	{
 		m_OnClickEvent();
 	}
-}
-
-bool Button::IsInBounds(sf::Vector2f position) const
-{
-	return IsInBoundsOfSprite(position);
 }
 
 void Button::SetOnClickEvent(void(*OnClickEvent)())

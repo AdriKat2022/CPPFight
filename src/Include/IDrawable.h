@@ -9,7 +9,6 @@ public:
 	IDrawable() = default;
 	IDrawable(const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions = { 1, 0 }, bool centerOrigin = true);
 	IDrawable(const sf::Vector2f& position, const std::string& spritePath, sf::Vector2i dimensions = { 1, 0 }, bool centerOrigin = true);
-
 	virtual ~IDrawable() = default;
 
 

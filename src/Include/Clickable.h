@@ -3,6 +3,7 @@
 #include "GameRun.h"
 #include <SFML/Graphics.hpp>
 
+// Deprecated
 class Clickable
 {
 public:
