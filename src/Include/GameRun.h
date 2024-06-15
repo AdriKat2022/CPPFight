@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Configs.h"
 #include "Player.h"
 #include "Baby.h"
 #include "Enemy.h"

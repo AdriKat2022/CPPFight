@@ -5,7 +5,7 @@
 namespace FilePaths {
 
 	// Put all sprites sheets in here
-
+	constexpr char SP_SH_MENU_BG[] = "resources/Sprites/menu_background.png";
 
 	// Menu buttons
 	constexpr char SP_SH_PLAY_BTN[] = "resources/Sprites/play_button.png";
