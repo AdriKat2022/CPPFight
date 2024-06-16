@@ -8,7 +8,10 @@
 #include <fstream>
 #include <string>
 
-
+// Utility class to load enemies from a file
+// Create the object and call ReadFromFile() to load the enemies
+// Call GetEnemies() to get the pointer to the vector of enemies
+// Do not use the object again after calling GetEnemies()
 class EnemyLoader {
 
 public:

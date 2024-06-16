@@ -6,7 +6,9 @@
 class Context;
 class Button;
 
-
+// A menu holds buttons and sprites that are all drawn to the screen when the menu is active (and Draw() is called)
+// Draw() should be called every frame to update the menu, since buttons have animations and the menu could be animated (with serveral sprites)
+// Buttons can be clicked and have an OnClickEvent that is called when the button is clicked
 class Menu : public IDrawable {
 
 public:
