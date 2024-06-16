@@ -27,10 +27,6 @@ void GameRun::Render() const {
 	// Render the game
 }
 
-/*void ExampleFunction() {
-	// This function is called when the button is clicked (see example in CreateMenuButton and where it's called)
-	std::cout << "Button clicked !" << std::endl;
-}*/
 
 void GameRun::Run(float deltaTime) {
 	// Run the game run

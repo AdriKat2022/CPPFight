@@ -12,7 +12,7 @@ class Button;
 class Menu : public IDrawable {
 
 public:
-	Menu() = default;
+	Menu();
 
 	void AddButton(const std::string& spritePath, sf::Vector2f position, void (*OnClickEvent)(Context& context));
 	void AddSprite(const std::string& spritePath, sf::Vector2f position, sf::Vector2i dimensions = { 1, 0 });

@@ -1,9 +1,14 @@
 #include "Menu.h"
 #include "Button.h"
 
+Menu::Menu()
+{
+	SetActive(true);
+}
+
 void Menu::AddButton(const std::string& spritePath, sf::Vector2f position, void(*OnClickEvent)(Context& context))
 {
-	auto button = std::make_shared<Button>(position, spritePath, sf::Vector2i(1, 0), OnClickEvent);
+	auto button = std::make_shared<Button>(position, spritePath, sf::Vector2i(1, 2), OnClickEvent);
 	m_buttons.push_back(button);
 }
 

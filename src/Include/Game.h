@@ -43,7 +43,7 @@ private:
 	void AddMenuButton(const std::string& spritePath, sf::Vector2f position, void (*OnClickEvent)(Game& gameContext));
 	void AddDrawableToRenderList(std::shared_ptr<IDrawable> drawable);
 
-	std::unique_ptr<GameRun> NewRun(sf::RenderWindow& renderWindow);
+	static std::unique_ptr<GameRun> NewRun(sf::RenderWindow& renderWindow);
 
 
 	// Variables
