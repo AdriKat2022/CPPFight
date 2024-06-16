@@ -12,8 +12,8 @@ add_library(lib_cppfight
     "Include/TextBox.h"
     "Include/SpecificActionButton.h"
     "Include/Button.h"
-    "Include/FightButton.h"
-    "Include/ActionButton.h"
+    
+    
     "Include/EncounterState.h"
     "Include/Encounter.h"
     "Include/EncounterFighting.h"
