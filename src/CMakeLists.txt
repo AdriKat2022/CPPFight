@@ -25,7 +25,7 @@ add_library(lib_cppfight
     "Include/Configs.h"
     
     "Include/Game.h"
- "Include/Menu.h" "Include/Context.h")
+ "Include/Menu.h" )
 
 target_sources(lib_cppfight
     PRIVATE

@@ -3,16 +3,14 @@
 
 #include <iostream>
 
-Button::Button(Context* context, const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions, std::function<void(Context*)> OnClickEvent) :
+Button::Button(const sf::Vector2f& position, const sf::Texture& texture, std::function<void()> OnClickEvent, sf::Vector2i dimensions) :
 	IDrawable(position, texture, dimensions),
-	m_context(context),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleSpeed(Config::BUTTON_SCALE_SPEED)
 {}
 
-Button::Button(Context* context, const sf::Vector2f& position, const std::string& texturePath, sf::Vector2i dimensions, std::function<void(Context*)> OnClickEvent) :
+Button::Button(const sf::Vector2f& position, const std::string& texturePath, std::function<void()> OnClickEvent, sf::Vector2i dimensions) :
 	IDrawable(position, texturePath, dimensions),
-	m_context(context),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleSpeed(Config::BUTTON_SCALE_SPEED)
 {}
@@ -96,11 +94,11 @@ void Button::OnClick(sf::Vector2f position)
 {
 	if (m_isActive && m_OnClickEvent)
 	{
-		m_OnClickEvent(m_context);
+		m_OnClickEvent();
 	}
 }
 
-void Button::SetOnClickEvent(std::function<void(Context*)> OnClickEvent)
+void Button::SetOnClickEvent(std::function<void()> OnClickEvent)
 {
 	m_OnClickEvent = OnClickEvent;
 }

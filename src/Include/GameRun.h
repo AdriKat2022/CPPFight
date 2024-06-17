@@ -11,7 +11,7 @@
 class GameRun {
 
 public:
-	explicit GameRun(sf::RenderWindow & rWindow);
+	explicit GameRun(sf::RenderWindow& rWindow);
 
 	void Run(float deltaTime);
 	void Render() const;

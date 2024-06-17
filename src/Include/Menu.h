@@ -14,19 +14,15 @@ class IDrawable;
 class Menu {
 
 public:
-	Menu();
+	Menu() = default;
 
-	void AddButton(const std::string& spritePath, sf::Vector2f position, std::function<void(Context*)> OnClickEvent, Context* context);
+	void AddButton(const std::string& spritePath, sf::Vector2f position, std::function<void()> OnClickEvent);
 	void AddSprite(const std::string& spritePath, sf::Vector2f position, sf::Vector2i dimensions = { 1, 1 }, bool centerOrigin = true);
 
 	void Draw(sf::RenderWindow& window) const;
 
-	void SetActive(bool isActive);
-	bool IsActive() const;
 
 private:
-
-	bool m_isActive = false;
 
 	std::vector<std::shared_ptr<Button>> m_buttons;
 	std::vector<std::shared_ptr<IDrawable>> m_drawables;

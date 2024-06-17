@@ -21,14 +21,14 @@ class Button : public IDrawable
 {
 public:
 	using IDrawable::IDrawable;
-	Button(Context* context, const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions = { 1, 1 }, std::function<void(Context*)> OnClickEvent = nullptr);
-	Button(Context* context, const sf::Vector2f& position, const std::string& texturePath, sf::Vector2i dimensions = { 1, 1 }, std::function<void(Context*)> OnClickEvent = nullptr);
+	Button(const sf::Vector2f& position, const sf::Texture& texture, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 });
+	Button(const sf::Vector2f& position, const std::string& texturePath, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 });
 	
 
 	void Update(sf::RenderWindow& renderWindow, float deltaTime = 0.01f);
 
 	void OnClick(sf::Vector2f position);
-	void SetOnClickEvent(std::function<void(Context*)> OnClickEvent);
+	void SetOnClickEvent(std::function<void()> OnClickEvent);
 
 private:
 	void HandleStates(const sf::RenderWindow & renderWindow);
@@ -36,8 +36,7 @@ private:
 	void SetState(ButtonState state);
 
 
-	Context* m_context = nullptr;
-	std::function<void(Context*)> m_OnClickEvent = nullptr;
+	std::function<void()> m_OnClickEvent = nullptr;
 
 	ButtonState m_state = ButtonState::Idle;
 	float m_scaleSpeed = 10.0f;
