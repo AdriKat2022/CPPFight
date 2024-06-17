@@ -40,7 +40,7 @@ void Game::LoadEnemiesData()
 void Game::GenerateMenus()
 {
 	//définition et affichage des boutons du menu
-	m_mainMenu.AddSprite(FilePaths::SP_SH_MENU_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
+	m_mainMenu.AddSprite(FilePaths::MENU_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
 	m_mainMenu.AddButton(FilePaths::SP_SH_PLAY_BTN, sf::Vector2f(400, 100), [this]() { this->BeginNewRun(); });
 	m_mainMenu.AddButton(FilePaths::SP_SH_RULES_BTN, sf::Vector2f(400, 300), [this]() { this->ShowRules();  });
 	m_mainMenu.AddButton(FilePaths::SP_SH_QUIT_BTN, sf::Vector2f(400, 500), [this]() { this->QuitRequest(); });

@@ -18,7 +18,11 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 	m_currentMusic.play();
 	m_currentMusic.setLoop(true);
 
-
+	// Create the reward menu
+	// TODO: Add multiple buttons for several rewards (more power, more health, or full heal)
+	m_rewardMenu.AddButton("", {200, 200}, [this]() {
+		InitNextEncounter();
+	});
 
 	std::cout << "GameRun constructed." << std::endl;
 }

@@ -50,9 +50,9 @@ Dialogue:
 Vous prenez votre bébé dans vos bras et le câlinez.
 -
 Il est tout content !
-(+10 PB)
+(+15 PB)
 ---
-HappinessModifier: 10
+HappinessModifier: 15
 [/Action]
 
 
@@ -63,7 +63,7 @@ Dialogue:
 Vous prenez le monstre dans vos bras et le câli...
 Attendez, quoi ?
 -
-Le monstre et vous êtes confus.
+Le monstre et vous même êtes confus.
 Votre bébé rigole de la situation.
 (+25 PB)
 ---
@@ -115,7 +115,7 @@ Beaucoup trop violent !!!
 -
 Vous avez déclenché la colère du monstre.
 Votre bébé a maintenant appris des mots interdits. Bravo l'éducation.
-(-30 PB)
+(-20 PB)
 ---
 HappinessModifier: -20
 [/Action]
@@ -134,7 +134,7 @@ On attend toujours.
 ...
 -
 Vous n'avez aucune idée en fait.
-Votre bébé est déçu, le monstre aussi.
+Votre bébé est déçu, le monstre aussi semblablement.
 (-10 PB)
 ---
 HappinessModifier: 30
@@ -190,14 +190,14 @@ Dialogue:
 La... légende de Pablo ?
 -
 Votre bébé a la réf.
-(+15 PB)
+(+40 PB)
 ---
-HappinessModifier: 15
+HappinessModifier: 40
 [/Action]
 
 
 [Action]
-Id: salto
+Id: salto_isaac
 Name: FaireUnSalto
 Dialogue:
 Vous faites un salto arrière.
@@ -205,6 +205,8 @@ Vous faites un salto arrière.
 Impressionnant. Votre bébé est épaté.
 Mais il ne comprend pas pourquoi vous avez fait ça.
 (+20 PB)
+-
+Un Isaac vous regarde de loin et vous fait un pouce vers le haut.
 ---
 HappinessModifier: 20
 [/Action]
@@ -253,9 +255,75 @@ Le monstre semble effrayé.
 -
 Seg fault.
 Le monstre et le bébé sont déçus.
-(-35 PB)
+(-30 PB)
+---
+HappinessModifier: -30
+[/Action]
+
+
+[Action]
+Id: sprint_interieur
+Name: Sprinter
+Dialogue:
+Vous vous baissez, puis d'un seul coup...
+-
+Vous sprintez dans la pièce.
+-
+Ça va mal finir cette histoire.
+Sprinter n'est bon que hors des salles de classe.
+(-10 PB)
 ---
 HappinessModifier: -10
+[/Action]
+
+
+[Action]
+Id: sprint_exterieur
+Name: Sprinter
+Dialogue:
+Vous vous baissez, puis d'un seul coup...
+-
+Vous sprintez dehors... Entre les arbres, les oiseaux, les papillons...
+-
+Cela vous fait du bien. Mais il faut rentrer maintenant.
+Bébé est content de l'escapade.
+(+20 PB)
+---
+HappinessModifier: 20
+[/Action]
+
+
+[Action]
+Id: mixer
+Name: Mixer
+Dialogue:
+Une envie soudaine vous prend de mixer un truc.
+-
+Vous sortez vos platines et commencez à mixer tah des sons.
+Le monstre et votre bébé se croient dans une rave party.
+-
+Ils s'ambiancent de fou.
+Un Teddy vous regarde de loin et est fier de vous.
+(+30 PB)
+---
+HappinessModifier: 20
+[/Action]
+
+
+[Action]
+Id: mixer_bad
+Name: Mixer
+Dialogue:
+Une envie soudaine vous prend de mixer un truc.
+-
+Vous sortez vos platines et commencez à mixer tah des sons.
+Le monstre et votre bébé se croient dans un concert de casseroles.
+-
+Vous avez perdu votre public. L'équaliser est pas bon michel.
+Vous essayez de voir Teddy mais il est déjà très loin de votre set abominable.
+(-15 PB)
+---
+HappinessModifier: -15
 [/Action]
 
 
@@ -306,9 +374,30 @@ Actions: calin_1 pleurer_2 insulter_1 coder_3
 
 [Enemy]
 Name: CCP
-Health: 35
+Health: 50
+Damage: 6
+Defense: 1
+Speed: 3
+Actions: calin_2 gouter_bebe insulter_3_trap coder_2
+[/Enemy]
+
+
+[Enemy]
+Name: ProdBoss
+Health: 60
 Damage: 5
 Defense: 0
-Speed: 2
-Actions: calin_2 pleurer_2 insulter_3_trap coder_2
+Speed: 4
+Actions: sprint_interieur pablo insulter_3_trap mixer
 [/Enemy]
+
+
+[Enemy]
+Name: Michel
+Health: 70
+Damage: 4
+Defense: 0
+Speed: 5
+Actions: sprint_exterieur pablo_2 salto_isaac mixer
+[/Enemy]
+
