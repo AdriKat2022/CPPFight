@@ -4,15 +4,20 @@
 
 namespace FilePaths {
 
-	// Font for every text
-	constexpr char UNDERTALE_FONT[] = "resources/Font/HachicroUndertaleBattleFontRegular-L3zlg.ttf";
+	// Fonts for every text
+	constexpr char FONT_DAMAGE[] = "resources/Font/HachicroUndertaleBattleFontRegular-L3zlg.ttf";
+	constexpr char FONT_MAIN[] = "resources/Font/main_font.ttf";
+	constexpr char FONT_TITLE[] = "resources/Font/title_font.ttf";
+	constexpr char FONT_STATS[] = "resources/Font/stat_font.ttf";
 
 	// Musics
-	constexpr char MUSIC_RUN_MAIN[] = "resources/Music/menu_music.ogg";
-	constexpr char MUSIC_MENU_MAIN[] = "resources/Music/menu_music.ogg";
+	constexpr char MUSIC_RUN_MAIN[] = "resources/Audio/Music/menu_music.ogg";
+	constexpr char MUSIC_MENU_MAIN[] = "resources/Audio/Music/menu_music.ogg";
 
 	// Backgrounds
-	constexpr char SP_SH_MENU_BG[] = "resources/Sprites/menu_background.png";
+	constexpr char MENU_BG[] = "resources/Sprites/menu_background.png";
+	constexpr char RULES_BG[] = "resources/Sprites/rules_background.png";
+	constexpr char ENCOUNTER_BG[] = "resources/Sprites/encounter_background.png";
 
 	// Menu buttons
 	constexpr char SP_SH_PLAY_BTN[] = "resources/Sprites/play_button.png";

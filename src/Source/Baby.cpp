@@ -69,3 +69,8 @@ void Baby::Modify(int modifier)
 		m_happinessLvl = 0;
 	}
 }
+
+int Baby::GetHappiness() const
+{
+	return m_happinessLvl;
+}

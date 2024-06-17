@@ -42,7 +42,8 @@ private:
 
 	std::unique_ptr<Encounter> m_currentEncounter;
 	std::vector<EnemyData*> m_enemies;
-
+	
+	Menu m_rewardMenu;
 
 	RunState m_state = RunState::Intro;
 

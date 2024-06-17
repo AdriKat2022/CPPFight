@@ -54,7 +54,7 @@ void Encounter::Draw(sf::RenderWindow& window) const
 	background_happiness_baby.setPosition({ 700, 440 });
 	window.draw(background_happiness_baby);
 
-	sf::RectangleShape happiness_bar_baby(sf::Vector2f(40, baby.GetHappiness()));
+	sf::RectangleShape happiness_bar_baby(sf::Vector2f(40.f, static_cast<float>(baby.GetHappiness())));
 	happiness_bar_baby.setFillColor(sf::Color::Yellow);
 	happiness_bar_baby.setPosition(sf::Vector2f(705, 440 + (100 - baby.GetHappiness())));
 	window.draw(happiness_bar_baby);
