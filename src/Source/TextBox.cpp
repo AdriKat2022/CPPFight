@@ -44,7 +44,7 @@ void TextBox::Update() {
 
 }
 
-void TextBox::Draw(sf::RenderWindow& window) {
+void TextBox::Draw(sf::RenderWindow& window) const{
 	sf::Font undertale_font;
 	undertale_font.loadFromFile(FilePaths::UNDERTALE_FONT);
 	text.setFont(undertale_font);

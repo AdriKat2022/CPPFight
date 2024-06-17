@@ -22,7 +22,7 @@ public:
 
 
 	// IDrawable
-	void Draw(sf::RenderWindow&) override;
+	void Draw(sf::RenderWindow&) const override;
 
 
 private:

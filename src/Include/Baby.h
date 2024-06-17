@@ -6,6 +6,7 @@ public:
 	Baby();
 
 	float GetMult() const;
+	int GetHappiness() const;
 	void Modify(int);
 
 private:
