@@ -60,7 +60,7 @@ void GameRun::InitNextEncounter()
 		return;
 	}
 
-	m_currentEncounter = std::make_unique<Encounter>(m_enemies[m_nextEncounterIndex]);
+	m_currentEncounter = std::make_unique<Encounter>(*this, m_enemies[m_nextEncounterIndex]);
 	m_nextEncounterIndex++;
 	m_state = RunState::InEncounter;
 }

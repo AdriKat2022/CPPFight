@@ -52,9 +52,9 @@ void Encounter::Draw(sf::RenderWindow& window) const
 	background_happiness_baby.setPosition({ 700, 440 });
 	window.draw(background_happiness_baby);
 
-	sf::RectangleShape happiness_bar_baby(sf::Vector2f(40, baby.GetHappiness()));
+	sf::RectangleShape happiness_bar_baby(sf::Vector2f(40.f, static_cast<float>(baby.GetHappiness())));
 	happiness_bar_baby.setFillColor(sf::Color::Yellow);
-	happiness_bar_baby.setPosition({ 705, 440 + (100 - baby.GetHappiness())});
+	happiness_bar_baby.setPosition({ 705.f, 440.f + (100.f - static_cast<float>(baby.GetHappiness()))});
 	window.draw(happiness_bar_baby);
 
 	TextBox damage_mult;
