@@ -1,20 +1,24 @@
 #include "Button.h"
 #include "Configs.h"
 
-Button::Button(const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions, void(*OnClickEvent)()) :
+#include <iostream>
+
+Button::Button(Context* context, const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions, std::function<void(Context*)> OnClickEvent) :
 	IDrawable(position, texture, dimensions),
+	m_context(context),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleSpeed(Config::BUTTON_SCALE_SPEED)
 {}
 
-Button::Button(const sf::Vector2f& position, const std::string& texturePath, sf::Vector2i dimensions, void(*OnClickEvent)()) :
+Button::Button(Context* context, const sf::Vector2f& position, const std::string& texturePath, sf::Vector2i dimensions, std::function<void(Context*)> OnClickEvent) :
 	IDrawable(position, texturePath, dimensions),
+	m_context(context),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleSpeed(Config::BUTTON_SCALE_SPEED)
 {}
 
 
-void Button::Update(float deltaTime)
+void Button::Update(sf::RenderWindow& renderWindow, float deltaTime)
 {
 	if (!m_isActive)
 	{
@@ -22,14 +26,14 @@ void Button::Update(float deltaTime)
 		return;
 	}
 
-	HandleStates();
+	HandleStates(renderWindow);
 	RenderButton(deltaTime);
 }
 
-void Button::HandleStates() {
+void Button::HandleStates(const sf::RenderWindow& renderWindow) {
 	using enum ButtonState;
 
-	auto mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition());
+	auto mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition(renderWindow));
 
 	// Check for Hovering
 	if (IsInBoundsOfSprite(mousePos))
@@ -92,11 +96,11 @@ void Button::OnClick(sf::Vector2f position)
 {
 	if (m_isActive && m_OnClickEvent)
 	{
-		m_OnClickEvent();
+		m_OnClickEvent(m_context);
 	}
 }
 
-void Button::SetOnClickEvent(void(*OnClickEvent)())
+void Button::SetOnClickEvent(std::function<void(Context*)> OnClickEvent)
 {
 	m_OnClickEvent = OnClickEvent;
 }

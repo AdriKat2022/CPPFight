@@ -12,21 +12,15 @@ void ExampleFunction() {
 Game::Game()
 {
 	LoadEnemiesData();
-	
-	// définition et affichage du background du menu
-	sf::RectangleShape background_menu(static_cast<sf::Vector2f> (m_window.getSize()));
-	sf::Texture texture_background;
-	texture_background.loadFromFile(FilePaths::SP_SH_MENU_BG);
-	background_menu.setTexture(&texture_background);
-	m_window.draw(background_menu);
 
 	//définition et affichage des boutons du menu
-	Menu menu;
-	menu.AddButton(FilePaths::SP_SH_PLAY_BTN, sf::Vector2f(400, 100), [](Context& context) {std::cout << "Working! \n"; } /*NewRun(m_window)*/);
-	menu.AddButton(FilePaths::SP_SH_RULES_BTN, sf::Vector2f(400, 300), [](Context& context) {std::cout << "Working! \n"; } /*ShowRules()*/);
-	menu.AddButton(FilePaths::SP_SH_QUIT_BTN, sf::Vector2f(400, 500), [](Context& context) {std::cout << "Working! \n"; } /*Exit(m_window)*/);
-	menu.Draw(m_window);
-	
+	m_mainMenu.AddSprite(FilePaths::SP_SH_MENU_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
+	m_mainMenu.AddButton(FilePaths::SP_SH_PLAY_BTN, sf::Vector2f(400, 100), [](Context* context) {std::cout << "Working! \n"; } /*NewRun(m_window)*/, this);
+	m_mainMenu.AddButton(FilePaths::SP_SH_RULES_BTN, sf::Vector2f(400, 300), [](Context* context) {std::cout << "Working! \n"; } /*ShowRules()*/, this);
+	m_mainMenu.AddButton(FilePaths::SP_SH_QUIT_BTN, sf::Vector2f(400, 500), [](Context* context) {std::cout << "Working! \n"; } /*Exit(m_window)*/, this);	
+	m_mainMenu.SetActive(true);
+
+
 }
 
 void Game::RunGame()
@@ -34,7 +28,8 @@ void Game::RunGame()
 	// To measure deltatime
 	sf::Clock clock;
 
-	m_window.display();
+
+
 	while (m_window.isOpen()) {
 
 		ManageWindowEvents();
@@ -44,11 +39,10 @@ void Game::RunGame()
 		float deltaTime = elapsed.asSeconds();
 
 
+		UpdateGameMenu();
 
-		//UpdateGameMenu();
 
-
-		//m_window.display();
+		m_window.display();
 	}
 
 }
@@ -61,11 +55,12 @@ void Game::LoadEnemiesData()
 
 void Game::GenerateMenus()
 {
+	// In the constructor for the moment
 }
 
 void Game::UpdateGameRun()
 {
-
+	
 }
 
 // This may be renamed to "Render" in the future since we might want to separe the update and render functions
@@ -76,6 +71,7 @@ void Game::RenderGameRun()
 
 void Game::UpdateGameMenu()
 {	
+	m_mainMenu.Draw(m_window);
 }
 
 void Game::ManageWindowEvents()
@@ -98,18 +94,6 @@ void Game::ManageWindowEvents()
 			Clickable::IsMousePressed = false;
 		}
 	}
-}
-
-void Game::AddMenuButton(const std::string& spritePath, sf::Vector2f position, void(*OnClickEvent)(Game& gameContext))
-{
-	auto button = std::make_shared<Button>(position, spritePath, sf::Vector2i(1, 2), OnClickEvent);
-	m_menuDrawable.push_back(button);
-	m_menuButtons.push_back(std::move(button));
-}
-
-void Game::AddDrawableToRenderList(std::shared_ptr<IDrawable> drawable)
-{
-	m_menuDrawable.push_back(std::move(drawable));
 }
 
 static std::unique_ptr<GameRun> NewRun(sf::RenderWindow& renderWindow)

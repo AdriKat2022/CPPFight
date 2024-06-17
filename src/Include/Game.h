@@ -4,6 +4,8 @@
 #include "SFML/Graphics.hpp"
 #include "GameRun.h"
 #include "Configs.h"
+#include "Menu.h"
+#include "Context.h"
 
 
 // Forward declarations (avoid the early header inclusion)
@@ -20,7 +22,7 @@ enum class GameState {
 };
 
 
-class Game {
+class Game : public Context {
 
 public:
 	Game();
@@ -40,8 +42,7 @@ private:
 	void UpdateGameMenu();
 	void ManageWindowEvents();
 
-	void AddMenuButton(const std::string& spritePath, sf::Vector2f position, void (*OnClickEvent)(Game& gameContext));
-	void AddDrawableToRenderList(std::shared_ptr<IDrawable> drawable);
+
 
 	static std::unique_ptr<GameRun> NewRun(sf::RenderWindow& renderWindow);
 
@@ -57,11 +58,9 @@ private:
 	std::unique_ptr<std::vector<EnemyData>> m_enemyDataBank;
 
 	// Menus
+	Menu m_mainMenu;
+	Menu m_pauseMenu;
 
-
-	// Move this to a separate class (Menu class)
-	std::vector<std::shared_ptr<Button>> m_menuButtons;
-	std::vector<std::shared_ptr<IDrawable>> m_menuDrawable;
 };
 
 
