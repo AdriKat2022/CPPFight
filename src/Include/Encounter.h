@@ -25,6 +25,7 @@ public:
 
 	void Update();
 	void Draw(sf::RenderWindow&) const override;
+	void GenerateMenus();
 	
 
 	// State management
@@ -44,9 +45,8 @@ private:
 	std::shared_ptr<EncounterState> m_encounterFighting;
 	std::shared_ptr<EncounterState> m_encounterMonsterTurn;
 
-	Menu m_menu;
-	//FightButton m_fightBtn;
-	//ActionButton m_actionBtn;
+	Menu m_menu_select;
+	
 
 
 };

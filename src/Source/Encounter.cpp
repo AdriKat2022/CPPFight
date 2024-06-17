@@ -83,12 +83,15 @@ void Encounter::Draw(sf::RenderWindow& window) const
 	window.draw(HP_bar_player);
 
 	// affichage des boutons attaque et action et du dialogue
-	m_menu.AddButton(FilePaths::SP_SH_FIGHT_BTN, sf::Vector2f(400, 100), [this]() { this->SetState(EncounterStateType::Fighting); });
-	m_menu.AddButton(FilePaths::SP_SH_ACTION_BTN, sf::Vector2f(400, 300), [this]() { this->SetState(EncounterStateType::Acting);  });
+	m_menu_select.Draw(window);
+
 }
 
 
-
+void Encounter::GenerateMenus() {
+	m_menu_select.AddButton(FilePaths::SP_SH_FIGHT_BTN, sf::Vector2f(400, 100), [this]() { this->SetState(EncounterStateType::Fighting); });
+	m_menu_select.AddButton(FilePaths::SP_SH_ACTION_BTN, sf::Vector2f(400, 300), [this]() { this->SetState(EncounterStateType::Acting);  });
+}
 
 
 void Encounter::SetState(EncounterStateType type)
