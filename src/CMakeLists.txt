@@ -25,7 +25,7 @@ add_library(lib_cppfight
     "Include/Configs.h"
     
     "Include/Game.h"
- "Include/Menu.h" "Include/Context.h")
+ "Include/Menu.h" "Include/Context.h" "Source/EncounterFighting.cpp")
 
 target_sources(lib_cppfight
     PRIVATE
@@ -58,7 +58,7 @@ target_link_libraries(lib_cppfight
 
 add_executable(cppfight
     Source/Main.cpp
-)
+ "Source/EncounterFighting.cpp")
 
 target_link_libraries(cppfight
     PRIVATE

@@ -22,3 +22,4 @@ int Enemy::GetAttackPower() const
 {
 	return m_attackPower;
 }
+

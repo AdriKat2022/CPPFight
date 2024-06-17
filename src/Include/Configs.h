@@ -4,6 +4,9 @@
 
 namespace FilePaths {
 
+	// Font for every text
+	constexpr char UNDERTALE_FONT[] = "resources/Font/HachicroUndertaleBattleFontRegular-L3zlg.ttf";
+
 	// Put all sprites sheets in here
 	constexpr char SP_SH_MENU_BG[] = "resources/Sprites/menu_background.png";
 

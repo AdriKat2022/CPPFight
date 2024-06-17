@@ -8,6 +8,7 @@ public:
 
 
 	int GetHP() const;
+	int GetMaxHP() const;
 
 	// Could be overriden by derived classes (e.g. to add some (sound)effects)
 	virtual void Damage(int);

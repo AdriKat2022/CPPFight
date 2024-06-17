@@ -7,6 +7,10 @@ int Damageable::GetHP() const {
 	return m_HP;
 }
 
+int Damageable::GetMaxHP() const {
+	return m_maxHP;
+}
+
 void Damageable::Damage(int damage) {
 	m_HP -= damage;
 	if (m_HP < 0) {

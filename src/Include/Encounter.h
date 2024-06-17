@@ -33,6 +33,8 @@ private:
 
 	std::shared_ptr<EncounterState> m_currentEncounterState;
 
+	std::shared_ptr<EncounterStateType> m_encounterStateType;
+
 	std::shared_ptr<EncounterState> m_encounterIdle;
 	std::shared_ptr<EncounterState> m_encounterActing;
 	std::shared_ptr<EncounterState> m_encounterFighting;
