@@ -3,6 +3,7 @@
 #include "IDrawable.h"
 #include "Enemy.h"
 #include <memory>
+#include <Menu.h>
 
 
 class EncounterState;
@@ -24,6 +25,7 @@ public:
 
 	void Update();
 	void Draw(sf::RenderWindow&) const override;
+	
 
 	// State management
 	void SetState(EncounterStateType);
@@ -41,4 +43,10 @@ private:
 	std::shared_ptr<EncounterState> m_encounterActing;
 	std::shared_ptr<EncounterState> m_encounterFighting;
 	std::shared_ptr<EncounterState> m_encounterMonsterTurn;
+
+	Menu m_menu;
+	//FightButton m_fightBtn;
+	//ActionButton m_actionBtn;
+
+
 };
