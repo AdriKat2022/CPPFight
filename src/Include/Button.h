@@ -21,8 +21,8 @@ class Button : public IDrawable
 {
 public:
 	using IDrawable::IDrawable;
-	Button(const sf::Vector2f& position, const sf::Texture& texture, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 });
-	Button(const sf::Vector2f& position, const std::string& texturePath, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 });
+	Button(const sf::Vector2f& position, const sf::Texture& texture, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
+	Button(const sf::Vector2f& position, const std::string& texturePath, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
 	
 
 	void Update(sf::RenderWindow& renderWindow, float deltaTime = 0.01f);
@@ -42,4 +42,5 @@ private:
 	float m_scaleSpeed = 10.0f;
 	float m_targetScale = 1.f;
 	bool m_isActive = true;
+	bool m_scaleOnHover = true;
 };

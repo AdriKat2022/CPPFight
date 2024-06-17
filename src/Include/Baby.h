@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Configs.h"
+
 class Baby {
 
 public:
@@ -10,5 +12,5 @@ public:
 	void Modify(int);
 
 private:
-	int m_happinessLvl = 20; // From 0 to 100
+	int m_happinessLvl = Config::DEFAULT_BABY_START_HAPPINESS; // From 0 to 100
 };

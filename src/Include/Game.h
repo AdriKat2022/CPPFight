@@ -17,6 +17,7 @@ struct EnemyData;
 enum class GameState {
 	MainMenu,
 	RulesMenu,
+	PreRunScreen,
 	InRun,
 	PauseMenu
 };
@@ -41,6 +42,7 @@ private:
 	void UpdateGameRun(float deltaTime); // Runs the game loop (the "RUN" with X encounters)
 
 	// Button calls
+	void PrepareNewRun();
 	void BeginNewRun();
 	void ShowRules();
 	void QuitRequest();
@@ -59,6 +61,7 @@ private:
 
 	// Menus
 	Menu m_mainMenu;
+	Menu m_preRunMenu;
 	Menu m_rulesMenu;
 	Menu m_pauseMenu;
 

@@ -10,6 +10,7 @@ class Enemy : public Damageable {
 
 public:
 	explicit Enemy(const EnemyData&);
+	explicit Enemy(const EnemyData*);
 	Enemy(const std::string& name, int health, int damage);
 
 	const std::string& GetName() const;

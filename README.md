@@ -51,3 +51,9 @@ Il en aurait en quantité limitée.
 
 ## Diagramme de classe
 - [ ] Todo
+
+
+# Copyright
+
+Tous les assets utilisés dans ce projet ont été créés par nous, ou sont sous licence libre :
+- Police d'écriture [Undertale Mars Needs](https://fontstruct.com/fontstructions/show/1798142) de Dragon8er, originaire de Undertale par Toby Fox

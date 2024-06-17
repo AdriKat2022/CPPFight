@@ -44,6 +44,12 @@ void Game::GenerateMenus()
 	m_mainMenu.AddButton(FilePaths::SP_SH_PLAY_BTN, sf::Vector2f(400, 100), [this]() { this->BeginNewRun(); });
 	m_mainMenu.AddButton(FilePaths::SP_SH_RULES_BTN, sf::Vector2f(400, 300), [this]() { this->ShowRules();  });
 	m_mainMenu.AddButton(FilePaths::SP_SH_QUIT_BTN, sf::Vector2f(400, 500), [this]() { this->QuitRequest(); });
+
+	// TODO: Make the rules menu
+
+	// TODO: Make the pause menu
+
+	// TODO: Make the pre-run screen (input text for name ? no time now)
 }
 
 void Game::UpdateGame(float deltaTime)
@@ -57,6 +63,9 @@ void Game::UpdateGame(float deltaTime)
 		break;
 	case RulesMenu:
 		m_rulesMenu.Draw(m_window);
+		break;
+	case PreRunScreen:
+		m_preRunMenu.Draw(m_window);
 		break;
 	case InRun:
 		UpdateGameRun(deltaTime);
@@ -99,15 +108,22 @@ void Game::ManageWindowEvents()
 
 std::unique_ptr<GameRun> Game::NewRun()
 {
-	auto game = std::make_unique<GameRun>(m_window);
+	auto newRun = std::make_unique<GameRun>(m_window);
 
-	// TODO: Init the game run (select some enemies, etc) (we may initialize it within the constructor of GameRun)
+	newRun->AddEnemy(&m_enemyDataBank->at(0));
+	newRun->AddEnemy(&m_enemyDataBank->at(2));
+	newRun->AddEnemy(&m_enemyDataBank->at(3));
 
-	m_currentState = GameState::InRun;
-
-	return std::move(game);
+	return std::move(newRun);
 }
 
+void Game::PrepareNewRun()
+{
+	// TODO : Prepare a new run
+	std::cout << "Preparing a new run !\n";
+
+	m_currentState = GameState::PreRunScreen;
+}
 
 void Game::BeginNewRun()
 {
