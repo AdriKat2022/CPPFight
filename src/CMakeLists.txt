@@ -25,7 +25,11 @@ add_library(lib_cppfight
     "Include/Configs.h"
     
     "Include/Game.h"
+<<<<<<< HEAD
  "Include/Menu.h" "Include/Context.h" "Source/EncounterFighting.cpp")
+=======
+ "Include/Menu.h" )
+>>>>>>> bff18efa0adc543367738b2c509830633273efa1
 
 target_sources(lib_cppfight
     PRIVATE

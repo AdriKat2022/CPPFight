@@ -4,29 +4,11 @@
 #include "EnemyLoader.h"
 #include <Menu.h>
 
-void ExampleFunction() {
-	// This function is called when the button is clicked (see example in CreateMenuButton and where it's called)
-	std::cout << "Button clicked !" << std::endl;
-}
 
 Game::Game()
 {
 	LoadEnemiesData();
-	
-	// définition et affichage du background du menu
-	sf::RectangleShape background_menu(static_cast<sf::Vector2f> (m_window.getSize()));
-	sf::Texture texture_background;
-	texture_background.loadFromFile(FilePaths::SP_SH_MENU_BG);
-	background_menu.setTexture(&texture_background);
-	m_window.draw(background_menu);
-
-	//définition et affichage des boutons du menu
-	Menu menu;
-	menu.AddButton(FilePaths::SP_SH_PLAY_BTN, sf::Vector2f(400, 100), [](Context& context) {std::cout << "Working! \n"; } /*NewRun(m_window)*/);
-	menu.AddButton(FilePaths::SP_SH_RULES_BTN, sf::Vector2f(400, 300), [](Context& context) {std::cout << "Working! \n"; } /*ShowRules()*/);
-	menu.AddButton(FilePaths::SP_SH_QUIT_BTN, sf::Vector2f(400, 500), [](Context& context) {std::cout << "Working! \n"; } /*Exit(m_window)*/);
-	menu.Draw(m_window);
-	
+	GenerateMenus();
 }
 
 void Game::RunGame()
@@ -34,7 +16,6 @@ void Game::RunGame()
 	// To measure deltatime
 	sf::Clock clock;
 
-	m_window.display();
 	while (m_window.isOpen()) {
 
 		ManageWindowEvents();
@@ -43,12 +24,9 @@ void Game::RunGame()
 		sf::Time elapsed = clock.restart();
 		float deltaTime = elapsed.asSeconds();
 
+		UpdateGame(deltaTime);
 
-
-		//UpdateGameMenu();
-
-
-		//m_window.display();
+		m_window.display();
 	}
 
 }
@@ -61,21 +39,40 @@ void Game::LoadEnemiesData()
 
 void Game::GenerateMenus()
 {
+	//définition et affichage des boutons du menu
+	m_mainMenu.AddSprite(FilePaths::SP_SH_MENU_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
+	m_mainMenu.AddButton(FilePaths::SP_SH_PLAY_BTN, sf::Vector2f(400, 100), [this]() { this->BeginNewRun(); });
+	m_mainMenu.AddButton(FilePaths::SP_SH_RULES_BTN, sf::Vector2f(400, 300), [this]() { this->ShowRules();  });
+	m_mainMenu.AddButton(FilePaths::SP_SH_QUIT_BTN, sf::Vector2f(400, 500), [this]() { this->QuitRequest(); });
 }
 
-void Game::UpdateGameRun()
+void Game::UpdateGame(float deltaTime)
 {
+	switch (m_currentState)
+	{
+		using enum GameState;
 
+	case MainMenu:
+		m_mainMenu.Draw(m_window);
+		break;
+	case RulesMenu:
+		m_rulesMenu.Draw(m_window);
+		break;
+	case InRun:
+		UpdateGameRun(deltaTime);
+		break;
+	case PauseMenu:
+		m_pauseMenu.Draw(m_window);
+		break;
+	default:
+		break;
+	}
 }
 
-// This may be renamed to "Render" in the future since we might want to separe the update and render functions
-void Game::RenderGameRun()
+void Game::UpdateGameRun(float deltaTime)
 {
-
-}
-
-void Game::UpdateGameMenu()
-{	
+	m_currentRun->Run(deltaTime);
+	m_currentRun->Render();
 }
 
 void Game::ManageWindowEvents()
@@ -100,25 +97,36 @@ void Game::ManageWindowEvents()
 	}
 }
 
-void Game::AddMenuButton(const std::string& spritePath, sf::Vector2f position, void(*OnClickEvent)(Game& gameContext))
+std::unique_ptr<GameRun> Game::NewRun()
 {
-	auto button = std::make_shared<Button>(position, spritePath, sf::Vector2i(1, 2), OnClickEvent);
-	m_menuDrawable.push_back(button);
-	m_menuButtons.push_back(std::move(button));
-}
-
-void Game::AddDrawableToRenderList(std::shared_ptr<IDrawable> drawable)
-{
-	m_menuDrawable.push_back(std::move(drawable));
-}
-
-static std::unique_ptr<GameRun> NewRun(sf::RenderWindow& renderWindow)
-{
-	auto game = std::make_unique<GameRun>(renderWindow);
+	auto game = std::make_unique<GameRun>(m_window);
 
 	// TODO: Init the game run (select some enemies, etc) (we may initialize it within the constructor of GameRun)
 
-	// TODO: Change application state to game
+	m_currentState = GameState::InRun;
 
 	return std::move(game);
+}
+
+
+void Game::BeginNewRun()
+{
+	// TODO : Start a new run
+	std::cout << "Starting a new run !\n";
+
+	m_currentRun = NewRun();
+	m_currentState = GameState::InRun;
+}
+
+void Game::ShowRules()
+{
+	// TODO : Show the RULES menu
+	std::cout << "Showing the rules!\n";
+}
+
+void Game::QuitRequest()
+{
+	std::cout << "Quitting...\n";
+	// Close the window
+	m_window.close();
 }

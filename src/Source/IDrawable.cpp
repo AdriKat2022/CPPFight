@@ -61,7 +61,7 @@ void IDrawable::SwitchSprite(int xIndex, int yIndex)
 	));
 	
 
-	std::cout << m_sprite.getTextureRect().left << ", " << m_sprite.getTextureRect().top << ", " << m_sprite.getTextureRect().width << ", " << m_sprite.getTextureRect().height << std::endl;
+	//std::cout << m_sprite.getTextureRect().left << ", " << m_sprite.getTextureRect().top << ", " << m_sprite.getTextureRect().width << ", " << m_sprite.getTextureRect().height << std::endl;
 }
 
 sf::Sprite& IDrawable::GetSprite()

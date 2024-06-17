@@ -4,6 +4,7 @@
 #include "SFML/Graphics.hpp"
 #include "GameRun.h"
 #include "Configs.h"
+#include "Menu.h"
 
 
 // Forward declarations (avoid the early header inclusion)
@@ -15,8 +16,9 @@ struct EnemyData;
 
 enum class GameState {
 	MainMenu,
+	RulesMenu,
 	InRun,
-	Paused
+	PauseMenu
 };
 
 
@@ -29,39 +31,37 @@ public:
 	void RunGame();
 
 private:
-	// Initializing functions
+	// Initializing functions (called once)
 	void LoadEnemiesData();
-	void GenerateMenus();
-	// Runs the game loop (the "RUN" with X encounters) 
-	void UpdateGameRun();
-	// Renders the game loop (the "RUN" with X encounters) (we need to separate the update and render functions to avoid having the game run at different speeds on different computers)
-	void RenderGameRun();
-	// Manages the menus (main menu, pause menu, retry menu etc) (intern so no need to separate update and render) (i think)
-	void UpdateGameMenu();
-	void ManageWindowEvents();
+	void GenerateMenus(); // Generates the menus (main menu, rules menu, pause menu, etc)
+	
+	// Game loop functions
+	void ManageWindowEvents(); // Manages the window events (close, resize, etc)
+	void UpdateGame(float deltaTime); // Manages the menus (main menu, pause menu, retry menu etc) (intern so no need to separate update and render) (i think)
+	void UpdateGameRun(float deltaTime); // Runs the game loop (the "RUN" with X encounters)
 
-	void AddMenuButton(const std::string& spritePath, sf::Vector2f position, void (*OnClickEvent)(Game& gameContext));
-	void AddDrawableToRenderList(std::shared_ptr<IDrawable> drawable);
+	// Button calls
+	void BeginNewRun();
+	void ShowRules();
+	void QuitRequest();
 
-	static std::unique_ptr<GameRun> NewRun(sf::RenderWindow& renderWindow);
-
+	// Utils functions
+	std::unique_ptr<GameRun> NewRun(); // Creates a new game run
 
 	// Variables
 
-	std::unique_ptr<GameRun> m_currentRun;
 
 	sf::RenderWindow m_window = { sf::VideoMode(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT), Config::WINDOW_TITLE };
+	std::unique_ptr<GameRun> m_currentRun;
 	GameState m_currentState = GameState::MainMenu;
 
-	// Constants
-	std::unique_ptr<std::vector<EnemyData>> m_enemyDataBank;
+	std::unique_ptr<std::vector<EnemyData>> m_enemyDataBank; // Contains the data of all the possible enemies
 
 	// Menus
+	Menu m_mainMenu;
+	Menu m_rulesMenu;
+	Menu m_pauseMenu;
 
-
-	// Move this to a separate class (Menu class)
-	std::vector<std::shared_ptr<Button>> m_menuButtons;
-	std::vector<std::shared_ptr<IDrawable>> m_menuDrawable;
 };
 
 
