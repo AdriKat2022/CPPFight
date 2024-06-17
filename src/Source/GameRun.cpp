@@ -4,7 +4,7 @@
 #include "Clickable.h"
 
 
-GameRun::GameRun(sf::RenderWindow & rWindow) :
+GameRun::GameRun(sf::RenderWindow& rWindow) :
 	m_window(&rWindow)
 {
 	// Construct the game
