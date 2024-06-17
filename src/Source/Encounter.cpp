@@ -2,11 +2,22 @@
 #include "Configs.h"
 #include "TextBox.h"
 #include "Player.h"
+#include "GameRun.h"
+#include "EncounterState.h"
 #include <format>
+
+
+Encounter::Encounter(GameRun& gameRun, const EnemyData* enemy) :
+	m_parentRun(gameRun),
+	m_enemy(enemy)
+{
+	m_encounterStateType = std::make_shared<EncounterStateType>(EncounterStateType::Idle);
+}
+
 
 void Encounter::Update()
 {
-
+	m_currentEncounterState->Update();
 }
 
 void Encounter::Draw(sf::RenderWindow& window) const

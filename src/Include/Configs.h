@@ -7,7 +7,11 @@ namespace FilePaths {
 	// Font for every text
 	constexpr char UNDERTALE_FONT[] = "resources/Font/HachicroUndertaleBattleFontRegular-L3zlg.ttf";
 
-	// Put all sprites sheets in here
+	// Musics
+	constexpr char MUSIC_RUN_MAIN[] = "resources/Music/menu_music.ogg";
+	constexpr char MUSIC_MENU_MAIN[] = "resources/Music/menu_music.ogg";
+
+	// Backgrounds
 	constexpr char SP_SH_MENU_BG[] = "resources/Sprites/menu_background.png";
 
 	// Menu buttons
@@ -25,10 +29,17 @@ namespace FilePaths {
 
 namespace Config {
 
+	// Gameplay config
+	constexpr unsigned short int MAX_RUN_ENEMIES = 3;
+	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 25;
+	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 20;
+	constexpr char DEFAULT_PLAYER_NAME[] = "Chara";
+
+
 	// Window config
 	constexpr char WINDOW_TITLE[] = "Cpp Game";
-	constexpr unsigned int WINDOW_WIDTH = 800;
-	constexpr unsigned int WINDOW_HEIGHT = 600;
+	constexpr unsigned short int WINDOW_WIDTH = 800;
+	constexpr unsigned short int WINDOW_HEIGHT = 600;
 
 
 	// Buttons animations

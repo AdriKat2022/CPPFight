@@ -3,16 +3,18 @@
 
 #include <iostream>
 
-Button::Button(const sf::Vector2f& position, const sf::Texture& texture, std::function<void()> OnClickEvent, sf::Vector2i dimensions) :
+Button::Button(const sf::Vector2f& position, const sf::Texture& texture, std::function<void()> OnClickEvent, sf::Vector2i dimensions, bool scaleOnHover) :
 	IDrawable(position, texture, dimensions),
 	m_OnClickEvent(OnClickEvent),
-	m_scaleSpeed(Config::BUTTON_SCALE_SPEED)
+	m_scaleSpeed(Config::BUTTON_SCALE_SPEED),
+	m_scaleOnHover(scaleOnHover)
 {}
 
-Button::Button(const sf::Vector2f& position, const std::string& texturePath, std::function<void()> OnClickEvent, sf::Vector2i dimensions) :
+Button::Button(const sf::Vector2f& position, const std::string& texturePath, std::function<void()> OnClickEvent, sf::Vector2i dimensions, bool scaleOnHover) :
 	IDrawable(position, texturePath, dimensions),
 	m_OnClickEvent(OnClickEvent),
-	m_scaleSpeed(Config::BUTTON_SCALE_SPEED)
+	m_scaleSpeed(Config::BUTTON_SCALE_SPEED),
+	m_scaleOnHover(scaleOnHover)
 {}
 
 

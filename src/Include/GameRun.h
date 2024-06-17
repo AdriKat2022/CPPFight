@@ -5,8 +5,19 @@
 #include <vector>
 #include "Player.h"
 #include "Baby.h"
-#include "Enemy.h"
+#include "Encounter.h"
 
+
+class Enemy;
+
+
+
+enum class RunState {
+	Intro,
+	InEncounter,
+	InTransition,
+	InWin
+};
 
 class GameRun {
 
@@ -16,20 +27,25 @@ public:
 	void Run(float deltaTime);
 	void Render() const;
 
+	void AddEnemy(EnemyData* enemy);
 	void InitNextEncounter();
 
 	sf::Vector2f GetMousePosition() const;
 
 private:
+	Player m_player = Player{ Config::DEFAULT_PLAYER_NAME, Config::DEFAULT_PLAYER_MAX_HP };
+	Baby m_baby;
+
 	sf::RenderWindow* m_window;
 	sf::Music m_currentMusic;
 
-	Player m_player = Player{ std::string("Chara"), 20 };
-	Baby m_baby;
 
-	std::vector<std::unique_ptr<Enemy>> m_enemies;
-
+	std::unique_ptr<Encounter> m_currentEncounter;
+	std::vector<EnemyData*> m_enemies;
 
 
-	int m_currentEncounter = 0;
+	RunState m_state = RunState::Intro;
+
+	int m_nextEncounterIndex = 0;
+	float m_timer = 2.f;
 };
