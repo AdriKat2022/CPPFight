@@ -4,6 +4,7 @@
 #include "IDrawable.h"
 #include "Enemy.h"
 #include <memory>
+#include <Menu.h>
 
 class EncounterState;
 
@@ -41,7 +42,7 @@ private:
 	std::shared_ptr<EncounterState> m_encounterMonsterTurn;
 
 	Enemy m_enemy;
-
+	Menu m_menu;
 	//FightButton m_fightBtn;
 	//ActionButton m_actionBtn;
 

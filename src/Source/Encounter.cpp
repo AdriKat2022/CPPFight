@@ -3,6 +3,8 @@
 #include "TextBox.h"
 #include "Player.h"
 #include <format>
+#include <iostream>
+
 
 void Encounter::Update()
 {
@@ -70,7 +72,12 @@ void Encounter::Draw(sf::RenderWindow& window) const
 	window.draw(HP_bar_player);
 
 	// affichage des boutons attaque et action et du dialogue
-	
+	m_menu.AddButton(FilePaths::SP_SH_FIGHT_BTN, sf::Vector2f(400, 100), [this]() { Example(); /*this->SetState(EncounterStateType::Fighting);*/ });
+	m_menu.AddButton(FilePaths::SP_SH_ACTION_BTN, sf::Vector2f(400, 300), [this]() { Example();/*this->SetState(EncounterStateType::Acting);*/  });
+}
+
+void Example() { 
+	std::cout << "Working! \n";
 }
 
 void Encounter::SetState(EncounterStateType type)
