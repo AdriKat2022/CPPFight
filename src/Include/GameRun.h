@@ -25,7 +25,7 @@ public:
 	explicit GameRun(sf::RenderWindow& rWindow);
 
 	void Run(float deltaTime);
-	void Render() const;
+	void Render();
 
 	void AddEnemy(EnemyData* enemy);
 	void InitNextEncounter();
@@ -36,6 +36,7 @@ public:
 	void DamagePlayer(int damage);
 	void FullHeal(int heal);
 	Baby& GetBaby();
+	Player& GetPlayer();
 
 private:
 	Player m_player = Player{ Config::DEFAULT_PLAYER_NAME, Config::DEFAULT_PLAYER_MAX_HP };

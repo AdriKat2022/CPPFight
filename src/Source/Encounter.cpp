@@ -33,7 +33,7 @@ Encounter::Encounter(GameRun& gameRun, const EnemyData* enemy) :
 	HP_bar_enemy.setPosition({ 350, 55 });
 
 	//définition du nom du bébé
-	name_baby.setString("J-C");
+	name_baby.setString("Baboum");
 	name_baby.setPosition(680, 550);
 	name_baby.setFont(undertale_font);
 	name_baby.setCharacterSize(10);
@@ -55,7 +55,7 @@ Encounter::Encounter(GameRun& gameRun, const EnemyData* enemy) :
 	damage_mult.setFillColor(sf::Color::White);
 
 	//définition du nom du joueur
-	Player player("J-P", 100);
+	player = m_parentRun.GetPlayer();
 	name_player.setString(player.GetName());
 	name_player.setPosition(350, 560);
 	name_player.setFont(undertale_font);

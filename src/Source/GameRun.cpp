@@ -23,8 +23,10 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 	m_rewardMenu.AddButton("", {200, 200}, [this]() {
 		InitNextEncounter();
 	});
+	//TODO initialize the list of enemis
 
 	std::cout << "Run constructed." << std::endl;
+	//Render();
 }
 
 void GameRun::AddEnemy(EnemyData* enemy)
@@ -83,7 +85,12 @@ Baby& GameRun::GetBaby()
 	return m_baby;
 }
 
-void GameRun::Render() const
+Player& GameRun::GetPlayer()
+{
+	return m_player;
+}
+
+void GameRun::Render()
 {
 	if(m_state == RunState::InEncounter)
 		m_currentEncounter->Draw(m_window);

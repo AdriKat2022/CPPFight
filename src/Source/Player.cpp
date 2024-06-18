@@ -11,7 +11,7 @@ Player::Player(const std::string& playerName, int maxHP) :
 
 void Player::Draw(sf::RenderWindow& window) const
 {
-	// Draw the player
+	// Draw the player : not really needed it is done in the background already
 }
 
 
