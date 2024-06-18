@@ -21,7 +21,7 @@ namespace FilePaths {
 
 	// Backgrounds
 	constexpr char MENU_BG[] = "resources/Sprites/menu_background.png";
-	constexpr char RULES_BG[] = "resources/Sprites/rules_background.png"; //TODO pas urgent, on peut utiliser MENU_BG en attendant
+	constexpr char RULES_BG[] = "resources/Sprites/rules_background.png";
 	constexpr char ENCOUNTER_BG[] = "resources/Sprites/encounter_background.png"; 
 
 	// Menu buttons

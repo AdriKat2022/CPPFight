@@ -65,7 +65,7 @@ private:
 	sf::RectangleShape happiness_bar_baby;
 	sf::Text damage_mult;
 
-	//Player player;
+	Player player = Player{ Config::DEFAULT_PLAYER_NAME, Config::DEFAULT_PLAYER_MAX_HP };
 	sf::Text name_player;
 	sf::RectangleShape background_hp_player;
 	sf::RectangleShape HP_bar_player;

@@ -67,21 +67,21 @@ void Game::UpdateGame(float deltaTime)
 	case RulesMenu:
 		font.loadFromFile(FilePaths::FONT_MAIN);
 		rules.setFont(font);
-		rules.setString(" Dans ce jeu, vous incarnez un parent qui doit protéger son bébé des terribles \n \
-ennemis qui lui font face, les C et les P. Pour défendre votre nourisson, \n \
-vous avez la possibilité d'attaquer le monstre en cliquant sur le bouton 'fight'.\n \
-Le système d'attaque est simple : un curseur se déplace dans un rectangle \n \
-et il suffit de cliquer pour arrêter ce curseur : plus vous êtes proche du \n \
-centre du rectangle, plus vous infligez de dégats. Mais attention attaquer \n \
-un monstre fait baisser la jauge de bonheur de votre enfant (car pendant \n \
-que vous attaquez, il n'a pas l'attention qu'il désire). Cette jauge est \n \
-importante car le bébé peut vous donner des bonus ou malus en fonction \n \
-de son bonheur: plus il est heureux, plus vous faites de dégats. \n \
-Mais comment le rendre heureux ? C'est très simple, il suffit de cliquer \n \
-sur le bouton 'action' qui vous propose ensuite un choix entre 4 actions \n \
-qui peuvent faire monter la jauge de bonheur du bébé.Cependant certaines actions \n \
-peuvent également diminuer son bonheur.Alors quelle sera la meilleure stratégie \n \
-pour venir à bout de vos terribles adversaires ? A vous de voir en jouant à CPPFight.");
+		rules.setString(R"( Dans ce jeu, vous incarnez un parent qui doit protéger son bébé des terribles 
+ ennemis qui lui font face, les C et les P. Pour défendre votre nourisson, 
+ vous avez la possibilité d'attaquer le monstre en cliquant sur le bouton 'fight'.
+ Le système d'attaque est simple : un curseur se déplace dans un rectangle 
+ et il suffit de cliquer pour arrêter ce curseur : plus vous êtes proche du 
+ centre du rectangle, plus vous infligez de dégats. Mais attention attaquer 
+ un monstre fait baisser la jauge de bonheur de votre enfant (car pendant 
+ que vous attaquez, il n'a pas l'attention qu'il désire). Cette jauge est 
+ importante car le bébé peut vous donner des bonus ou malus en fonction 
+ de son bonheur: plus il est heureux, plus vous faites de dégats. 
+ Mais comment le rendre heureux ? C'est très simple, il suffit de cliquer 
+ sur le bouton 'action' qui vous propose ensuite un choix entre 4 actions 
+ qui peuvent faire monter la jauge de bonheur du bébé.Cependant certaines actions 
+ peuvent également diminuer son bonheur.Alors quelle sera la meilleure stratégie 
+ pour venir à bout de vos terribles adversaires ? A vous de voir en jouant à CPPFight.)");
 		rules.setCharacterSize(20);
 		rules.setLineSpacing(1.5);
 		rules.setFillColor(sf::Color::White);
@@ -165,7 +165,7 @@ void Game::BeginNewRun()
 
 void Game::ShowRules()
 {
-	// TODO : Show the RULES menu
+	// TODO : Show the RULES menu DONE
 	std::cout << "Showing the rules!\n";
 
 	m_currentState = GameState::RulesMenu;
