@@ -39,7 +39,7 @@ void GameRun::Run(float deltaTime)
 		using enum RunState;
 
 		case Intro:
-
+			// Unused for now
 			break;
 
 		case InEncounter:
@@ -47,7 +47,7 @@ void GameRun::Run(float deltaTime)
 			break;
 
 		case InTransition:
-
+			InitNextEncounter();
 			break;
 
 		case InWin:
@@ -85,7 +85,8 @@ Baby& GameRun::GetBaby()
 
 void GameRun::Render() const
 {
-	// TODO: Render the run screen
+	if(m_state == RunState::InEncounter)
+		m_currentEncounter->Draw(m_window);
 }
 
 

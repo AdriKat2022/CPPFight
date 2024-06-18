@@ -33,7 +33,8 @@ public:
 	sf::RenderWindow& GetWindow() const;
 	sf::Vector2f GetMousePosition() const;
 
-
+	void DamagePlayer(int damage);
+	void FullHeal(int heal);
 	Baby& GetBaby();
 
 private:
