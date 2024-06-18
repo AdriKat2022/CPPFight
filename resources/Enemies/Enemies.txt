@@ -398,6 +398,6 @@ Health: 70
 Damage: 4
 Defense: 0
 Speed: 5
-Actions: sprint_exterieur pablo_2 salto_isaac mixer
+Actions: sprint_exterieur pablo_2 salto_isaac mixer_bad
 [/Enemy]
 

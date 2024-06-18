@@ -23,16 +23,19 @@ class Encounter : public IDrawable {
 public:
 	Encounter(GameRun& gameRun, const EnemyData* enemy);
 
-	void Update();
+	void Update(float deltaTime);
 	void Draw(sf::RenderWindow&) const override;
 	void GenerateMenus();
 	
+	sf::RenderWindow& GetWindow() const;
 
 	// State management
 	void SetState(EncounterStateType);
 
 
 private:
+	sf::RenderWindow& m_window;
+
 	GameRun& m_parentRun;
 
 	Enemy m_enemy;

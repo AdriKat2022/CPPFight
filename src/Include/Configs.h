@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <array>
 
 namespace FilePaths {
 
@@ -28,6 +29,11 @@ namespace FilePaths {
 	constexpr char SP_SH_FIGHT_BTN[] = "resources/Sprites/fight_button.png";
 	constexpr char SP_SH_ACTION_BTN[] = "resources/Sprites/action_button.png";
 
+	// Attack Assets
+	constexpr char SP_SH_ATTACK_BOX[] = "resources/Sprites/attack_box.png";
+	constexpr char SP_SH_CURSOR[] = "resources/Sprites/cursor.png";
+
+
 	constexpr char ENEMY_DATA_LIST[] = "resources/Enemies/Enemies.txt";
 
 }
@@ -39,6 +45,10 @@ namespace Config {
 	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 25;
 	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 20;
 	constexpr char DEFAULT_PLAYER_NAME[] = "Chara";
+
+	constexpr float GLOBAL_ATTACK_TIME = 1.5f;
+	constexpr float GLOBAL_ATTACK_TIME_VARIANCE = .3f;
+	constexpr float WAIT_TIME_AFTER_ATTACK = 1.f;
 
 
 	// Window config
@@ -53,5 +63,14 @@ namespace Config {
 	constexpr float BUTTON_TARGET_SCALE_HOVER = 1.1f;
 	constexpr float BUTTON_TARGET_SCALE_PRESSED = 0.95f;
 	constexpr float BUTTON_TARGET_SCALE_DISABLED = 1.f;
+
+}
+
+namespace Anchors {
+
+	// TextBox
+	constexpr std::array<short int, 2> TEXT_BOX_FROM_MIDDLE = { 0, 200 };
+	// AttackBox
+	constexpr std::array<short int, 2> ATTACK_BOX_FROM_MIDDLE = { 0, 200 };
 
 }

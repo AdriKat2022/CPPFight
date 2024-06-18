@@ -7,7 +7,7 @@
 
 
 GameRun::GameRun(sf::RenderWindow& rWindow) :
-	m_window(&rWindow)
+	m_window(rWindow)
 {
 	// Construct the game
 	std::cout << "Constructing run..." << std::endl;
@@ -43,7 +43,7 @@ void GameRun::Run(float deltaTime)
 			break;
 
 		case InEncounter:
-			m_currentEncounter->Update();
+			m_currentEncounter->Update(deltaTime);
 			break;
 
 		case InTransition:
@@ -69,8 +69,13 @@ void GameRun::InitNextEncounter()
 	m_state = RunState::InEncounter;
 }
 
+sf::RenderWindow& GameRun::GetWindow() const
+{
+	return m_window;
+}
+
 sf::Vector2f GameRun::GetMousePosition() const {
-	return static_cast<sf::Vector2f>(sf::Mouse::getPosition(*m_window));
+	return static_cast<sf::Vector2f>(sf::Mouse::getPosition(m_window));
 }
 
 void GameRun::Render() const

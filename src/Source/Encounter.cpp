@@ -10,6 +10,7 @@
 
 
 Encounter::Encounter(GameRun& gameRun, const EnemyData* enemy) :
+	m_window(gameRun.GetWindow()),
 	m_parentRun(gameRun),
 	m_enemy(enemy)
 {
@@ -17,9 +18,9 @@ Encounter::Encounter(GameRun& gameRun, const EnemyData* enemy) :
 }
 
 
-void Encounter::Update()
+void Encounter::Update(float deltaTime)
 {
-	m_currentEncounterState->Update();
+	m_currentEncounterState->Update(deltaTime);
 }
 
 void Encounter::Draw(sf::RenderWindow& window) const
@@ -87,6 +88,10 @@ void Encounter::Draw(sf::RenderWindow& window) const
 
 }
 
+sf::RenderWindow& Encounter::GetWindow() const
+{
+	return m_parentRun.GetWindow();
+}
 
 void Encounter::GenerateMenus() {
 	m_menu_select.AddButton(FilePaths::SP_SH_FIGHT_BTN, sf::Vector2f(400, 100), [this]() { this->SetState(EncounterStateType::Fighting); });

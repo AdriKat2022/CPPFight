@@ -24,6 +24,46 @@ IDrawable::IDrawable(const sf::Vector2f& position, const std::string& spritePath
 		CenterOrigin();
 }
 
+void IDrawable::Move(const sf::Vector2f& offset)
+{
+	m_sprite.move(offset);
+}
+
+sf::Vector2f IDrawable::GetPosition() const
+{
+	return m_sprite.getPosition();
+}
+
+// Should be called every frame if the sprite is animated
+void IDrawable::Update(float deltaTime)
+{
+	if (m_isAnimated)
+	{
+		m_spriteTimer -= deltaTime;
+
+		if (m_spriteTimer <= 0)
+		{
+			StepSprite();
+			m_spriteTimer = m_spriteIntervals;
+		}
+	}
+}
+
+void IDrawable::SetAnimation(float animationSpeed)
+{
+	if (animationSpeed <= 0)
+	{
+		m_spriteIntervals = 0;
+		m_isAnimated = false;
+		return;
+	}
+
+	m_spriteIntervals = 1/animationSpeed;
+	m_isAnimated = true;
+}
+
+
+
 void IDrawable::Draw(sf::RenderWindow& renderWindow) const
 {
 	renderWindow.draw(m_sprite);
@@ -62,6 +102,24 @@ void IDrawable::SwitchSprite(int xIndex, int yIndex)
 	
 
 	//std::cout << m_sprite.getTextureRect().left << ", " << m_sprite.getTextureRect().top << ", " << m_sprite.getTextureRect().width << ", " << m_sprite.getTextureRect().height << std::endl;
+}
+
+void IDrawable::StepSprite()
+{
+	m_xIndex++;
+
+	if (m_xIndex >= m_dimensions.x)
+	{
+		m_xIndex = 0;
+		m_yIndex++;
+	}
+
+	if (m_yIndex >= m_dimensions.y)
+	{
+		m_yIndex = 0;
+	}
+
+	SwitchSprite(m_xIndex, m_yIndex);
 }
 
 sf::Sprite& IDrawable::GetSprite()

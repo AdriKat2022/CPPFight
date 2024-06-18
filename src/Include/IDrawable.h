@@ -10,16 +10,22 @@ class IDrawable {
 
 public:
 	IDrawable() = default;
-	IDrawable(const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions = { 1, 0 }, bool centerOrigin = true);
-	IDrawable(const sf::Vector2f& position, const std::string& spritePath, sf::Vector2i dimensions = { 1, 0 }, bool centerOrigin = true);
+	IDrawable(const sf::Vector2f& position, const sf::Texture& texture, sf::Vector2i dimensions = { 1, 1 }, bool centerOrigin = true);
+	IDrawable(const sf::Vector2f& position, const std::string& spritePath, sf::Vector2i dimensions = { 1, 1 }, bool centerOrigin = true);
 	virtual ~IDrawable() = default;
 
 
 	virtual void Draw(sf::RenderWindow&) const;
 	
+	void Move(const sf::Vector2f& offset);
+	sf::Vector2f GetPosition() const;
 
+	void Update(float deltaTime);
+
+	void SetAnimation(float animationSpeed); // In frames per second
 	void DefineSpriteSheet(const sf::Vector2i& dimensions);
 	void SwitchSprite(int xIndex, int yIndex = 0);
+	void StepSprite();
 
 	// Getters
 	sf::Sprite& GetSprite();
@@ -37,4 +43,9 @@ private:
 
 	int m_xIndex = 0;
 	int m_yIndex = 0;
+
+	bool m_isAnimated = false;
+
+	float m_spriteIntervals = 0;
+	float m_spriteTimer = 0;
 };

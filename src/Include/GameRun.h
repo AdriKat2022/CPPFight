@@ -30,13 +30,14 @@ public:
 	void AddEnemy(EnemyData* enemy);
 	void InitNextEncounter();
 
+	sf::RenderWindow& GetWindow() const;
 	sf::Vector2f GetMousePosition() const;
 
 private:
 	Player m_player = Player{ Config::DEFAULT_PLAYER_NAME, Config::DEFAULT_PLAYER_MAX_HP };
 	Baby m_baby;
 
-	sf::RenderWindow* m_window;
+	sf::RenderWindow& m_window;
 	sf::Music m_currentMusic;
 
 

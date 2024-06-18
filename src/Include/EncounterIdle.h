@@ -9,7 +9,7 @@ public:
 	using EncounterState::EncounterState;
 
 	void OnEnter() override;
-	void Update() override;
+	void Update(float deltaTime) override;
 	void OnExit() override;
 
 };
