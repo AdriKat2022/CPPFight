@@ -45,8 +45,7 @@ void Game::GenerateMenus()
 	m_mainMenu.AddButton(FilePaths::SP_SH_RULES_BTN, sf::Vector2f(400, 300), [this]() { this->ShowRules();  });
 	m_mainMenu.AddButton(FilePaths::SP_SH_QUIT_BTN, sf::Vector2f(400, 500), [this]() { this->QuitRequest(); });
 
-	m_rulesMenu.AddSprite(FilePaths::MENU_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
-	m_rulesMenu.AddButton(FilePaths::SP_SH_BACK_BTN, sf::Vector2f(400, 500), [this]() { this->m_currentState = GameState::MainMenu; });
+	m_rulesMenu.AddButton(FilePaths::SP_SH_BACK_BTN, sf::Vector2f(400, 525), [this]() { this->m_currentState = GameState::MainMenu; });
 	m_rulesMenu.AddSprite(FilePaths::RULES_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
 
 	// TODO: Make the pause menu (no time for that)
@@ -56,6 +55,8 @@ void Game::GenerateMenus()
 
 void Game::UpdateGame(float deltaTime)
 {
+	sf::Text rules;
+	sf::Font font;
 	switch (m_currentState)
 	{
 		using enum GameState;
@@ -64,7 +65,29 @@ void Game::UpdateGame(float deltaTime)
 		m_mainMenu.Draw(m_window);
 		break;
 	case RulesMenu:
+		font.loadFromFile(FilePaths::FONT_MAIN);
+		rules.setFont(font);
+		rules.setString(" Dans ce jeu, vous incarnez un parent qui doit protéger son bébé des terribles \n \
+ennemis qui lui font face, les C et les P. Pour défendre votre nourisson, \n \
+vous avez la possibilité d'attaquer le monstre en cliquant sur le bouton 'fight'.\n \
+Le système d'attaque est simple : un curseur se déplace dans un rectangle \n \
+et il suffit de cliquer pour arrêter ce curseur : plus vous êtes proche du \n \
+centre du rectangle, plus vous infligez de dégats. Mais attention attaquer \n \
+un monstre fait baisser la jauge de bonheur de votre enfant (car pendant \n \
+que vous attaquez, il n'a pas l'attention qu'il désire). Cette jauge est \n \
+importante car le bébé peut vous donner des bonus ou malus en fonction \n \
+de son bonheur: plus il est heureux, plus vous faites de dégats. \n \
+Mais comment le rendre heureux ? C'est très simple, il suffit de cliquer \n \
+sur le bouton 'action' qui vous propose ensuite un choix entre 4 actions \n \
+qui peuvent faire monter la jauge de bonheur du bébé.Cependant certaines actions \n \
+peuvent également diminuer son bonheur.Alors quelle sera la meilleure stratégie \n \
+pour venir à bout de vos terribles adversaires ? A vous de voir en jouant à CPPFight.");
+		rules.setCharacterSize(20);
+		rules.setLineSpacing(1.5);
+		rules.setFillColor(sf::Color::White);
+		rules.setPosition({ 75, 10 });
 		m_rulesMenu.Draw(m_window);
+		m_window.draw(rules);
 		break;
 	case PreRunScreen:
 		m_preRunMenu.Draw(m_window);
