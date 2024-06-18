@@ -11,6 +11,11 @@ int Damageable::GetMaxHP() const {
 	return m_maxHP;
 }
 
+void Damageable::setMaxHP(const int HP)
+{
+	m_maxHP = HP;
+}
+
 void Damageable::Damage(int damage) {
 	m_HP -= damage;
 	if (m_HP < 0) {

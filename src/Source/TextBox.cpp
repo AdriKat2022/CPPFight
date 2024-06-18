@@ -2,7 +2,10 @@
 #include "Configs.h"
 
 TextBox::TextBox() {
-	m_position = sf::Vector2f(150, 150);
+	undertale_font.loadFromFile(FilePaths::FONT_MAIN);
+	m_position.x = 150;
+	m_position.y = 150;
+
 	background_text.setSize(sf::Vector2f(300, 200));
 	background_text.setPosition(m_position);
 	background_text.setFillColor(sf::Color::Black);
@@ -10,10 +13,14 @@ TextBox::TextBox() {
 	text.setPosition(m_position);
 	text.setFillColor(sf::Color::White);
 	text.setCharacterSize(20);
-	sf::Font undertale_font;
-	undertale_font.loadFromFile("resources/Font/HachicroUndertaleBattleFontRegular-L3zlg.ttf");
 	text.setFont(undertale_font);
 	text.setString(m_currentDialogue->GetNext());
+	SetVisible(true);
+}
+
+void TextBox::SetVisible(const bool booleen)
+{
+	m_isVisible = booleen;
 }
 
 void TextBox::Show() {
@@ -32,7 +39,7 @@ void TextBox::SetString(const std::string string) {
 	m_string = string;
 }
 
-void TextBox::SetPosition(int x, int y) {
+void TextBox::SetPosition(float x, float y) {
 	m_position.x = x;
 	m_position.y = y;
 }
