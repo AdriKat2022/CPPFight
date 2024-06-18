@@ -14,3 +14,13 @@ std::vector<std::string>& Dialogue::GetLinesReference()
 {
 	return m_lines;
 }
+
+size_t Dialogue::GetSize() const
+{
+	return m_lines.size();
+}
+
+void Dialogue::Reset()
+{
+	m_current = 0;
+}

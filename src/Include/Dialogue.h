@@ -10,6 +10,8 @@ public:
 
 	std::vector<std::string>& GetLinesReference();
 
+	size_t GetSize() const;
+	void Reset();
 
 private:
 	size_t m_current = 0;

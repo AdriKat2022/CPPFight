@@ -24,19 +24,22 @@ void TextBox::SetVisible(const bool booleen)
 	m_isVisible = booleen;
 }
 
-void TextBox::Show() const {
-
+void TextBox::Show() const
+{
+	// No need for now
 }
 
-void TextBox::Hide() const {
-
+void TextBox::Hide() const
+{
+	// No need for now
 }
 
 void TextBox::SetDialogue(Dialogue& dialogue) {
 	m_currentDialogue = &dialogue;
+	m_remainingDialogues = dialogue.GetSize();
 }
 
-void TextBox::SetString(const std::string string) {
+void TextBox::SetString(const std::string& string) {
 	m_string = string;
 }
 
@@ -45,14 +48,27 @@ void TextBox::SetPosition(float x, float y) {
 	m_position.y = y;
 }
 
-void TextBox::ShowNext() {
-
+void TextBox::ShowNext()
+{
+	// Show next dialogue
+	m_text.setString(m_currentDialogue->GetNext());
+	m_remainingDialogues--;
 }
 
-void TextBox::Update() {
-
+void TextBox::Update()
+{
+	if (sf::Mouse::Button::Left == sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	{
+		ShowNext();
+	}
 }
 
-void TextBox::Draw(sf::RenderWindow& window) const{
-	
+void TextBox::Draw(sf::RenderWindow& window) const
+{
+	// TODO: Draw the text box
+}
+
+bool TextBox::IsFinished() const
+{
+	return m_remainingDialogues == 0;
 }

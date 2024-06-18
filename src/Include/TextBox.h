@@ -16,16 +16,17 @@ public:
 	void Show() const;
 	void Hide() const;
 	void SetDialogue(Dialogue& dialogue);
-	void SetString(const std::string string);
+	void SetString(const std::string& string);
 	void SetPosition(float x, float y);
 	void ShowNext();
-	void Update(); // For animations
-
-
+	void Update();
+	
 	void Draw(sf::RenderWindow&) const;
 
+	bool IsFinished() const;
 
 private:
+	size_t m_remainingDialogues = 0;
 	bool m_isVisible;
 	Dialogue* m_currentDialogue;
 	sf::Color m_backgroundColor;

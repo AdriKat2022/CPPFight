@@ -18,7 +18,8 @@ void EncounterActing::Update(float deltaTime)
 {
 	if (m_acted)
 	{
-		// TODO: Check if the textbox is done
+		if(m_parentEncounter->GetDialogueBox().IsFinished())
+			m_parentEncounter->SetState(EncounterStateType::MonsterTurn);
 		return;
 	}
 
@@ -48,7 +49,7 @@ void EncounterActing::Draw(sf::RenderWindow& window) const
 
 void EncounterActing::ProcessAction(ActionData* action)
 {
-	// TODO: Call the textbox of the Encounter !
+	m_parentEncounter->SetDialogue(action->AssociatedDialogue);
 }
 
 void EncounterActing::BuildActionButtons()
