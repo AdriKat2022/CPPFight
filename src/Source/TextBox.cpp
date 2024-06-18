@@ -24,11 +24,11 @@ void TextBox::SetVisible(const bool booleen)
 	m_isVisible = booleen;
 }
 
-void TextBox::Show() {
+void TextBox::Show() const {
 
 }
 
-void TextBox::Hide() {
+void TextBox::Hide() const {
 
 }
 
