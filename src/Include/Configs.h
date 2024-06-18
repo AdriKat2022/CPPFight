@@ -12,7 +12,8 @@ namespace FilePaths {
 	constexpr char FONT_STATS[] = "resources/Font/stat_font.ttf";
 
 	// Sound effects
-	constexpr char SOUND_BABY_CRYING[] = "resources/Audio/Sound_effect/baby_laughing.ogg";
+	constexpr char SOUND_BABY_CRYING[] = "resources/Audio/Sound_effect/baby_crying.wav";
+	constexpr char SOUND_BABY_LAUGHING[] = "resources/Audio/Sound_effect/baby_laughing.ogg";
 
 	// Musics
 	constexpr char MUSIC_RUN_MAIN[] = "resources/Audio/Music/menu_music.ogg";

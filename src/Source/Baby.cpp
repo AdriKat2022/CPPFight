@@ -1,7 +1,8 @@
 #include "Baby.h"
 
 Baby::Baby() {
-	// Create the baby
+	m_cryingSoundBuffer.loadFromFile(FilePaths::SOUND_BABY_CRYING);
+	m_happySoundBuffer.loadFromFile(FilePaths::SOUND_BABY_LAUGHING);
 }
 
 float Baby::GetMult() const
@@ -56,7 +57,7 @@ float Baby::GetMult() const
 	}
 }
 
-void Baby::Modify(int modifier)
+void Baby::Modify(int modifier, bool playSound)
 {
 	m_happinessLvl += modifier;
 
@@ -67,6 +68,17 @@ void Baby::Modify(int modifier)
 	else if (m_happinessLvl < 0)
 	{
 		m_happinessLvl = 0;
+	}
+
+	if (!playSound) return;
+
+	if (modifier > 0)
+	{
+		// Play happy sound
+	}
+	else if (modifier < 0)
+	{
+		// Play sad sound
 	}
 }
 
