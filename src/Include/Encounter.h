@@ -6,7 +6,7 @@
 #include <Menu.h>
 #include "Baby.h"
 #include "Player.h"
-
+#include "TextBox.h"
 
 class EncounterState;
 class GameRun;
@@ -23,7 +23,7 @@ enum class EncounterStateType {
 class Encounter : public IDrawable {
 
 public:
-	Encounter(GameRun& gameRun, const EnemyData* enemy);
+	Encounter(GameRun& gameRun, EnemyData* enemy);
 
 	void Update(float deltaTime) override;
 	void Draw(sf::RenderWindow&) const override;
@@ -34,7 +34,12 @@ public:
 	// State management
 	void SetState(EncounterStateType);
 
+	// Getters
+	std::vector<ActionData*>* GetPossibleActions();
 	float GetDamageMultiplier() const;
+
+	void SetDialogue(Dialogue& dialogue);
+	TextBox& GetDialogueBox();
 
 private:
 	sf::RenderWindow& m_window;
@@ -70,4 +75,7 @@ private:
 	sf::RectangleShape background_hp_player;
 	sf::RectangleShape HP_bar_player;
 
+	std::vector<ActionData*> m_enemyActions;
+
+	TextBox m_dialogueBox;
 };

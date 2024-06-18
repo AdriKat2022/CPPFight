@@ -79,6 +79,8 @@ namespace Anchors {
 	constexpr std::array<short int, 2> ATTACK_BOX_FROM_MIDDLE = { 0, 200 };
 	// DamageText
 	constexpr std::array<short int, 2> MULT_TEXT_FROM_DMG_TEXT = { 50, 20 };
+	// ActionButtons
+	constexpr std::array<short int, 4> ACTION_BUTTONS_FROM_MIDDLE = { 50, 150, -100, 100}; // First row, second row, first column, second column
 }
 
 namespace Colors {
