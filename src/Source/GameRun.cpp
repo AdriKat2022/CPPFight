@@ -24,7 +24,7 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 		InitNextEncounter();
 	});
 
-	std::cout << "GameRun constructed." << std::endl;
+	std::cout << "Run constructed." << std::endl;
 }
 
 void GameRun::AddEnemy(EnemyData* enemy)

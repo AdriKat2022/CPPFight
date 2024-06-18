@@ -24,6 +24,7 @@ namespace FilePaths {
 	constexpr char SP_SH_PLAY_BTN[] = "resources/Sprites/play_button.png";
 	constexpr char SP_SH_RULES_BTN[] = "resources/Sprites/rules_button.png";
 	constexpr char SP_SH_QUIT_BTN[] = "resources/Sprites/quit_button.png";
+	constexpr char SP_SH_BACK_BTN[] = "resources/Sprites/play_button.png";
 
 	// Encounter buttons
 	constexpr char SP_SH_FIGHT_BTN[] = "resources/Sprites/fight_button.png";
@@ -58,7 +59,7 @@ namespace Config {
 
 
 	// Buttons animations
-	constexpr float BUTTON_SCALE_SPEED = 20.0f;
+	constexpr float BUTTON_SCALE_SPEED = 1.0f;
 	constexpr float BUTTON_TARGET_SCALE_IDLE = 1.f;
 	constexpr float BUTTON_TARGET_SCALE_HOVER = 1.1f;
 	constexpr float BUTTON_TARGET_SCALE_PRESSED = 0.95f;

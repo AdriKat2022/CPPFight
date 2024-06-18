@@ -17,7 +17,8 @@ Button::Button(const sf::Vector2f& position, const std::string& texturePath, std
 	m_scaleOnHover(scaleOnHover)
 {}
 
-
+// We would need to rename this function to something more appropriate
+// Since its update needs also a renderWindow or a way to get the mouse position
 void Button::Update(sf::RenderWindow& renderWindow, float deltaTime)
 {
 	if (!m_isActive)
@@ -27,7 +28,7 @@ void Button::Update(sf::RenderWindow& renderWindow, float deltaTime)
 	}
 
 	HandleStates(renderWindow);
-	RenderButton(deltaTime);
+	ScaleButton(deltaTime);
 }
 
 void Button::HandleStates(const sf::RenderWindow& renderWindow) {
@@ -64,8 +65,11 @@ void Button::HandleStates(const sf::RenderWindow& renderWindow) {
 	}
 }
 
-void Button::RenderButton(float deltaTime)
+void Button::ScaleButton(float deltaTime)
 {
+	if(!m_scaleOnHover)
+		return;
+
 	switch (m_state)
 	{
 	using enum ButtonState;

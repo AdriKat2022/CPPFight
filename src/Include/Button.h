@@ -32,14 +32,14 @@ public:
 
 private:
 	void HandleStates(const sf::RenderWindow & renderWindow);
-	void RenderButton(float deltaTime);
+	void ScaleButton(float deltaTime);
 	void SetState(ButtonState state);
 
 
 	std::function<void()> m_OnClickEvent = nullptr;
 
 	ButtonState m_state = ButtonState::Idle;
-	float m_scaleSpeed = 10.0f;
+	float m_scaleSpeed = 1.0f;
 	float m_targetScale = 1.f;
 	bool m_isActive = true;
 	bool m_scaleOnHover = true;

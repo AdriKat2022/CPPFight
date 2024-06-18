@@ -45,11 +45,13 @@ void Game::GenerateMenus()
 	m_mainMenu.AddButton(FilePaths::SP_SH_RULES_BTN, sf::Vector2f(400, 300), [this]() { this->ShowRules();  });
 	m_mainMenu.AddButton(FilePaths::SP_SH_QUIT_BTN, sf::Vector2f(400, 500), [this]() { this->QuitRequest(); });
 
-	// TODO: Make the rules menu
+	m_rulesMenu.AddSprite(FilePaths::MENU_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
+	m_rulesMenu.AddButton(FilePaths::SP_SH_BACK_BTN, sf::Vector2f(400, 500), [this]() { this->m_currentState = GameState::MainMenu; });
+	m_rulesMenu.AddSprite(FilePaths::RULES_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
 
-	// TODO: Make the pause menu
+	// TODO: Make the pause menu (no time for that)
 
-	// TODO: Make the pre-run screen (input text for name ? no time now)
+	// TODO: Make the pre-run screen (no time for that)
 }
 
 void Game::UpdateGame(float deltaTime)
@@ -120,9 +122,13 @@ std::unique_ptr<GameRun> Game::NewRun()
 void Game::PrepareNewRun()
 {
 	// TODO : Prepare a new run
+
+
 	std::cout << "Preparing a new run !\n";
 
 	m_currentState = GameState::PreRunScreen;
+
+	BeginNewRun(); // No time to make a real preparation
 }
 
 void Game::BeginNewRun()
@@ -138,6 +144,8 @@ void Game::ShowRules()
 {
 	// TODO : Show the RULES menu
 	std::cout << "Showing the rules!\n";
+
+	m_currentState = GameState::RulesMenu;
 }
 
 void Game::QuitRequest()

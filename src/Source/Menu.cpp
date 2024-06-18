@@ -5,7 +5,7 @@
 
 void Menu::AddButton(const std::string& spritePath, sf::Vector2f position, std::function<void()> OnClickEvent)
 {
-	auto button = std::make_shared<Button>(position, spritePath, OnClickEvent, sf::Vector2i(1, 2));
+	auto button = std::make_shared<Button>(position, spritePath, OnClickEvent, sf::Vector2i(1, 2), true);
 	m_buttons.push_back(button);
 }
 

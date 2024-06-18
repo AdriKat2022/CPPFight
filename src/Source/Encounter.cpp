@@ -98,6 +98,7 @@ void Encounter::Draw(sf::RenderWindow& window) const
 	// affichage des boutons attaque et action et du dialogue
 	m_menu_select.Draw(window);
 
+	m_currentEncounterState->Draw(window);
 }
 
 sf::RenderWindow& Encounter::GetWindow() const
