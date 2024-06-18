@@ -65,7 +65,8 @@ void TextBox::Update()
 
 void TextBox::Draw(sf::RenderWindow& window) const
 {
-	// TODO: Draw the text box
+	window.draw(m_background_text);
+	window.draw(m_text);
 }
 
 bool TextBox::IsFinished() const
