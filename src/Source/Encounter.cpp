@@ -74,6 +74,8 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	m_backgroundTexture.loadFromFile(FilePaths::ENCOUNTER_BG);
 	m_background.setTexture(m_backgroundTexture);
 
+	GenerateMenus();
+
 	// Load the pointers to the enemies actions
 	for (auto& action : enemy->Actions)
 	{
@@ -141,7 +143,6 @@ std::vector<ActionData*>* Encounter::GetPossibleActions()
 }
 
 void Encounter::GenerateMenus() {
-	m_menu_select.AddSprite(FilePaths::ENCOUNTER_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
 	m_menu_select.AddButton(FilePaths::SP_SH_FIGHT_BTN, sf::Vector2f(400, 100), [this]() { this->SetState(EncounterStateType::Fighting); });
 	m_menu_select.AddButton(FilePaths::SP_SH_ACTION_BTN, sf::Vector2f(400, 300), [this]() { this->SetState(EncounterStateType::Acting);  });
 }
@@ -149,7 +150,26 @@ void Encounter::GenerateMenus() {
 
 void Encounter::SetState(EncounterStateType type)
 {
-	m_encounterStateType = std::make_shared<EncounterStateType>(type);
+	switch (type)
+	{
+		using enum EncounterStateType;
+
+	case Idle:
+		m_currentEncounterState = m_encounterIdle;
+		break;
+
+	case Acting:
+		m_currentEncounterState = m_encounterActing;
+		break;
+
+	case Fighting:
+		m_currentEncounterState = m_encounterFighting;
+		break;
+
+	case MonsterTurn:
+		m_currentEncounterState = m_encounterMonsterTurn;
+		break;
+	}
 }
 
 TextBox& Encounter::GetDialogueBox()
