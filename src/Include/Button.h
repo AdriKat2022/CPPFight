@@ -30,6 +30,8 @@ public:
 	void OnClick(sf::Vector2f position) const;
 	void SetOnClickEvent(std::function<void()> OnClickEvent);
 
+	void SetActive(bool active);
+
 private:
 	void HandleStates(const sf::RenderWindow & renderWindow);
 	void ScaleButton(float deltaTime);

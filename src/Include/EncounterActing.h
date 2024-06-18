@@ -25,4 +25,6 @@ private:
 
 	std::vector<Button> m_actionButtons;
 
+	bool m_acted = false;
+
 };

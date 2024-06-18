@@ -30,12 +30,18 @@ private:
 	float m_attackBoxWidth = 0;
 	float m_cursorSpeed = 0;
 
+	int m_upcomingDamage = 0;
+
 	bool m_initFailed = false;
 	bool m_initSucceeded = false;
+	bool m_damageTotalShown = false;
 
 	sf::Text m_damageText;
 	sf::Text m_multText;
 	sf::Font m_damageFont;
+
+	sf::SoundBuffer m_attackSoundBuffer;
+	sf::Sound m_attackSound;
 
 	AttackState m_state = AttackState::Attacking;
 };
