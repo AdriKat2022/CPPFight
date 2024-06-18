@@ -126,6 +126,19 @@ void Button::SetOnClickEvent(std::function<void()> OnClickEvent)
 	m_OnClickEvent = OnClickEvent;
 }
 
+void Button::SetActive(bool active)
+{
+	m_isActive = active;
+	if(active)
+	{
+		SetState(ButtonState::Idle);
+	}
+	else
+	{
+		SetState(ButtonState::Disabled);
+	}
+}
+
 void Button::SetState(ButtonState state) {
 	m_state = state;
 

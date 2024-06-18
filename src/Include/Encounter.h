@@ -41,6 +41,10 @@ public:
 	void SetDialogue(Dialogue& dialogue);
 	TextBox& GetDialogueBox();
 
+	void DamageMonster(int damage);
+	void DamagePlayer(int damage);
+	void SetButtonsActive(bool active) const;
+
 private:
 	sf::RenderWindow& m_window;
 

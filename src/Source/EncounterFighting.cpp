@@ -14,6 +14,9 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 	m_damageFont.loadFromFile(FilePaths::FONT_DAMAGE);
 	m_damageText.setFont(m_damageFont);
 	m_multText.setFont(m_damageFont);
+
+	m_attackSoundBuffer.loadFromFile(FilePaths::SOUND_HIT);
+	m_attackSound.setBuffer(m_attackSoundBuffer);
 }
 
 
@@ -42,43 +45,54 @@ void EncounterFighting::Update(float deltaTime)
 			}
 			break;
 
-			{
+			
 		case AttackState::Succeeded:
 
-			if (m_initSucceeded) break;
+			if (!m_initSucceeded)
+			{
+				m_initSucceeded = true;
 
-			m_initSucceeded = true;
+				// Compute the damage: the more it is in the middle, the more damage it does (with an exponential distribution)
+				float dmgMult = 1 - std::abs(m_cursor.GetPosition().x - m_attackBox.GetPosition().x) / (m_attackBoxWidth / 2);
+				//dmgMult = static_cast<float>(std::pow(dmgMult, 2));
 
-			// Compute the damage: the more it is in the middle, the more damage it does (with an exponential distribution)
-			float dmgMult = 1 - std::abs(m_cursor.GetPosition().x - m_attackBox.GetPosition().x) / (m_attackBoxWidth / 2);
-			//dmgMult = static_cast<float>(std::pow(dmgMult, 2));
+				auto damage = static_cast<int>(dmgMult * Config::DEFAULT_PLAYER_BASE_DAMAGE);
+				auto babyMult = m_parentEncounter->GetDamageMultiplier();
 
-			auto damage = static_cast<int>(dmgMult * 100);
-			auto babyMult = m_parentEncounter->GetDamageMultiplier();
+				// Update the text and show it
+				m_damageText.setString(std::format("{}", damage));
+				m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
 
-			// Update the text and show it
-			m_damageText.setString(std::format("{}", damage * 100));
-			m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
+				m_multText.setString(std::format("x {}", babyMult));
+				m_multText.setPosition(
+					m_damageText.getPosition().x + Anchors::MULT_TEXT_FROM_DMG_TEXT[0],
+					m_damageText.getPosition().y + Anchors::MULT_TEXT_FROM_DMG_TEXT[1]
+				);
 
-			m_multText.setString(std::format("x {}", babyMult));
-			m_multText.setPosition(
-				m_damageText.getPosition().x + Anchors::MULT_TEXT_FROM_DMG_TEXT[0],
-				m_damageText.getPosition().y + Anchors::MULT_TEXT_FROM_DMG_TEXT[1]
-			);
+				m_damageText.setFillColor({
+					Colors::DAMAGE_TEXT_COLOR_HIT[0],
+					Colors::DAMAGE_TEXT_COLOR_HIT[1],
+					Colors::DAMAGE_TEXT_COLOR_HIT[2]
+					});
 
-			m_damageText.setFillColor({
-				Colors::DAMAGE_TEXT_COLOR_HIT[0],
-				Colors::DAMAGE_TEXT_COLOR_HIT[1],
-				Colors::DAMAGE_TEXT_COLOR_HIT[2]
-				});
+				// TODO: Play an animation (optionnal)
 
-			// TODO: Play a sound
-			// TODO: Play an animation (optionnal)
-			// TODO: Damage the monster
+				m_damageTotalShown = false;
+				m_upcomingDamage = static_cast<int>(static_cast<float>(damage) * babyMult);
+
+			}
+			else if (m_timer <= 1.5f && !m_damageTotalShown)
+			{
+				m_damageTotalShown = true;
+				m_parentEncounter->SetState(EncounterStateType::MonsterTurn);
+				m_attackSound.play();
+
+
+				m_parentEncounter->DamageMonster(m_upcomingDamage);
+			}
 
 
 			break;
-			}
 
 			
 		case AttackState::Failed:

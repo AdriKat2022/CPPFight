@@ -14,9 +14,10 @@ namespace FilePaths {
 	// Sound effects
 	constexpr char SOUND_BABY_CRYING[] = "resources/Audio/Sound_effect/baby_crying.wav";
 	constexpr char SOUND_BABY_LAUGHING[] = "resources/Audio/Sound_effect/baby_laughing.ogg";
+	constexpr char SOUND_HIT[] = "resources/Audio/Sound_effect/hit_sound.wav";
 
 	// Musics
-	constexpr char MUSIC_RUN_MAIN[] = "resources/Audio/Music/menu_music.ogg";
+	constexpr char MUSIC_RUN_MAIN[] = "resources/Audio/Music/battle_theme.wav";
 	constexpr char MUSIC_MENU_MAIN[] = "resources/Audio/Music/MainMenuTheme.wav";
 
 	// Backgrounds
@@ -49,6 +50,7 @@ namespace Config {
 	constexpr unsigned short int MAX_RUN_ENEMIES = 3;
 	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 25;
 	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 20;
+	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 20;
 	constexpr char DEFAULT_PLAYER_NAME[] = "Chara";
 
 	constexpr float GLOBAL_ATTACK_TIME = 1.5f;

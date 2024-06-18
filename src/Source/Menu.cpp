@@ -25,3 +25,10 @@ void Menu::Draw(sf::RenderWindow& window) const
 		button->Update(window);
 	}
 }
+
+void Menu::SetButtonsActive(bool active) const
+{
+	for (const auto& button : m_buttons) {
+		button->SetActive(active);
+	}
+}

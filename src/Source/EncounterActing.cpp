@@ -11,11 +11,17 @@ EncounterActing::EncounterActing(Encounter* parentEncounter) :
 
 void EncounterActing::OnEnter()
 {
-	// Nothing to really do here for now
+	m_parentEncounter->SetButtonsActive(false);
 }
 
 void EncounterActing::Update(float deltaTime)
 {
+	if (m_acted)
+	{
+		// TODO: Check if the textbox is done
+		return;
+	}
+
 	for (auto& button : m_actionButtons)
 	{
 		button.Update(m_window, deltaTime);
@@ -29,7 +35,7 @@ void EncounterActing::Update(float deltaTime)
 
 void EncounterActing::OnExit()
 {
-	// Nothing to really do here for now
+	// Let the buttons deactivated
 }
 
 void EncounterActing::Draw(sf::RenderWindow& window) const

@@ -21,6 +21,7 @@ public:
 
 	void Draw(sf::RenderWindow& window) const;
 
+	void SetButtonsActive(bool active) const;
 
 private:
 
