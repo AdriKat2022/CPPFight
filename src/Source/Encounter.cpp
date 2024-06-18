@@ -79,18 +79,18 @@ void Encounter::Update(float deltaTime)
 
 void Encounter::Draw(sf::RenderWindow& window) const
 {
-	//affichage de l'ennemi (TODO), son nom, sa barre de vie
+	//affichage de l'ennemi, son nom, sa barre de vie
 	window.draw(name_enemy);
 	window.draw(background_hp_enemy);
 	window.draw(HP_bar_enemy);
 
-	//affichage du bébé (TODO), son nom, sa barre de bonheur et du multiplicateur de dégats
+	//affichage du bébé via le background, son nom, sa barre de bonheur et du multiplicateur de dégats
 	window.draw(name_baby);
 	window.draw(background_happiness_baby);
 	window.draw(happiness_bar_baby);
 	window.draw(damage_mult);
 
-	//du player(TODO), son nom et sa barre de vie
+	//du player via le background, son nom et sa barre de vie
 	window.draw(name_player);
 	window.draw(background_hp_player);
 	window.draw(HP_bar_player);
@@ -111,6 +111,7 @@ float Encounter::GetDamageMultiplier() const
 }
 
 void Encounter::GenerateMenus() {
+	m_menu_select.AddSprite(FilePaths::ENCOUNTER_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
 	m_menu_select.AddButton(FilePaths::SP_SH_FIGHT_BTN, sf::Vector2f(400, 100), [this]() { this->SetState(EncounterStateType::Fighting); });
 	m_menu_select.AddButton(FilePaths::SP_SH_ACTION_BTN, sf::Vector2f(400, 300), [this]() { this->SetState(EncounterStateType::Acting);  });
 }
