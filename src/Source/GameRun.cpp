@@ -96,4 +96,8 @@ void GameRun::Render()
 		m_currentEncounter->Draw(m_window);
 }
 
+void GameRun::SetState(RunState state) {
+	m_state = state;
+}
+
 

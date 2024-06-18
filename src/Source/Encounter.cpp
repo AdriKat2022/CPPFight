@@ -80,6 +80,10 @@ Encounter::Encounter(GameRun& gameRun, EnemyData * enemy) :
 
 void Encounter::Update(float deltaTime)
 {
+
+	if (m_enemy.IsDead() == true) {
+		m_parentRun.SetState(RunState::InTransition);
+	}
 	m_currentEncounterState->Update(deltaTime);
 }
 
