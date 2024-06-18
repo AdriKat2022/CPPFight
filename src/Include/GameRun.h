@@ -37,6 +37,7 @@ public:
 	void FullHeal(int heal);
 	Baby& GetBaby();
 	Player& GetPlayer();
+	void SetState(RunState);
 
 private:
 	Player m_player = Player{ Config::DEFAULT_PLAYER_NAME, Config::DEFAULT_PLAYER_MAX_HP };
