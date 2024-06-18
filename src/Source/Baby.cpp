@@ -74,12 +74,14 @@ void Baby::Modify(int modifier, bool playSound)
 
 	if (modifier > 0)
 	{
-		// Play happy sound
+		m_source.setBuffer(m_happySoundBuffer);
 	}
 	else if (modifier < 0)
 	{
-		// Play sad sound
+		m_source.setBuffer(m_cryingSoundBuffer);
 	}
+
+	m_source.play();
 }
 
 int Baby::GetHappiness() const

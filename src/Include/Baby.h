@@ -16,8 +16,7 @@ private:
 
 	sf::SoundBuffer m_happySoundBuffer;
 	sf::SoundBuffer m_cryingSoundBuffer;
-	sf::Sound m_happySound;
-	sf::Sound m_cryingSound;
+	sf::Sound m_source;
 
 	int m_happinessLvl = Config::DEFAULT_BABY_START_HAPPINESS; // From 0 to 100
 };

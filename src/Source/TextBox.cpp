@@ -1,20 +1,21 @@
 #include "TextBox.h"
 #include "Configs.h"
 
-TextBox::TextBox() {
-	undertale_font.loadFromFile(FilePaths::FONT_MAIN);
+TextBox::TextBox()
+{
+	m_undertale_font.loadFromFile(FilePaths::FONT_MAIN);
 	m_position.x = 150;
 	m_position.y = 150;
 
-	background_text.setSize(sf::Vector2f(300, 200));
-	background_text.setPosition(m_position);
-	background_text.setFillColor(sf::Color::Black);
+	m_background_text.setSize(sf::Vector2f(300, 200));
+	m_background_text.setPosition(m_position);
+	m_background_text.setFillColor(sf::Color::Black);
 
-	text.setPosition(m_position);
-	text.setFillColor(sf::Color::White);
-	text.setCharacterSize(20);
-	text.setFont(undertale_font);
-	text.setString(m_currentDialogue->GetNext());
+	m_text.setPosition(m_position);
+	m_text.setFillColor(sf::Color::White);
+	m_text.setCharacterSize(20);
+	m_text.setFont(m_undertale_font);
+	m_text.setString(m_currentDialogue->GetNext());
 	SetVisible(true);
 }
 

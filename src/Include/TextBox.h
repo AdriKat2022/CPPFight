@@ -32,8 +32,8 @@ private:
 	sf::Vector2f m_position;
 	sf::Vector2f m_size = {300, 200};
 	std::string m_string;
-	sf::Text text;
-	sf::RectangleShape background_text;
-	sf::Font undertale_font;
+	sf::Text m_text;
+	sf::RectangleShape m_background_text;
+	sf::Font m_undertale_font;
 
 };
