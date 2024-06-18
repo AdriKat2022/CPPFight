@@ -1,4 +1,5 @@
 #include "TextBox.h"
+#include "Configs.h"
 
 TextBox::TextBox() {
 	m_position = sf::Vector2f(150, 150);
@@ -12,7 +13,7 @@ TextBox::TextBox() {
 	sf::Font undertale_font;
 	undertale_font.loadFromFile("resources/Font/HachicroUndertaleBattleFontRegular-L3zlg.ttf");
 	text.setFont(undertale_font);
-	text.setString(dialogue.getNext());
+	text.setString(m_currentDialogue->GetNext());
 }
 
 void TextBox::Show() {
@@ -23,8 +24,8 @@ void TextBox::Hide() {
 
 }
 
-void TextBox::SetDialogue(const Dialogue& dialogue) {
-	m_currentDialogue = dialogue;
+void TextBox::SetDialogue(Dialogue& dialogue) {
+	m_currentDialogue = &dialogue;
 }
 
 void TextBox::SetString(const std::string string) {
@@ -45,13 +46,5 @@ void TextBox::Update() {
 }
 
 void TextBox::Draw(sf::RenderWindow& window) const{
-	sf::Font undertale_font;
-	undertale_font.loadFromFile(FilePaths::UNDERTALE_FONT);
-	text.setFont(undertale_font);
-	text.setPosition(m_position);
-	text.setCharacterSize(10);
-	text.setString(m_string);
-	text.setFillColor(sf::Color::White);
-	//window.draw(background_text);
-	window.draw(text);
+	
 }

@@ -14,7 +14,7 @@ public:
 
 	void Show();
 	void Hide();
-	void SetDialogue(const Dialogue& dialogue);
+	void SetDialogue(Dialogue& dialogue);
 	void SetString(const std::string string);
 	void SetPosition(int x, int y);
 	void ShowNext();
@@ -29,10 +29,10 @@ private:
 	bool m_isVisible;
 	Dialogue* m_currentDialogue;
 	sf::Color m_backgroundColor;
-	sf::Vector2i m_position;
-	sf::Vector2i m_size = {300, 200};
+	sf::Vector2f m_position;
+	sf::Vector2f m_size = {300, 200};
 	std::string m_string;
 	sf::Text text;
-	//sf::RectangleShape background_text;
+	sf::RectangleShape background_text;
 
 };
