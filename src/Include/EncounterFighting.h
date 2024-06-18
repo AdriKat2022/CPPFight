@@ -34,6 +34,7 @@ private:
 	bool m_initSucceeded = false;
 
 	sf::Text m_damageText;
+	sf::Text m_multText;
 	sf::Font m_damageFont;
 
 	AttackState m_state = AttackState::Attacking;
