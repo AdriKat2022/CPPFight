@@ -11,4 +11,10 @@ public:
 	void Update(float deltaTime) override;
 	void OnExit() override;
 
+private:
+
+	bool m_isDead = false;
+	float m_exitTimer = 1.5f;
+
+
 };

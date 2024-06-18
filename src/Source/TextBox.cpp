@@ -15,7 +15,6 @@ TextBox::TextBox()
 	m_text.setFillColor(sf::Color::White);
 	m_text.setCharacterSize(20);
 	m_text.setFont(m_undertale_font);
-	m_text.setString(m_currentDialogue->GetNext());
 	SetVisible(true);
 }
 
@@ -50,6 +49,12 @@ void TextBox::SetPosition(float x, float y) {
 
 void TextBox::ShowNext()
 {
+	if (m_remainingDialogues == 0)
+	{
+		m_hasClickedAfterFinish = true;
+		return;
+	}
+
 	// Show next dialogue
 	m_text.setString(m_currentDialogue->GetNext());
 	m_remainingDialogues--;
@@ -71,5 +76,5 @@ void TextBox::Draw(sf::RenderWindow& window) const
 
 bool TextBox::IsFinished() const
 {
-	return m_remainingDialogues == 0;
+	return m_remainingDialogues == 0 && m_hasClickedAfterFinish;
 }

@@ -47,7 +47,7 @@ target_sources(lib_cppfight
     "Source/EncounterFighting.cpp"
     "Source/TextBox.cpp"
     "Source/EncounterActing.cpp"
-)
+ "Source/EncounterMonsterTurn.cpp")
 
 target_include_directories(lib_cppfight
     PUBLIC

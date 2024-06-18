@@ -40,10 +40,14 @@ public:
 
 	void SetDialogue(Dialogue& dialogue);
 	TextBox& GetDialogueBox();
+	bool IsDialogueFinished() const;
 
 	void DamageMonster(int damage);
 	void DamagePlayer(int damage);
 	void SetButtonsActive(bool active) const;
+	void EndEncounter();
+
+	bool IsMonsterDead() const;
 
 private:
 	sf::RenderWindow& m_window;
@@ -80,6 +84,7 @@ private:
 	sf::RectangleShape HP_bar_player;
 
 	std::vector<ActionData*> m_enemyActions;
-
+	sf::Sprite m_background;
+	sf::Texture m_backgroundTexture;
 	TextBox m_dialogueBox;
 };

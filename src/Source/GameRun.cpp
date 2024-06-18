@@ -41,7 +41,7 @@ void GameRun::Run(float deltaTime)
 		using enum RunState;
 
 		case Intro:
-			// Unused for now
+			InitNextEncounter();
 			break;
 
 		case InEncounter:
@@ -49,6 +49,7 @@ void GameRun::Run(float deltaTime)
 			break;
 
 		case InTransition:
+			// Show a win message (and normaly a reward menu before the next encounter)
 			InitNextEncounter();
 			break;
 

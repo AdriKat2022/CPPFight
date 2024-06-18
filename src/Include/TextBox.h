@@ -28,6 +28,7 @@ public:
 private:
 	size_t m_remainingDialogues = 0;
 	bool m_isVisible;
+	bool m_hasClickedAfterFinish = false;
 	Dialogue* m_currentDialogue;
 	sf::Color m_backgroundColor;
 	sf::Vector2f m_position;

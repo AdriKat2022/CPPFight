@@ -70,6 +70,10 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	HP_bar_player.setFillColor(sf::Color::Red);
 	HP_bar_player.setPosition({ 350, 505 });
 
+	// Background
+	m_backgroundTexture.loadFromFile(FilePaths::ENCOUNTER_BG);
+	m_background.setTexture(m_backgroundTexture);
+
 	// Load the pointers to the enemies actions
 	for (auto& action : enemy->Actions)
 	{
@@ -84,11 +88,15 @@ void Encounter::Update(float deltaTime)
 	if (m_enemy.IsDead() == true) {
 		m_parentRun.SetState(RunState::InTransition);
 	}
-	m_currentEncounterState->Update(deltaTime);
+
+	if(m_currentEncounterState)
+		m_currentEncounterState->Update(deltaTime);
 }
 
 void Encounter::Draw(sf::RenderWindow& window) const
 {
+	window.draw(m_background);
+
 	//affichage de l'ennemi, son nom, sa barre de vie
 	window.draw(name_enemy);
 	window.draw(background_hp_enemy);
@@ -108,7 +116,8 @@ void Encounter::Draw(sf::RenderWindow& window) const
 	// affichage des boutons attaque et action et du dialogue
 	m_menu_select.Draw(window);
 
-	m_currentEncounterState->Draw(window);
+	if(m_currentEncounterState)
+		m_currentEncounterState->Draw(window);
 }
 
 sf::RenderWindow& Encounter::GetWindow() const
@@ -163,4 +172,19 @@ void Encounter::DamagePlayer(int damage)
 void Encounter::SetButtonsActive(bool active) const
 {
 	m_menu_select.SetButtonsActive(active);
+}
+
+bool Encounter::IsMonsterDead() const
+{
+	return m_enemy.IsDead();
+}
+
+void Encounter::EndEncounter()
+{
+	m_parentRun.SetState(RunState::InTransition);
+}
+
+bool Encounter::IsDialogueFinished() const
+{
+	return m_dialogueBox.IsFinished();
 }
