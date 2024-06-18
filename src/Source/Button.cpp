@@ -17,6 +17,19 @@ Button::Button(const sf::Vector2f& position, const std::string& texturePath, std
 	m_scaleOnHover(scaleOnHover)
 {}
 
+// Make a text button rather than a texture button
+Button::Button(const sf::Vector2f & position, const std::string & text, std::function<void()> OnClickEvent, bool changeColorOnHover) :
+	m_textToDisplay(text),
+	m_OnClickEvent(OnClickEvent),
+	m_scaleOnHover(false),
+	m_changeColorOnHover(changeColorOnHover)
+{
+	Move(position);
+	m_font.loadFromFile(FilePaths::FONT_MAIN);
+	m_text.setString(m_textToDisplay);
+	m_text.setFont(m_font);
+}
+
 // We would need to rename this function to something more appropriate
 // Since its update needs also a renderWindow or a way to get the mouse position
 void Button::Update(sf::RenderWindow& renderWindow, float deltaTime)
@@ -111,4 +124,13 @@ void Button::SetOnClickEvent(std::function<void()> OnClickEvent)
 
 void Button::SetState(ButtonState state) {
 	m_state = state;
+
+	if (m_state == ButtonState::Hover && m_changeColorOnHover)
+	{
+		m_text.setFillColor(sf::Color::Yellow);
+	}
+	else
+	{
+		m_text.setFillColor(sf::Color::White);
+	}
 }
