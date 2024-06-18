@@ -11,12 +11,12 @@ class TextBox : public IDrawable {
 public:
 	TextBox();
 
-
+	void SetVisible(const bool);
 	void Show();
 	void Hide();
 	void SetDialogue(Dialogue& dialogue);
 	void SetString(const std::string string);
-	void SetPosition(int x, int y);
+	void SetPosition(float x, float y);
 	void ShowNext();
 	void Update(); // For animations
 
@@ -34,5 +34,6 @@ private:
 	std::string m_string;
 	sf::Text text;
 	sf::RectangleShape background_text;
+	sf::Font undertale_font;
 
 };

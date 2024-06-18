@@ -19,3 +19,8 @@ const std::string& Player::GetName() const
 {
 	return m_name;
 }
+
+void Player::SetName(std::string name) {
+	m_name = name;
+}
+
