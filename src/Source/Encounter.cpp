@@ -43,12 +43,12 @@ Encounter::Encounter(GameRun& gameRun, const EnemyData* enemy) :
 	background_happiness_baby.setSize({ 50, 100 });
 	background_happiness_baby.setFillColor(sf::Color::White);
 	background_happiness_baby.setPosition({ 700, 440 });
-	happiness_bar_baby.setSize(sf::Vector2f(40.f, static_cast<float>(baby.GetHappiness())));
+	happiness_bar_baby.setSize(sf::Vector2f(40.f, static_cast<float>(m_parentRun.GetBaby().GetHappiness())));
 	happiness_bar_baby.setFillColor(sf::Color::Yellow);
-	happiness_bar_baby.setPosition(sf::Vector2f(705, 440 + (100 - baby.GetHappiness())));
+	happiness_bar_baby.setPosition(sf::Vector2f(705, 440 + (100 - m_parentRun.GetBaby().GetHappiness())));
 
 	//définition du multiplicateur de dégats
-	damage_mult.setString(std::format("Dégats * \n %f", baby.GetMult()));
+	damage_mult.setString(std::format("Dégats * \n %f", m_parentRun.GetBaby().GetMult()));
 	damage_mult.setPosition(760, 490);
 	damage_mult.setFont(undertale_font);
 	damage_mult.setCharacterSize(10);
@@ -108,7 +108,7 @@ sf::RenderWindow& Encounter::GetWindow() const
 
 float Encounter::GetDamageMultiplier() const
 {
-	return baby.GetMult();
+	return m_parentRun.GetBaby().GetMult();
 }
 
 void Encounter::GenerateMenus() {

@@ -33,6 +33,9 @@ public:
 	sf::RenderWindow& GetWindow() const;
 	sf::Vector2f GetMousePosition() const;
 
+
+	Baby& GetBaby();
+
 private:
 	Player m_player = Player{ Config::DEFAULT_PLAYER_NAME, Config::DEFAULT_PLAYER_MAX_HP };
 	Baby m_baby;

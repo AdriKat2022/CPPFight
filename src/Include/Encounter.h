@@ -59,7 +59,7 @@ private:
 	sf::RectangleShape background_hp_enemy;
 	sf::RectangleShape HP_bar_enemy;
 
-	Baby baby;
+	//Baby baby;
 	sf::Text name_baby;
 	sf::RectangleShape background_happiness_baby;
 	sf::RectangleShape happiness_bar_baby;

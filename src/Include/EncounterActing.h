@@ -7,7 +7,7 @@ class Button;
 class EncounterActing : public EncounterState {
 
 public:
-	using EncounterState::EncounterState;
+	explicit EncounterActing(Encounter* parentEncounter);
 
 	void OnEnter() override;
 	void Update(float deltaTime) override;
@@ -16,6 +16,10 @@ public:
 	void Draw(sf::RenderWindow& window) const override;
 
 private:
-	std::vector<Button> m_buttons;
+
+	void BuildActionButtons();
+
+
+	std::vector<Button> m_actionButtons;
 
 };

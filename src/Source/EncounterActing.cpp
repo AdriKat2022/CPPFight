@@ -2,6 +2,12 @@
 #include "Button.h"
 
 
+EncounterActing::EncounterActing(Encounter* parentEncounter) :
+	EncounterState(parentEncounter)
+{
+
+}
+
 void EncounterActing::OnEnter()
 {
 	// TODO : Draw the menu of actions
@@ -22,4 +28,9 @@ void EncounterActing::OnExit()
 void EncounterActing::Draw(sf::RenderWindow& window) const
 {
 	// TODO: Draw the buttons
+}
+
+void EncounterActing::BuildActionButtons()
+{
+
 }

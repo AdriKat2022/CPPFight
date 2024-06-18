@@ -78,6 +78,11 @@ sf::Vector2f GameRun::GetMousePosition() const {
 	return static_cast<sf::Vector2f>(sf::Mouse::getPosition(m_window));
 }
 
+Baby& GameRun::GetBaby()
+{
+	return m_baby;
+}
+
 void GameRun::Render() const
 {
 	// TODO: Render the run screen
