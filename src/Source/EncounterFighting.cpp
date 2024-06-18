@@ -42,38 +42,38 @@ void EncounterFighting::Update(float deltaTime)
 			break;
 
 		case AttackState::Succeeded:
+		
+			if (!m_initSucceeded)
+			{
+				m_initSucceeded = true;
 
-			if (m_initSucceeded)
-				break;
+				// Compute the damage: the more it is in the middle, the more damage it does (with an exponential distribution)
+				float dmgMult = 1 - std::abs(m_cursor.GetPosition().x - m_attackBox.GetPosition().x) / (m_attackBoxWidth / 2);
+				//dmgMult = static_cast<float>(std::pow(dmgMult, 2));
 
-			m_initSucceeded = true;
+				auto damage = static_cast<int>(dmgMult * 100);
 
-			// Compute the damage: the more it is in the middle, the more damage it does (with an exponential distribution)
-			float dmgMult = 1 - std::abs(m_cursor.GetPosition().x - m_attackBox.GetPosition().x) / (m_attackBoxWidth / 2);
-			//dmgMult = static_cast<float>(std::pow(dmgMult, 2));
+				// Update the text and show it
+				m_damageText.setString(std::format("{}", damage * 100));
+				m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
 
-			auto damage = static_cast<int>(dmgMult * 100);
-
-			// Update the text and show it
-			m_damageText.setString(std::format("{}", damage * 100));
-			m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
-
-			// TODO: Play a sound
-			// TODO: Play an animation (optionnal)
-			// TODO: Damage the monster
+				// TODO: Play a sound
+				// TODO: Play an animation (optionnal)
+				// TODO: Damage the monster
+			}
 
 			break;
 
 		case AttackState::Failed:
 
-			if (m_initFailed)
-				break;
+			if (!m_initFailed)
+			{
+				m_initFailed = true;
 
-			m_initFailed = true;
-
-			// Update the text and show it
-			m_damageText.setString(std::format("Manqué"));
-			m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
+				// Update the text and show it
+				m_damageText.setString(std::format("Manqué"));
+				m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
+			}
 
 			break;
 	}
