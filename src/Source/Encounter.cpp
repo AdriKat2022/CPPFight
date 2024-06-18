@@ -105,6 +105,11 @@ sf::RenderWindow& Encounter::GetWindow() const
 	return m_parentRun.GetWindow();
 }
 
+float Encounter::GetDamageMultiplier() const
+{
+	return baby.GetMult();
+}
+
 void Encounter::GenerateMenus() {
 	m_menu_select.AddSprite(FilePaths::ENCOUNTER_BG, sf::Vector2f{ 0,0 }, sf::Vector2i{ 1, 1 }, false);
 	m_menu_select.AddButton(FilePaths::SP_SH_FIGHT_BTN, sf::Vector2f(400, 100), [this]() { this->SetState(EncounterStateType::Fighting); });

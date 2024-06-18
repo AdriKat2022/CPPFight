@@ -51,7 +51,7 @@ namespace Config {
 
 	constexpr float GLOBAL_ATTACK_TIME = 1.5f;
 	constexpr float GLOBAL_ATTACK_TIME_VARIANCE = .3f;
-	constexpr float WAIT_TIME_AFTER_ATTACK = 1.f;
+	constexpr float WAIT_TIME_AFTER_ATTACK = 1.8f;
 
 
 	// Window config
@@ -75,5 +75,15 @@ namespace Anchors {
 	constexpr std::array<short int, 2> TEXT_BOX_FROM_MIDDLE = { 0, 200 };
 	// AttackBox
 	constexpr std::array<short int, 2> ATTACK_BOX_FROM_MIDDLE = { 0, 200 };
+	// DamageText
+	constexpr std::array<short int, 2> MULT_TEXT_FROM_DMG_TEXT = { 50, 20 };
+}
+
+namespace Colors {
+
+	// DamageText
+	constexpr std::array<unsigned short int, 4> DAMAGE_TEXT_COLOR_HIT = { 255, 0, 0, 255 }; // Red
+	constexpr std::array<unsigned short int, 4> DAMAGE_TEXT_COLOR_MISSED = { 128, 128, 128, 255 }; // Gray
+	constexpr std::array<unsigned short int, 4> MULT_TEXT_COLOR = { 210, 111, 0, 255 }; // Orange
 
 }

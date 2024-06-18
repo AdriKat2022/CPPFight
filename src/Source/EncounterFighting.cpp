@@ -7,12 +7,13 @@
 EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 	EncounterState(parentEncounter)
 {
-	m_attackBox = IDrawable({ 0, 0 }, FilePaths::SP_SH_CURSOR, { 1, 1 }, true);
+	m_attackBox = IDrawable({ 0, 0 }, FilePaths::SP_SH_ATTACK_BOX, { 1, 1 }, true);
 	m_cursor = IDrawable({ 0, 0 }, FilePaths::SP_SH_CURSOR, {1, 1}, true);
 
 	m_attackBoxWidth = m_attackBox.GetSprite().getGlobalBounds().width;
 	m_damageFont.loadFromFile(FilePaths::FONT_DAMAGE);
 	m_damageText.setFont(m_damageFont);
+	m_multText.setFont(m_damageFont);
 }
 
 
@@ -41,41 +42,64 @@ void EncounterFighting::Update(float deltaTime)
 			}
 			break;
 
-		case AttackState::Succeeded:
-		
-			if (!m_initSucceeded)
 			{
-				m_initSucceeded = true;
+		case AttackState::Succeeded:
 
-				// Compute the damage: the more it is in the middle, the more damage it does (with an exponential distribution)
-				float dmgMult = 1 - std::abs(m_cursor.GetPosition().x - m_attackBox.GetPosition().x) / (m_attackBoxWidth / 2);
-				//dmgMult = static_cast<float>(std::pow(dmgMult, 2));
+			if (m_initSucceeded) break;
 
-				auto damage = static_cast<int>(dmgMult * 100);
+			m_initSucceeded = true;
 
-				// Update the text and show it
-				m_damageText.setString(std::format("{}", damage * 100));
-				m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
+			// Compute the damage: the more it is in the middle, the more damage it does (with an exponential distribution)
+			float dmgMult = 1 - std::abs(m_cursor.GetPosition().x - m_attackBox.GetPosition().x) / (m_attackBoxWidth / 2);
+			//dmgMult = static_cast<float>(std::pow(dmgMult, 2));
 
-				// TODO: Play a sound
-				// TODO: Play an animation (optionnal)
-				// TODO: Damage the monster
-			}
+			auto damage = static_cast<int>(dmgMult * 100);
+			auto babyMult = m_parentEncounter->GetDamageMultiplier();
+
+			// Update the text and show it
+			m_damageText.setString(std::format("{}", damage * 100));
+			m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
+
+			m_multText.setString(std::format("x {}", babyMult));
+			m_multText.setPosition(
+				m_damageText.getPosition().x + Anchors::MULT_TEXT_FROM_DMG_TEXT[0],
+				m_damageText.getPosition().y + Anchors::MULT_TEXT_FROM_DMG_TEXT[1]
+			);
+
+			m_damageText.setFillColor({
+				Colors::DAMAGE_TEXT_COLOR_HIT[0],
+				Colors::DAMAGE_TEXT_COLOR_HIT[1],
+				Colors::DAMAGE_TEXT_COLOR_HIT[2]
+				});
+
+			// TODO: Play a sound
+			// TODO: Play an animation (optionnal)
+			// TODO: Damage the monster
+
 
 			break;
+			}
 
+			
 		case AttackState::Failed:
 
-			if (!m_initFailed)
-			{
-				m_initFailed = true;
+			if (m_initFailed) break;
 
-				// Update the text and show it
-				m_damageText.setString(std::format("Manqué"));
-				m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
-			}
+			m_initFailed = true;
+
+			// Update the text and show it
+			m_damageText.setString(std::format("Manqué"));
+			m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
+
+			m_damageText.setFillColor({
+				Colors::DAMAGE_TEXT_COLOR_MISSED[0],
+				Colors::DAMAGE_TEXT_COLOR_MISSED[1],
+				Colors::DAMAGE_TEXT_COLOR_MISSED[2]
+				});
+
 
 			break;
+			
 	}
 
 	if (m_state != AttackState::Attacking)
@@ -93,7 +117,7 @@ void EncounterFighting::Update(float deltaTime)
 
 void EncounterFighting::OnExit()
 {
-	// réaffichage des boutons attaque et actions, update des dialogues
+	// Nothing to clean and since the draw function won't be called anymore, the attack box and the cursor will be hidden
 }
 
 void EncounterFighting::InitAttackBox()
@@ -127,7 +151,7 @@ void EncounterFighting::InitAttackBox()
 
 void EncounterFighting::CloseAttackBox()
 {
-
+	// Unused for now
 }
 
 
@@ -135,6 +159,7 @@ void EncounterFighting::Draw(sf::RenderWindow& window) const
 {
 	m_attackBox.Draw(window);
 	m_cursor.Draw(window);
+	window.draw(m_multText);
 
 	if (m_state != AttackState::Attacking)
 	{

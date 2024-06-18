@@ -15,12 +15,12 @@ public:
 	virtual ~IDrawable() = default;
 
 
+	virtual void Update(float deltaTime);
 	virtual void Draw(sf::RenderWindow&) const;
 	
 	void Move(const sf::Vector2f& offset);
 	sf::Vector2f GetPosition() const;
 
-	void Update(float deltaTime);
 
 	void SetAnimation(float animationSpeed); // In frames per second
 	void DefineSpriteSheet(const sf::Vector2i& dimensions);
