@@ -17,7 +17,7 @@ namespace FilePaths {
 
 	// Musics
 	constexpr char MUSIC_RUN_MAIN[] = "resources/Audio/Music/menu_music.ogg";
-	constexpr char MUSIC_MENU_MAIN[] = "resources/Audio/Music/menu_music.ogg";
+	constexpr char MUSIC_MENU_MAIN[] = "resources/Audio/Music/MainMenuTheme.wav";
 
 	// Backgrounds
 	constexpr char MENU_BG[] = "resources/Sprites/menu_background.png";

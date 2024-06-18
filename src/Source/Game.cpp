@@ -9,12 +9,16 @@ Game::Game()
 {
 	LoadEnemiesData();
 	GenerateMenus();
+	m_mainMenuMusic.openFromFile(FilePaths::MUSIC_MENU_MAIN);
+	m_mainMenuMusic.setLoop(true);
+	m_mainMenuMusic.play();
 }
 
 void Game::RunGame()
 {
 	// To measure deltatime
 	sf::Clock clock;
+
 
 	while (m_window.isOpen()) {
 
@@ -55,6 +59,7 @@ void Game::GenerateMenus()
 
 void Game::UpdateGame(float deltaTime)
 {
+	// The Rules menu has been done in a hurry, so it's loading a lot of resources
 	sf::Text rules;
 	sf::Font font;
 	switch (m_currentState)
@@ -90,7 +95,7 @@ void Game::UpdateGame(float deltaTime)
 		m_window.draw(rules);
 		break;
 	case PreRunScreen:
-		m_preRunMenu.Draw(m_window);
+		m_preRunMenu.Draw(m_window); // Unused cause of time
 		break;
 	case InRun:
 		UpdateGameRun(deltaTime);
@@ -160,6 +165,7 @@ void Game::BeginNewRun()
 	std::cout << "Starting a new run !\n";
 
 	m_currentRun = NewRun();
+	m_mainMenuMusic.stop();
 	m_currentState = GameState::InRun;
 }
 

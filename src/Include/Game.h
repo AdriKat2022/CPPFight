@@ -59,11 +59,13 @@ private:
 
 	std::unique_ptr<std::vector<EnemyData>> m_enemyDataBank; // Contains the data of all the possible enemies
 
+	sf::Music m_mainMenuMusic;
+
 	// Menus
 	Menu m_mainMenu;
-	Menu m_preRunMenu;
+	Menu m_preRunMenu; // Unused for now
 	Menu m_rulesMenu;
-	Menu m_pauseMenu;
+	Menu m_pauseMenu; // Unused for now
 
 };
 
