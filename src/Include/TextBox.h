@@ -13,8 +13,8 @@ public:
 	TextBox();
 
 	void SetVisible(const bool);
-	void Show();
-	void Hide();
+	void Show() const;
+	void Hide() const;
 	void SetDialogue(Dialogue& dialogue);
 	void SetString(const std::string string);
 	void SetPosition(float x, float y);

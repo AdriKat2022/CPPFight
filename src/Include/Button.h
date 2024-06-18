@@ -27,7 +27,7 @@ public:
 
 	void Update(sf::RenderWindow& renderWindow, float deltaTime = 0.01f);
 
-	void OnClick(sf::Vector2f position);
+	void OnClick(sf::Vector2f position) const;
 	void SetOnClickEvent(std::function<void()> OnClickEvent);
 
 private:

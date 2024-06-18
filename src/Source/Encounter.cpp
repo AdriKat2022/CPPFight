@@ -28,7 +28,7 @@ Encounter::Encounter(GameRun& gameRun, EnemyData * enemy) :
 	background_hp_enemy.setSize({ 100, 50 });
 	background_hp_enemy.setFillColor(sf::Color::White);
 	background_hp_enemy.setPosition({ 350, 50 });
-	HP_bar_enemy.setSize(sf::Vector2f(100 * (m_enemy.GetHP() / m_enemy.GetMaxHP()), 40));
+	HP_bar_enemy.setSize(sf::Vector2f(static_cast<float> (100 * (m_enemy.GetHP() / m_enemy.GetMaxHP())), 40));
 	HP_bar_enemy.setFillColor(sf::Color::Red);
 	HP_bar_enemy.setPosition({ 350, 55 });
 
@@ -45,7 +45,7 @@ Encounter::Encounter(GameRun& gameRun, EnemyData * enemy) :
 	background_happiness_baby.setPosition({ 700, 440 });
 	happiness_bar_baby.setSize(sf::Vector2f(40.f, static_cast<float>(m_parentRun.GetBaby().GetHappiness())));
 	happiness_bar_baby.setFillColor(sf::Color::Yellow);
-	happiness_bar_baby.setPosition(sf::Vector2f(705, 440 + (100 - m_parentRun.GetBaby().GetHappiness())));
+	happiness_bar_baby.setPosition(sf::Vector2f(705, static_cast<float> (440 + (100 - m_parentRun.GetBaby().GetHappiness()))));
 
 	//définition du multiplicateur de dégats
 	damage_mult.setString(std::format("Dégats * \n %f", m_parentRun.GetBaby().GetMult()));
@@ -66,7 +66,7 @@ Encounter::Encounter(GameRun& gameRun, EnemyData * enemy) :
 	background_hp_player.setSize({ 100, 50 });
 	background_hp_player.setFillColor(sf::Color::White);
 	background_hp_player.setPosition({ 350, 500 });
-	HP_bar_player.setSize(sf::Vector2f(100 * (player.GetHP() / player.GetMaxHP()), 40));
+	HP_bar_player.setSize(sf::Vector2f(static_cast < float> (100 * (player.GetHP() / player.GetMaxHP())), 40));
 	HP_bar_player.setFillColor(sf::Color::Red);
 	HP_bar_player.setPosition({ 350, 505 });
 
