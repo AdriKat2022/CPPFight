@@ -17,8 +17,8 @@ namespace FilePaths {
 
 	// Backgrounds
 	constexpr char MENU_BG[] = "resources/Sprites/menu_background.png";
-	constexpr char RULES_BG[] = "resources/Sprites/rules_background.png";
-	constexpr char ENCOUNTER_BG[] = "resources/Sprites/encounter_background.png";
+	constexpr char RULES_BG[] = "resources/Sprites/rules_background.png"; //TODO pas urgent, on peut utiliser MENU_BG en attendant
+	constexpr char ENCOUNTER_BG[] = "resources/Sprites/encounter_background.png"; 
 
 	// Menu buttons
 	constexpr char SP_SH_PLAY_BTN[] = "resources/Sprites/play_button.png";
@@ -31,7 +31,7 @@ namespace FilePaths {
 
 	// Attack Assets
 	constexpr char SP_SH_ATTACK_BOX[] = "resources/Sprites/attack_box.png";
-	constexpr char SP_SH_CURSOR[] = "resources/Sprites/cursor.png";
+	constexpr char SP_SH_CURSOR[] = "resources/Sprites/cursor.png"; 
 
 
 	constexpr char ENEMY_DATA_LIST[] = "resources/Enemies/Enemies.txt";
