@@ -6,7 +6,8 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
 
-class TextBox : public IDrawable {
+
+class TextBox {
 	
 public:
 	TextBox();
@@ -21,8 +22,7 @@ public:
 	void Update(); // For animations
 
 
-	// IDrawable
-	void Draw(sf::RenderWindow&) const override;
+	void Draw(sf::RenderWindow&) const;
 
 
 private:

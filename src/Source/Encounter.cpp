@@ -9,7 +9,7 @@
 
 
 
-Encounter::Encounter(GameRun& gameRun, const EnemyData* enemy) :
+Encounter::Encounter(GameRun& gameRun, EnemyData * enemy) :
 	m_window(gameRun.GetWindow()),
 	m_parentRun(gameRun),
 	m_enemy(enemy)
@@ -69,6 +69,12 @@ Encounter::Encounter(GameRun& gameRun, const EnemyData* enemy) :
 	HP_bar_player.setSize(sf::Vector2f(static_cast < float> (100 * (player.GetHP() / player.GetMaxHP())), 40));
 	HP_bar_player.setFillColor(sf::Color::Red);
 	HP_bar_player.setPosition({ 350, 505 });
+
+	// Load the pointers to the enemies actions
+	for (auto& action : enemy->Actions)
+	{
+		m_enemyActions.push_back(&action);
+	}
 }
 
 
@@ -109,6 +115,16 @@ sf::RenderWindow& Encounter::GetWindow() const
 float Encounter::GetDamageMultiplier() const
 {
 	return m_parentRun.GetBaby().GetMult();
+}
+
+void Encounter::SetDialogue(Dialogue& dialogue)
+{
+	m_dialogueBox.SetDialogue(dialogue);
+}
+
+std::vector<ActionData*>* Encounter::GetPossibleActions()
+{
+	return &m_enemyActions;
 }
 
 void Encounter::GenerateMenus() {

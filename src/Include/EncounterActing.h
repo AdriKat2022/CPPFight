@@ -15,10 +15,13 @@ public:
 
 	void Draw(sf::RenderWindow& window) const override;
 
+
 private:
 
+	void ProcessAction(ActionData* action);
 	void BuildActionButtons();
 
+	sf::RenderWindow& m_window;
 
 	std::vector<Button> m_actionButtons;
 
