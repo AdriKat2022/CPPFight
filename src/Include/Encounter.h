@@ -44,6 +44,8 @@ public:
 	TextBox& GetDialogueBox();
 	bool IsDialogueFinished() const;
 
+	float GetMonsterSpeed() const;
+	float GetMonsterAttackPower() const;
 	void DamageMonster(int damage);
 	void DamagePlayer(int damage);
 	void SetButtonsActive(bool active) const;

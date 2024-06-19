@@ -11,7 +11,11 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 	m_damageFont.loadFromFile(FilePaths::FONT_DAMAGE);
 	m_damageText.setFont(m_damageFont);
 	m_multText.setFont(m_damageFont);
-
+	m_multText.setFillColor({
+		Colors::MULT_TEXT_COLOR[0],
+		Colors::MULT_TEXT_COLOR[1],
+		Colors::MULT_TEXT_COLOR[2]
+		});
 	m_attackSoundBuffer.loadFromFile(FilePaths::SOUND_HIT);
 	m_attackSound.setBuffer(m_attackSoundBuffer);
 }
@@ -20,6 +24,8 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 void EncounterFighting::OnEnter()
 {
 	std::cout << "Fighting" << std::endl;
+	m_damageText.setString("");
+	m_multText.setString("");
 	m_state = AttackState::Attacking;
 	m_timer = Config::WAIT_TIME_AFTER_ATTACK;
 	m_parentEncounter->SetButtonsActive(false);
@@ -98,13 +104,13 @@ void EncounterFighting::Update(float deltaTime)
 			
 		case AttackState::Failed:
 
-			if (m_initFailed)
+			if (!m_initFailed)
 			{
 				m_initFailed = true;
 
 				// Update the text and show it
-				m_damageText.setString(std::format("Manqué"));
-				m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
+				m_damageText.setString(std::format("Miss"));
+				m_damageText.setPosition(m_cursor.GetPosition().x - 100, m_cursor.GetPosition().y - 100);
 				m_damageText.setCharacterSize(48);
 				m_damageText.setFillColor({
 					Colors::DAMAGE_TEXT_COLOR_MISSED[0],
@@ -112,7 +118,6 @@ void EncounterFighting::Update(float deltaTime)
 					Colors::DAMAGE_TEXT_COLOR_MISSED[2]
 					});
 			}
-
 
 
 			break;
@@ -130,6 +135,9 @@ void EncounterFighting::Update(float deltaTime)
 		}
 	}
 
+	// Display the current state in the console
+	std::cout << "State: " << m_state << std::endl;
+
 }
 
 void EncounterFighting::OnExit()
@@ -141,7 +149,7 @@ void EncounterFighting::InitAttackBox()
 {
 	auto windowSize = m_parentEncounter->GetWindow().getSize();
 
-	m_attackBox.Move(sf::Vector2f{
+	m_attackBox.SetPosition(sf::Vector2f{
 		static_cast<float>(windowSize.x) / 2 + Anchors::ATTACK_BOX_FROM_MIDDLE[0],
 		static_cast<float>(windowSize.y) / 2 + Anchors::ATTACK_BOX_FROM_MIDDLE[1]
 		});
@@ -149,7 +157,7 @@ void EncounterFighting::InitAttackBox()
 
 	// Place the cursor at the beginning of the attack box according to the dimensions of the attack box
 
-	m_cursor.Move(sf::Vector2f{
+	m_cursor.SetPosition(sf::Vector2f{
 		m_attackBox.GetPosition().x - m_attackBoxWidth / 2,
 		m_attackBox.GetPosition().y
 		});

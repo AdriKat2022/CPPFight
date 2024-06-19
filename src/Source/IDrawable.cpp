@@ -29,6 +29,11 @@ void IDrawable::Move(const sf::Vector2f& offset)
 	m_sprite.move(offset);
 }
 
+void IDrawable::SetPosition(const sf::Vector2f& position)
+{
+	m_sprite.setPosition(position);
+}
+
 sf::Vector2f IDrawable::GetPosition() const
 {
 	return m_sprite.getPosition();

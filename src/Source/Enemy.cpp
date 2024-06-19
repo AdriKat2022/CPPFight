@@ -4,13 +4,17 @@
 Enemy::Enemy(const EnemyData& enemyData) :
 	Damageable(enemyData.Health),
 	m_name(enemyData.Name),
-	m_attackPower(enemyData.Attack)
+	m_attackPower(enemyData.Attack),
+	m_speed(enemyData.Speed),
+	m_defense(enemyData.Defense)
 {}
 
 Enemy::Enemy(const EnemyData* enemyData) :
 	Damageable(enemyData->Health),
 	m_name(enemyData->Name),
-	m_attackPower(enemyData->Attack)
+	m_attackPower(enemyData->Attack),
+	m_speed(enemyData->Speed),
+	m_defense(enemyData->Defense)
 {}
 
 Enemy::Enemy(const std::string& name, int health, int damage) :
@@ -29,3 +33,7 @@ int Enemy::GetAttackPower() const
 	return m_attackPower;
 }
 
+int Enemy::GetSpeed() const
+{
+	return m_speed;
+}

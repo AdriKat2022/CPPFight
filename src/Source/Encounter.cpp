@@ -86,6 +86,7 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	m_encounterActing = std::make_shared<EncounterActing>(this);
 	m_encounterFighting = std::make_shared<EncounterFighting>(this);
 	m_encounterMonsterTurn = std::make_shared<EncounterMonsterTurn>(this);
+
 }
 
 
@@ -185,6 +186,16 @@ void Encounter::SetState(EncounterStateType type)
 TextBox& Encounter::GetDialogueBox()
 {
 	return m_dialogueBox;
+}
+
+float Encounter::GetMonsterSpeed() const
+{
+	return m_enemy.GetSpeed();
+}
+
+float Encounter::GetMonsterAttackPower() const
+{
+	return m_enemy.GetAttackPower();
 }
 
 void Encounter::DamageMonster(int damage)

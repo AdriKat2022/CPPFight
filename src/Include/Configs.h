@@ -57,6 +57,8 @@ namespace Config {
 	constexpr float GLOBAL_ATTACK_TIME_VARIANCE = .3f;
 	constexpr float WAIT_TIME_AFTER_ATTACK = 3.f;
 
+	constexpr float MAX_WAIT_ATTACK_TIME = 4.f;
+	constexpr float MIN_WAIT_ATTACK_TIME = 1.8f;
 
 	// Window config
 	constexpr char WINDOW_TITLE[] = "Cpp Game";
