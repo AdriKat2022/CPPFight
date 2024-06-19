@@ -354,6 +354,7 @@ Actions: calin_1 pleurer_1 insulter_1 -
 
 [Enemy]
 Name: C
+SpritePath: resources/Sprites/C.png
 Health: 20
 Damage: 8
 Defense: 0
@@ -364,6 +365,7 @@ Actions: calin_1 pleurer_2 insulter_2 coder_1 -
 
 [Enemy]
 Name: P
+SpritePath: resources/Sprites/P.png
 Health: 35
 Damage: 10
 Defense: 0

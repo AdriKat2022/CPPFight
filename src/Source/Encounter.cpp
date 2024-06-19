@@ -24,22 +24,42 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	name_enemy.setCharacterSize(20);
 	name_enemy.setFillColor(sf::Color::White);
 
-	//définition de la barre de vie de l'ennemi
+	//définition de la barre de vie de l'ennemi // TODO: move to enemy class and add a draw function
 	background_hp_enemy.setSize({ 120, 50 });
 	background_hp_enemy.setFillColor(sf::Color::White);
 	background_hp_enemy.setPosition({ static_cast<float>(m_window.getSize().x/2) - background_hp_enemy.getGlobalBounds().width/2, 50});
 	HP_bar_enemy.setSize(sf::Vector2f(static_cast<float> (100 * (m_enemy.GetHP() / m_enemy.GetMaxHP())), 40));
 	HP_bar_enemy.setFillColor(sf::Color::Red);
 	HP_bar_enemy.setPosition({ 350, 55 });
+	enemy_texture.loadFromFile(m_enemy.GetSpritePath());
+	enemy_sprite.setTexture(enemy_texture);
+	// Make it max 200 pixels wide max while keeping the aspect ratio
+	if (enemy_sprite.getGlobalBounds().width > 200)
+	{
+		enemy_sprite.setScale(200.f / enemy_sprite.getGlobalBounds().width, 200.f / enemy_sprite.getGlobalBounds().width);
+	}
+	// Same for height
+	if (enemy_sprite.getGlobalBounds().height > 200)
+	{
+		enemy_sprite.setScale(200.f / enemy_sprite.getGlobalBounds().height, 200.f / enemy_sprite.getGlobalBounds().height);
+	}
 
-	//définition du nom du bébé
+
+	// Fully center the sprite in the screen
+	enemy_sprite.setPosition(
+		static_cast<float>(m_window.getSize().x / 2) - enemy_sprite.getGlobalBounds().width / 2,
+		static_cast<float>(m_window.getSize().y / 2) - enemy_sprite.getGlobalBounds().height / 2 - 50
+	);
+
+
+	//définition du nom du bébé // TODO: move to baby class and add a draw function
 	name_baby.setString("Baboum");
 	name_baby.setPosition(680, 550);
 	name_baby.setFont(undertale_font);
 	name_baby.setCharacterSize(10);
 	name_baby.setFillColor(sf::Color::White);
 
-	//définition de la barre de bonheur du bébé
+	//définition de la barre de bonheur du bébé // TODO: move to baby class and add a draw function
 	background_happiness_baby.setSize({ 50, 100 });
 	background_happiness_baby.setFillColor(sf::Color::White);
 	background_happiness_baby.setPosition({ 700, 440 });
@@ -54,14 +74,14 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	damage_mult.setCharacterSize(10);
 	damage_mult.setFillColor(sf::Color::White);
 
-	//définition du nom du joueur
+	//définition du nom du joueur // TODO: move to player class and add a draw function
 	name_player.setString(player.GetName());
 	name_player.setPosition(350, 560);
 	name_player.setFont(undertale_font);
 	name_player.setCharacterSize(10);
 	name_player.setFillColor(sf::Color::White);
 
-	//définition de la barre de vie du joueur
+	//définition de la barre de vie du joueur // TODO: move to player class and add a draw function
 	background_hp_player.setSize({ 120, 60 });
 	background_hp_player.setFillColor(sf::Color::White);
 	background_hp_player.setPosition({
@@ -115,6 +135,7 @@ void Encounter::Draw(sf::RenderWindow& window) const
 	window.draw(name_enemy);
 	window.draw(background_hp_enemy);
 	window.draw(HP_bar_enemy);
+	window.draw(enemy_sprite);
 
 	//affichage du bébé via le background, son nom, sa barre de bonheur et du multiplicateur de dégats
 	window.draw(name_baby);

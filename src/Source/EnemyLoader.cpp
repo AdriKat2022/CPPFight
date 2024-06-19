@@ -62,6 +62,8 @@ void EnemyLoader::LoadEnemy(std::ifstream& stream)
 			stream >> enemyData.Name;
 		else if (buffer == "Health:")
 			stream >> enemyData.Health;
+		else if (buffer == "SpritePath:")
+			stream >> enemyData.SpritePath;
 		else if (buffer == "Attack:")
 			stream >> enemyData.Attack;
 		else if (buffer == "Defense:")

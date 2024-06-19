@@ -74,6 +74,8 @@ private:
 	sf::Text name_enemy;
 	sf::RectangleShape background_hp_enemy;
 	sf::RectangleShape HP_bar_enemy;
+	sf::Sprite enemy_sprite;
+	sf::Texture enemy_texture;
 
 	sf::Text name_baby;
 	sf::RectangleShape background_happiness_baby;
