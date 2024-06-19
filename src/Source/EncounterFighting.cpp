@@ -3,6 +3,7 @@
 #include <format>
 #include "EncounterFighting.h"
 #include "Encounter.h"
+#include "GameRun.h"
 
 EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 	EncounterState(parentEncounter)
@@ -18,6 +19,7 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 		});
 	m_attackSoundBuffer.loadFromFile(FilePaths::SOUND_HIT);
 	m_attackSound.setBuffer(m_attackSoundBuffer);
+	m_cursor.GetSprite().setScale(2, 2);
 }
 
 
@@ -27,6 +29,7 @@ void EncounterFighting::OnEnter()
 	m_damageText.setString("");
 	m_multText.setString("");
 	m_state = AttackState::Attacking;
+	m_cursor.SetAnimation(0);
 	m_timer = Config::WAIT_TIME_AFTER_ATTACK;
 	m_parentEncounter->SetButtonsActive(false);
 	InitAttackBox();
@@ -61,7 +64,7 @@ void EncounterFighting::Update(float deltaTime)
 
 				// Compute the damage: the more it is in the middle, the more damage it does (with an exponential distribution)
 				float dmgMult = 1 - std::abs(m_cursor.GetPosition().x - m_attackBox.GetPosition().x) / (m_attackBoxWidth / 2);
-				//dmgMult = static_cast<float>(std::pow(dmgMult, 2));
+				dmgMult = static_cast<float>(std::pow(dmgMult, 3));
 
 				auto damage = static_cast<int>(dmgMult * Config::DEFAULT_PLAYER_BASE_DAMAGE);
 				auto babyMult = m_parentEncounter->GetDamageMultiplier();
@@ -82,7 +85,7 @@ void EncounterFighting::Update(float deltaTime)
 					Colors::DAMAGE_TEXT_COLOR_HIT[2]
 					});
 
-				// TODO: Play an animation (optionnal)
+				m_cursor.SetAnimation(10.f);
 
 				m_damageTotalShown = false;
 				m_upcomingDamage = static_cast<int>(static_cast<float>(damage) * babyMult);
@@ -94,6 +97,9 @@ void EncounterFighting::Update(float deltaTime)
 				m_damageTotalShown = true;
 				m_attackSound.play();
 
+				auto baby = m_parentEncounter->GetParentRun()->GetBaby();
+
+				baby.Modify(baby.GetHappiness()/2);
 
 				m_parentEncounter->DamageMonster(m_upcomingDamage);
 			}
@@ -135,9 +141,7 @@ void EncounterFighting::Update(float deltaTime)
 		}
 	}
 
-	// Display the current state in the console
-	std::cout << "State: " << m_state << std::endl;
-
+	m_cursor.Update(deltaTime);
 }
 
 void EncounterFighting::OnExit()

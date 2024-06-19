@@ -32,7 +32,7 @@ public:
 	void GenerateMenus();
 	
 	sf::RenderWindow& GetWindow() const;
-
+	GameRun* GetParentRun() const;
 	// State management
 	void SetState(EncounterStateType);
 
@@ -48,6 +48,7 @@ public:
 	float GetMonsterAttackPower() const;
 	void DamageMonster(int damage);
 	void DamagePlayer(int damage);
+	void ModifyBabyHappiness(int modifier);
 	void SetButtonsActive(bool active) const;
 	void EndEncounter();
 

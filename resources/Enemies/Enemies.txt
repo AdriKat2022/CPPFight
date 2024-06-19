@@ -345,7 +345,7 @@ HappinessModifier: -15
 [Enemy]
 Name: MonstreCookie
 Health: 15
-Damage: 3
+Damage: 5
 Defense: 0
 Speed: 1
 Actions: calin_1 pleurer_1 insulter_1 -
@@ -355,7 +355,7 @@ Actions: calin_1 pleurer_1 insulter_1 -
 [Enemy]
 Name: C
 Health: 20
-Damage: 5
+Damage: 8
 Defense: 0
 Speed: 2
 Actions: calin_1 pleurer_2 insulter_2 coder_1 -
@@ -365,7 +365,7 @@ Actions: calin_1 pleurer_2 insulter_2 coder_1 -
 [Enemy]
 Name: P
 Health: 35
-Damage: 5
+Damage: 10
 Defense: 0
 Speed: 2
 Actions: calin_1 pleurer_2 insulter_1 coder_3 -
@@ -373,9 +373,9 @@ Actions: calin_1 pleurer_2 insulter_1 coder_3 -
 
 
 [Enemy]
-Name: CCP
+Name: CPP
 Health: 50
-Damage: 6
+Damage: 10
 Defense: 1
 Speed: 3
 Actions: calin_2 gouter_bebe insulter_3_trap coder_2 -
@@ -385,7 +385,7 @@ Actions: calin_2 gouter_bebe insulter_3_trap coder_2 -
 [Enemy]
 Name: ProdBoss
 Health: 60
-Damage: 5
+Damage: 15
 Defense: 0
 Speed: 4
 Actions: sprint_interieur pablo insulter_3_trap mixer -

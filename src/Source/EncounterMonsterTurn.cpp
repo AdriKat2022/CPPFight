@@ -39,12 +39,12 @@ void EncounterMonsterTurn::OnEnter()
 		Colors::MULT_TEXT_COLOR[2]
 		});
 	m_readyText.setPosition(
-		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2,
+		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2 - 150,
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2 - 50
 	);
 
 	m_hitText.setPosition(
-		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2,
+		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2 - 200,
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2
 	);
 
@@ -105,7 +105,7 @@ void EncounterMonsterTurn::Update(float deltaTime)
 			if (m_timer <= 0)
 			{
 				m_monsterState = Fast;
-				m_timer = m_parentEncounter->GetMonsterSpeed();
+				m_timer = 1/m_parentEncounter->GetMonsterSpeed();
 				m_entry = false;
 			}
 			break;
@@ -122,7 +122,7 @@ void EncounterMonsterTurn::Update(float deltaTime)
 			{
 				m_timer = 2.f;
 				m_readyText.setString("");
-				m_hitText.setString("Miss");
+				m_hitText.setString("MISS");
 				m_hitText.setFillColor(sf::Color::Red);
 				m_monsterState = Wait;
 			}
@@ -130,7 +130,7 @@ void EncounterMonsterTurn::Update(float deltaTime)
 			{
 				m_timer = 2.f;
 				m_readyText.setString("");
-				m_hitText.setString("Shielded");
+				m_hitText.setString("SHIELDED");
 				m_hitText.setFillColor(sf::Color::Blue);
 				m_monsterState = Wait;
 				m_parry = true;
@@ -152,14 +152,14 @@ void EncounterMonsterTurn::Update(float deltaTime)
 				m_entry = true;
 				m_readyText.setCharacterSize(40);
 				m_readyText.setString("Ouch !");
-				m_parentEncounter->DamagePlayer(static_cast<int>(m_parentEncounter->GetMonsterAttackPower()));
+				m_parentEncounter->DamagePlayer(static_cast<int>(Config::DEFAULT_MONSTER_BASE_MULT * m_parentEncounter->GetMonsterAttackPower()));
 			}
 			if (!m_entry && m_parry)
 			{
 				m_entry = true;
 				m_readyText.setCharacterSize(35);
 				m_readyText.setString("Dommages réduits !");
-				m_parentEncounter->DamagePlayer(static_cast<int>(m_parentEncounter->GetMonsterAttackPower()/2));
+				m_parentEncounter->DamagePlayer(static_cast<int>(Config::DEFAULT_MONSTER_BASE_MULT * m_parentEncounter->GetMonsterAttackPower()/2));
 			}
 			if (m_timer <= 0)
 			{

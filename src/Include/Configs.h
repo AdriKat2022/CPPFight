@@ -50,7 +50,8 @@ namespace Config {
 	constexpr unsigned short int MAX_RUN_ENEMIES = 3;
 	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 25;
 	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 20;
-	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 20;
+	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 11;
+	constexpr float DEFAULT_MONSTER_BASE_MULT = 3.f;
 	constexpr char DEFAULT_PLAYER_NAME[] = "Chara";
 
 	constexpr float GLOBAL_ATTACK_TIME = 1.5f;

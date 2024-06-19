@@ -21,13 +21,13 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	name_enemy.setString(m_enemy.GetName());
 	name_enemy.setPosition({ 350, 10 });
 	name_enemy.setFont(undertale_font);
-	name_enemy.setCharacterSize(10);
+	name_enemy.setCharacterSize(20);
 	name_enemy.setFillColor(sf::Color::White);
 
 	//définition de la barre de vie de l'ennemi
-	background_hp_enemy.setSize({ 100, 50 });
+	background_hp_enemy.setSize({ 120, 50 });
 	background_hp_enemy.setFillColor(sf::Color::White);
-	background_hp_enemy.setPosition({ 350, 50 });
+	background_hp_enemy.setPosition({ static_cast<float>(m_window.getSize().x/2) - background_hp_enemy.getGlobalBounds().width/2, 50});
 	HP_bar_enemy.setSize(sf::Vector2f(static_cast<float> (100 * (m_enemy.GetHP() / m_enemy.GetMaxHP())), 40));
 	HP_bar_enemy.setFillColor(sf::Color::Red);
 	HP_bar_enemy.setPosition({ 350, 55 });
@@ -62,12 +62,18 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	name_player.setFillColor(sf::Color::White);
 
 	//définition de la barre de vie du joueur
-	background_hp_player.setSize({ 100, 50 });
+	background_hp_player.setSize({ 120, 60 });
 	background_hp_player.setFillColor(sf::Color::White);
-	background_hp_player.setPosition({ 350, 500 });
-	HP_bar_player.setSize(sf::Vector2f(static_cast<float>(100 * (player.GetHP() / player.GetMaxHP())), 40));
+	background_hp_player.setPosition({
+		static_cast<float>(m_window.getSize().x / 2) - background_hp_player.getGlobalBounds().width / 2,
+		static_cast<float>(m_window.getSize().y) - 150
+		});
+	HP_bar_player.setSize({ 100, 40 });
+	HP_bar_player.setScale(sf::Vector2f(static_cast<float>(player.GetHP()) / static_cast<float>(player.GetMaxHP()), 1));
 	HP_bar_player.setFillColor(sf::Color::Red);
-	HP_bar_player.setPosition({ 350, 505 });
+	HP_bar_player.setPosition({
+		static_cast<float>(m_window.getSize().x / 2) - background_hp_player.getGlobalBounds().width / 2,
+		static_cast<float>(m_window.getSize().y) - 150 + background_hp_player.getGlobalBounds().height/2});
 
 	// Background
 	m_backgroundTexture.loadFromFile(FilePaths::ENCOUNTER_BG);
@@ -138,6 +144,11 @@ float Encounter::GetDamageMultiplier() const
 	return m_parentRun.GetBaby().GetMult();
 }
 
+GameRun* Encounter::GetParentRun() const
+{
+	return &m_parentRun;
+}
+
 void Encounter::SetDialogue(Dialogue& dialogue)
 {
 	m_dialogueBox.SetDialogue(dialogue);
@@ -190,24 +201,30 @@ TextBox& Encounter::GetDialogueBox()
 
 float Encounter::GetMonsterSpeed() const
 {
-	return m_enemy.GetSpeed();
+	return static_cast<float>(m_enemy.GetSpeed());
 }
 
 float Encounter::GetMonsterAttackPower() const
 {
-	return m_enemy.GetAttackPower();
+	return static_cast<float>(m_enemy.GetAttackPower());
 }
 
 void Encounter::DamageMonster(int damage)
 {
 	m_enemy.Damage(damage);
-	HP_bar_enemy.setSize(sf::Vector2f(static_cast<float>(100 * (m_enemy.GetHP() / m_enemy.GetMaxHP())), 40));
+	HP_bar_enemy.setScale(sf::Vector2f(static_cast<float>(m_enemy.GetHP()) / static_cast<float>(m_enemy.GetMaxHP()), 1));
 }
 
 void Encounter::DamagePlayer(int damage)
 {
 	player.Damage(damage);
-	HP_bar_player.setSize(sf::Vector2f(static_cast<float>(100 * (player.GetHP() / player.GetMaxHP())), 40));
+	HP_bar_player.setScale(sf::Vector2f(static_cast<float>(player.GetHP()) / static_cast<float>(player.GetMaxHP()), 1));
+}
+
+void Encounter::ModifyBabyHappiness(int modifier)
+{
+	m_parentRun.GetBaby().Modify(modifier);
+	happiness_bar_baby.setScale(sf::Vector2f(1, static_cast<float>(m_parentRun.GetBaby().GetHappiness()) / 100.f));
 }
 
 void Encounter::SetButtonsActive(bool active) const

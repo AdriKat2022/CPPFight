@@ -36,6 +36,11 @@ void TextBox::Hide() const
 void TextBox::SetDialogue(Dialogue& dialogue) {
 	m_currentDialogue = &dialogue;
 	m_remainingDialogues = dialogue.GetSize();
+	if (m_remainingDialogues > 0)
+	{
+		ShowNext();
+		m_hasClickedAfterFinish = false;
+	}
 }
 
 void TextBox::SetString(const std::string& string) {
