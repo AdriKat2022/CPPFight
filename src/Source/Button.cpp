@@ -18,7 +18,7 @@ Button::Button(const sf::Vector2f& position, const std::string& texturePath, std
 {}
 
 // Make a text button rather than a texture button
-Button::Button(const sf::Vector2f & position, const std::string& text, std::function<void()> OnClickEvent, bool changeColorOnHover) :
+Button::Button(const sf::Vector2f& position, const std::string& text, std::function<void()> OnClickEvent, bool changeColorOnHover) :
 	m_textToDisplay(text),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleOnHover(false),

@@ -47,6 +47,7 @@ namespace FilePaths {
 	// Attack Assets
 	constexpr char SP_SH_ATTACK_BOX[] = "resources/Sprites/attack_target.png";
 	constexpr char SP_SH_CURSOR[] = "resources/Sprites/cursor_sh.png"; 
+	constexpr char SP_SH_ATTACK_ANIMATION[] = "resources/Sprites/slash_noOutline.png";
 
 
 	constexpr char ENEMY_DATA_LIST[] = "resources/Enemies/Enemies.txt";
@@ -65,12 +66,12 @@ namespace Config {
 	constexpr float DEFAULT_MONSTER_BASE_MULT = 3.f;
 	constexpr char DEFAULT_PLAYER_NAME[] = "Chara";
 
-	constexpr float GLOBAL_ATTACK_TIME = 1.5f;
+	constexpr float GLOBAL_ATTACK_TIME = 1.3f;
 	constexpr float GLOBAL_ATTACK_TIME_VARIANCE = .3f;
-	constexpr float WAIT_TIME_AFTER_ATTACK = 3.f;
+	constexpr float WAIT_TIME_AFTER_ATTACK = 2.f;
 
 	constexpr float MAX_WAIT_ATTACK_TIME = 4.f;
-	constexpr float MIN_WAIT_ATTACK_TIME = 1.8f;
+	constexpr float MIN_WAIT_ATTACK_TIME = 1.f;
 
 	// Window config
 	constexpr char WINDOW_TITLE[] = "Cpp Game";
@@ -85,6 +86,8 @@ namespace Config {
 	constexpr float BUTTON_TARGET_SCALE_PRESSED = 0.95f;
 	constexpr float BUTTON_TARGET_SCALE_DISABLED = 1.f;
 
+	// Volume
+	constexpr float GLOBAL_VOLUME_MULT = 1.f;
 }
 
 namespace Anchors {

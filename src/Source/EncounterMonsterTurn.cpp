@@ -1,5 +1,6 @@
 #include "EncounterMonsterTurn.h"
 #include "Encounter.h"
+#include "Configs.h"
 #include <iostream>
 #include <random>
 
@@ -106,7 +107,7 @@ void EncounterMonsterTurn::Update(float deltaTime)
 				m_entry = true;
 				m_readyText.setString("Attention");
 				m_hitText.setString("");
-				m_audioSource.setVolume(100);
+				m_audioSource.setVolume(100*Config::GLOBAL_VOLUME_MULT);
 				m_audioSource.setBuffer(m_getReady);
 				m_audioSource.play();
 			}
@@ -122,7 +123,7 @@ void EncounterMonsterTurn::Update(float deltaTime)
 			if (!m_entry)
 			{
 				m_audioSource.setBuffer(m_showdown);
-				m_audioSource.setVolume(75);
+				m_audioSource.setVolume(75*Config::GLOBAL_VOLUME_MULT);
 				m_audioSource.play();
 				m_entry = true;
 				m_readyText.setCharacterSize(90);

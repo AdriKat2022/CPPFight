@@ -42,6 +42,9 @@ sf::Vector2f IDrawable::GetPosition() const
 // Should be called every frame if the sprite is animated
 void IDrawable::Update(float deltaTime)
 {
+	if(!m_isActive)
+		return;
+
 	if (m_isAnimated)
 	{
 		m_spriteTimer -= deltaTime;
@@ -54,15 +57,23 @@ void IDrawable::Update(float deltaTime)
 	}
 }
 
-void IDrawable::SetAnimation(float animationSpeed)
+void IDrawable::SetActive(bool isActive)
+{
+	m_isActive = isActive;
+}
+
+// nLoops <= 0 for infinite loops
+void IDrawable::SetAnimation(float animationSpeed, int nLoops)
 {
 	if (animationSpeed <= 0)
 	{
 		m_spriteIntervals = 0;
+		m_nLoops = 0;
 		m_isAnimated = false;
 		return;
 	}
 
+	m_nLoops = nLoops;
 	m_spriteIntervals = 1/animationSpeed;
 	m_isAnimated = true;
 }
@@ -71,6 +82,9 @@ void IDrawable::SetAnimation(float animationSpeed)
 
 void IDrawable::Draw(sf::RenderWindow& renderWindow) const
 {
+	if (!m_isActive)
+		return;
+
 	renderWindow.draw(m_sprite);
 }
 
@@ -121,7 +135,18 @@ void IDrawable::StepSprite()
 
 	if (m_yIndex >= m_dimensions.y)
 	{
+		// Reached the end
 		m_yIndex = 0;
+
+		m_nLoops --;
+		if (m_nLoops == 0)
+		{
+			SetAnimation(0, 0);
+			SetActive(false);
+			return;
+		}
+
+			
 	}
 
 	SwitchSprite(m_xIndex, m_yIndex);
