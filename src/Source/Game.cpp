@@ -130,10 +130,10 @@ void Game::ManageWindowEvents()
 			}
 		}
 		else if (event.type == sf::Event::MouseButtonPressed) {
-			Clickable::IsMousePressed = true;
+			MouseData::IsMousePressed = true;
 		}
 		else if (event.type == sf::Event::MouseButtonReleased) {
-			Clickable::IsMousePressed = false;
+			MouseData::IsMousePressed = false;
 		}
 	}
 }

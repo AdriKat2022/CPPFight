@@ -35,7 +35,7 @@ target_sources(lib_cppfight
     "Source/EnemyLoader.cpp"
     "Source/Button.cpp"
     "Source/IDrawable.cpp"
-    "Source/Clickable.cpp"
+    
     "Source/Game.cpp"
     "Source/Menu.cpp"
     "Source/TextBox.cpp"

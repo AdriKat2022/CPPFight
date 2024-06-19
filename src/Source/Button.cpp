@@ -84,7 +84,7 @@ void Button::HandleStates(const sf::RenderWindow& renderWindow) {
 	{
 		SetState(Pressed);
 	}
-	else if (m_state == Pressed && !Clickable::IsMousePressed)
+	else if (m_state == Pressed && !MouseData::IsMousePressed)
 	{
 		OnClick(mousePos);
 		SetState(Hover);
