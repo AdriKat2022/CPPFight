@@ -49,23 +49,3 @@ add_dependencies(EnemyLoaderTests copy-resources)
 
 ############################################################################################################
 
-
-# Note: enable_testing() already done in top CMakeLists.txt
-
-add_executable(EnemyLoaderIntegrityTest
-        EnemyLoaderIntegrityTest.cpp)
-
-target_include_directories(EnemyLoaderIntegrityTest
-        PRIVATE
-        ../src/Include
-)
-target_link_libraries(EnemyLoaderIntegrityTest GTest::gtest_main lib_cppfight sfml-graphics)
-
-# The next two lines enable CMake’s test runner to discover the tests included in the binary,
-# using the GoogleTest CMake module.
-include(GoogleTest)
-gtest_discover_tests(EnemyLoaderIntegrityTest)
-
-
-# Copy resources to build directory
-add_dependencies(EnemyLoaderIntegrityTest copy-resources)

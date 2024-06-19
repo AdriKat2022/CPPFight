@@ -70,7 +70,7 @@ void EnemyLoader::LoadEnemy(std::ifstream& stream)
 			stream >> enemyData.Speed;
 		else if (buffer == "Actions:")
 		{
-			while (true) {
+			while (true && stream) {
 				stream >> buffer;
 
 				if (buffer == "-")

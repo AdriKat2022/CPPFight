@@ -37,7 +37,7 @@ Health: 100
 Attack: 10
 Defense: 5
 Speed: 0
-Actions: 1 1
+Actions: 1 1 -
 [/Enemy]
 )";
 
@@ -93,7 +93,7 @@ Health: 100
 Attack: 10
 Defense: 5
 Speed: 0
-Actions: 5
+Actions: 5 -
 [/Enemy]
 )";
 
@@ -165,7 +165,7 @@ Health: 100
 Attack: 10
 Defense: 5
 Speed: 0
-Actions: 5
+Actions: 5 -
 [/Enemy]
 
 [Enemy]
@@ -174,7 +174,7 @@ Health: 100
 Attack: 10
 Defense: 5
 Speed: 0
-Actions: 4 4 4 4
+Actions: 4 4 4 4 -
 [/Enemy]
 )";
 
