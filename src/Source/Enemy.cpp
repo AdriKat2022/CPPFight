@@ -6,7 +6,8 @@ Enemy::Enemy(const EnemyData& enemyData) :
 	m_name(enemyData.Name),
 	m_attackPower(enemyData.Attack),
 	m_speed(enemyData.Speed),
-	m_defense(enemyData.Defense)
+	m_defense(enemyData.Defense),
+	m_spritePath(enemyData.SpritePath)
 {}
 
 Enemy::Enemy(const EnemyData* enemyData) :
@@ -14,13 +15,8 @@ Enemy::Enemy(const EnemyData* enemyData) :
 	m_name(enemyData->Name),
 	m_attackPower(enemyData->Attack),
 	m_speed(enemyData->Speed),
-	m_defense(enemyData->Defense)
-{}
-
-Enemy::Enemy(const std::string& name, int health, int damage) :
-	Damageable(health),
-	m_name(name),
-	m_attackPower(damage)
+	m_defense(enemyData->Defense),
+	m_spritePath(enemyData->SpritePath)
 {}
 
 const std::string& Enemy::GetName() const
@@ -36,4 +32,9 @@ int Enemy::GetAttackPower() const
 int Enemy::GetSpeed() const
 {
 	return m_speed;
+}
+
+const std::string& Enemy::GetSpritePath() const
+{
+	return m_spritePath;
 }

@@ -52,6 +52,8 @@ namespace FilePaths {
 
 	constexpr char ENEMY_DATA_LIST[] = "resources/Enemies/Enemies.txt";
 
+	constexpr char DEFAULT_ENEMY_SPRITE[] = "resources/Sprites/cool_ghost.png";
+
 }
 
 namespace Config {
