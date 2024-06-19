@@ -1,7 +1,7 @@
 #include <iostream>
 #include "GameRun.h"
 #include "Button.h"
-#include "Clickable.h"
+#include "MouseData.h"
 #include "Configs.h"
 
 
@@ -15,6 +15,7 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 
 	// Run music
 	m_currentMusic.openFromFile(FilePaths::MUSIC_RUN_MAIN);
+	m_currentMusic.setVolume(25);
 	m_currentMusic.play();
 	m_currentMusic.setLoop(true);
 

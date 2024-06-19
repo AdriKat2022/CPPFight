@@ -17,8 +17,13 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 		Colors::MULT_TEXT_COLOR[1],
 		Colors::MULT_TEXT_COLOR[2]
 		});
-	m_attackSoundBuffer.loadFromFile(FilePaths::SOUND_HIT);
-	m_attackSound.setBuffer(m_attackSoundBuffer);
+	m_hitAttack.loadFromFile(FilePaths::SOUND_HIT);
+	m_criticalHitAttack.loadFromFile(FilePaths::SOUND_CRITICAL_HIT);
+	m_unbelievableAttack.loadFromFile(FilePaths::SOUND_UNBELIEVABLE_ATTACK);
+	m_perfectAttack.loadFromFile(FilePaths::SOUND_PERFECT_ATTACK);
+	m_excellentAttack.loadFromFile(FilePaths::SOUND_EXCELLENT_ATTACK);
+	m_normalAttack.loadFromFile(FilePaths::SOUND_NORMAL_ATTACK);
+	m_attackSound.setVolume(50);
 	m_cursor.GetSprite().setScale(2, 2);
 }
 
@@ -69,7 +74,13 @@ void EncounterFighting::Update(float deltaTime)
 				auto damage = static_cast<int>(dmgMult * Config::DEFAULT_PLAYER_BASE_DAMAGE);
 				auto babyMult = m_parentEncounter->GetDamageMultiplier();
 
+				m_wasCritical = dmgMult >= (1-Config::INCREDIBLE_ATTACK_TOLERANCE);
+
+				if (m_wasCritical)
+					damage = static_cast<int>(static_cast<float>(damage) * Config::INCREDIBLE_ATTACK_MULT);
+
 				// Update the text and show it
+				m_damageText.setCharacterSize(30);
 				m_damageText.setString(std::format("{}", damage));
 				m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
 
@@ -89,17 +100,47 @@ void EncounterFighting::Update(float deltaTime)
 
 				m_damageTotalShown = false;
 				m_upcomingDamage = static_cast<int>(static_cast<float>(damage) * babyMult);
-				m_timer = Config::WAIT_TIME_AFTER_ATTACK;
 
-			}
-			else if (m_timer <= 2.f && !m_damageTotalShown)
-			{
-				m_damageTotalShown = true;
+				if(m_wasCritical)
+					m_attackSound.setBuffer(m_unbelievableAttack);
+				else if (babyMult >= 1.f && damage >= Config::DEFAULT_PLAYER_BASE_DAMAGE - 1)
+					m_attackSound.setBuffer(m_perfectAttack);
+				else if (damage >= Config::DEFAULT_PLAYER_BASE_DAMAGE - 1)
+					m_attackSound.setBuffer(m_excellentAttack);
+				else
+					m_attackSound.setBuffer(m_normalAttack);
+
 				m_attackSound.play();
 
-				auto baby = m_parentEncounter->GetParentRun()->GetBaby();
+				
 
-				baby.Modify(baby.GetHappiness()/2);
+			}
+			else if (m_timer <= Config::WAIT_TIME_AFTER_ATTACK / 2 && !m_damageTotalShown)
+			{
+				m_damageTotalShown = true;
+
+				m_multText.setString("");
+				m_damageText.setCharacterSize(45);
+				m_damageText.setString(std::format("{}", m_upcomingDamage));
+				m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
+
+
+				m_damageText.setFillColor({
+					Colors::DAMAGE_TEXT_COLOR_HIT[0],
+					Colors::DAMAGE_TEXT_COLOR_HIT[1],
+					Colors::DAMAGE_TEXT_COLOR_HIT[2]
+					});
+
+				if (m_wasCritical)
+					m_attackSound.setBuffer(m_criticalHitAttack);
+				else
+					m_attackSound.setBuffer(m_hitAttack);
+
+				m_attackSound.play();
+
+				auto& baby = m_parentEncounter->GetParentRun()->GetBaby();
+
+				baby.Modify(-baby.GetHappiness()/2);
 
 				m_parentEncounter->DamageMonster(m_upcomingDamage);
 			}
@@ -115,9 +156,9 @@ void EncounterFighting::Update(float deltaTime)
 				m_initFailed = true;
 
 				// Update the text and show it
+				m_damageText.setCharacterSize(48);
 				m_damageText.setString(std::format("Miss"));
 				m_damageText.setPosition(m_cursor.GetPosition().x - 100, m_cursor.GetPosition().y - 100);
-				m_damageText.setCharacterSize(48);
 				m_damageText.setFillColor({
 					Colors::DAMAGE_TEXT_COLOR_MISSED[0],
 					Colors::DAMAGE_TEXT_COLOR_MISSED[1],

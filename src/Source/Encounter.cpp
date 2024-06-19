@@ -15,7 +15,7 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	m_enemy(enemy),
 	player(m_parentRun.GetPlayer())
 {
-	undertale_font.loadFromFile(FilePaths::FONT_MAIN);
+	undertale_font.loadFromFile(FilePaths::FONT_STATS);
 
 	//definition du nom de l'ennemi
 	name_enemy.setString(m_enemy.GetName());

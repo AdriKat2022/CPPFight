@@ -38,12 +38,18 @@ private:
 	bool m_initFailed = false;
 	bool m_initSucceeded = false;
 	bool m_damageTotalShown = false;
+	bool m_wasCritical = false;
 
 	sf::Text m_damageText;
 	sf::Text m_multText;
 	sf::Font m_damageFont;
 
-	sf::SoundBuffer m_attackSoundBuffer;
+	sf::SoundBuffer m_hitAttack;
+	sf::SoundBuffer m_criticalHitAttack;
+	sf::SoundBuffer m_unbelievableAttack;
+	sf::SoundBuffer m_perfectAttack;
+	sf::SoundBuffer m_excellentAttack;
+	sf::SoundBuffer m_normalAttack;
 	sf::Sound m_attackSound;
 
 	AttackState m_state = AttackState::Attacking;

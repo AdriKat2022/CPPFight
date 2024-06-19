@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Clickable.h"
+#include "MouseData.h"
 #include "IDrawable.h"
 #include <SFML/Graphics.hpp>
 #include <functional>

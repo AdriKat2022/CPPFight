@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EncounterState.h"
+#include "SFML/Audio.hpp"
 
 class EncounterMonsterTurn : public EncounterState {
 
@@ -29,6 +30,12 @@ private:
 
 	sf::Font m_fontDmg;
 	sf::Font m_fontMain;
+
+	sf::SoundBuffer m_showdown;
+	sf::SoundBuffer m_getReady;
+	sf::SoundBuffer m_success;
+	sf::SoundBuffer m_missed;
+	sf::Sound m_audioSource;
 
 	bool m_isDead = false;
 	bool m_entry = false;

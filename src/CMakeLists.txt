@@ -8,7 +8,7 @@ add_library(lib_cppfight
     "Include/ActionData.h"
     "Include/Action.h"
     "Include/IDrawable.h"
-    "Include/Clickable.h"
+    "Include/MouseData.h"
     "Include/TextBox.h"
     "Include/Button.h"
     "Include/EncounterState.h"
@@ -43,7 +43,7 @@ target_sources(lib_cppfight
     "Source/EncounterFighting.cpp"
     "Source/EncounterActing.cpp"
     "Source/EncounterMonsterTurn.cpp"
-)
+    "Source/MouseData.cpp")
 
 target_include_directories(lib_cppfight
     PUBLIC

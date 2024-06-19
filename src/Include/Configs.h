@@ -15,6 +15,15 @@ namespace FilePaths {
 	constexpr char SOUND_BABY_CRYING[] = "resources/Audio/Sound_effect/baby_crying.wav";
 	constexpr char SOUND_BABY_LAUGHING[] = "resources/Audio/Sound_effect/baby_laughing.ogg";
 	constexpr char SOUND_HIT[] = "resources/Audio/Sound_effect/hit_sound.wav";
+	constexpr char SOUND_CRITICAL_HIT[] = "resources/Audio/Sound_effect/critical_attack.wav";
+	constexpr char SOUND_SHOWDOWN[] = "resources/Audio/Sound_effect/showdown.wav";
+	constexpr char SOUND_GET_READY[] = "resources/Audio/Sound_effect/get_ready.wav";
+	constexpr char SOUND_SUCCESS[] = "resources/Audio/Sound_effect/success.wav";
+	constexpr char SOUND_MISSED[] = "resources/Audio/Sound_effect/miss.wav";
+	constexpr char SOUND_UNBELIEVABLE_ATTACK[] = "resources/Audio/Sound_effect/unbelievable_attack.wav";
+	constexpr char SOUND_PERFECT_ATTACK[] = "resources/Audio/Sound_effect/perfect_attack.wav";
+	constexpr char SOUND_EXCELLENT_ATTACK[] = "resources/Audio/Sound_effect/excellent_attack.wav";
+	constexpr char SOUND_NORMAL_ATTACK[] = "resources/Audio/Sound_effect/normal_attack.wav";
 
 	// Musics
 	constexpr char MUSIC_RUN_MAIN[] = "resources/Audio/Music/battle_theme.wav";
@@ -47,8 +56,10 @@ namespace FilePaths {
 namespace Config {
 
 	// Gameplay config
+	constexpr float INCREDIBLE_ATTACK_MULT = 3.f;
+	constexpr float INCREDIBLE_ATTACK_TOLERANCE = 0.02f;
 	constexpr unsigned short int MAX_RUN_ENEMIES = 3;
-	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 25;
+	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 100;
 	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 20;
 	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 11;
 	constexpr float DEFAULT_MONSTER_BASE_MULT = 3.f;

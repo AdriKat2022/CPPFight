@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-
+// not ideal, but it's a quick way to get the mouse data
 class MouseData
 {
 public:

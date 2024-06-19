@@ -7,6 +7,11 @@
 EncounterMonsterTurn::EncounterMonsterTurn(Encounter* parentEncounter) :
 	EncounterState(parentEncounter)
 {
+	m_showdown.loadFromFile(FilePaths::SOUND_SHOWDOWN);
+	m_getReady.loadFromFile(FilePaths::SOUND_GET_READY);
+	m_success.loadFromFile(FilePaths::SOUND_SUCCESS);
+	m_missed.loadFromFile(FilePaths::SOUND_MISSED);
+
 	m_fontMain.loadFromFile(FilePaths::FONT_MAIN);
 	m_readyText.setFont(m_fontMain);
 	m_readyText.setCharacterSize(35);
@@ -101,6 +106,9 @@ void EncounterMonsterTurn::Update(float deltaTime)
 				m_entry = true;
 				m_readyText.setString("Attention");
 				m_hitText.setString("");
+				m_audioSource.setVolume(100);
+				m_audioSource.setBuffer(m_getReady);
+				m_audioSource.play();
 			}
 			if (m_timer <= 0)
 			{
@@ -113,6 +121,9 @@ void EncounterMonsterTurn::Update(float deltaTime)
 		case Fast:
 			if (!m_entry)
 			{
+				m_audioSource.setBuffer(m_showdown);
+				m_audioSource.setVolume(75);
+				m_audioSource.play();
 				m_entry = true;
 				m_readyText.setCharacterSize(90);
 				m_readyText.setString("ESPACE !");
@@ -124,6 +135,9 @@ void EncounterMonsterTurn::Update(float deltaTime)
 				m_readyText.setString("");
 				m_hitText.setString("MISS");
 				m_hitText.setFillColor(sf::Color::Red);
+				m_audioSource.stop();
+				m_audioSource.setBuffer(m_missed);
+				m_audioSource.play();
 				m_monsterState = Wait;
 			}
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -132,6 +146,9 @@ void EncounterMonsterTurn::Update(float deltaTime)
 				m_readyText.setString("");
 				m_hitText.setString("SHIELDED");
 				m_hitText.setFillColor(sf::Color::Blue);
+				m_audioSource.stop();
+				m_audioSource.setBuffer(m_success);
+				m_audioSource.play();
 				m_monsterState = Wait;
 				m_parry = true;
 			}
