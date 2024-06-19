@@ -38,8 +38,9 @@ target_sources(lib_cppfight
     "Source/Clickable.cpp"
     "Source/Game.cpp"
     "Source/Menu.cpp"
-    "Source/EncounterFighting.cpp"
     "Source/TextBox.cpp"
+    "Source/EncounterIdle.cpp"
+    "Source/EncounterFighting.cpp"
     "Source/EncounterActing.cpp"
     "Source/EncounterMonsterTurn.cpp"
 )

@@ -82,10 +82,10 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	}
 
 
-	m_encounterIdle = std::make_shared<EncounterIdle>(*this);
-	m_encounterActing = std::make_shared<EncounterActing>(*this);
-	m_encounterFighting = std::make_shared<EncounterFighting>(*this);
-	m_encounterMonsterTurn = std::make_shared<EncounterMonsterTurn>(*this);
+	m_encounterIdle = std::make_shared<EncounterIdle>(this);
+	m_encounterActing = std::make_shared<EncounterActing>(this);
+	m_encounterFighting = std::make_shared<EncounterFighting>(this);
+	m_encounterMonsterTurn = std::make_shared<EncounterMonsterTurn>(this);
 }
 
 
@@ -155,7 +155,8 @@ void Encounter::GenerateMenus() {
 
 void Encounter::SetState(EncounterStateType type)
 {
-	m_currentEncounterState->OnExit();
+	if (m_currentEncounterState)
+		m_currentEncounterState->OnExit();
 
 	switch (type)
 	{
