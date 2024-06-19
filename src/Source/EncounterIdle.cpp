@@ -1,4 +1,5 @@
 #include "EncounterIdle.h"
+#include "Encounter.h"
 
 void EncounterIdle::OnEnter()
 {

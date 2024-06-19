@@ -2,6 +2,8 @@
 
 #include "IDrawable.h"
 #include "EncounterState.h"
+#include <SFML/Audio.hpp>
+
 
 class EncounterFighting : public EncounterState {
 

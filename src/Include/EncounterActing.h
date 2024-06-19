@@ -1,8 +1,9 @@
 #pragma once
 
 #include "EncounterState.h"
+#include "Button.h"
 
-class Button;
+class ActionData;
 
 class EncounterActing : public EncounterState {
 

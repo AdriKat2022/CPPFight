@@ -11,6 +11,8 @@ public:
 	void Update(float deltaTime) override;
 	void OnExit() override;
 
+	void Draw(sf::RenderWindow& window) const override;
+
 private:
 
 	bool m_isDead = false;

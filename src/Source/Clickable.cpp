@@ -1,5 +1,6 @@
 #include "Clickable.h"
 
+
 bool Clickable::IsMousePressed = false;
 
 void Clickable::SetActive(bool isActive) {

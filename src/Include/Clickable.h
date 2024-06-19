@@ -1,7 +1,8 @@
 #pragma once
 
-#include "GameRun.h"
 #include <SFML/Graphics.hpp>
+
+class GameRun;
 
 // Deprecated
 class Clickable

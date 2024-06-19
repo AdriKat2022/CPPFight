@@ -1,4 +1,5 @@
 #include "EncounterMonsterTurn.h"
+#include "Encounter.h"
 
 void EncounterMonsterTurn::OnEnter()
 {
@@ -26,4 +27,9 @@ void EncounterMonsterTurn::OnExit()
 	if(!m_isDead)
 		m_parentEncounter->SetButtonsActive(true);
 	
+}
+
+void EncounterMonsterTurn::Draw(sf::RenderWindow& window) const
+{
+	// Nothing to draw
 }

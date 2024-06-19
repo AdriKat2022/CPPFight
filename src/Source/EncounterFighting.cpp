@@ -1,8 +1,8 @@
-#include "EncounterFighting.h"
-#include "Configs.h"
-
 #include <random>
 #include <format>
+#include "EncounterFighting.h"
+#include "Configs.h"
+#include "Encounter.h"
 
 EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 	EncounterState(parentEncounter)

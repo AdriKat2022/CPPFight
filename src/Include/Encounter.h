@@ -1,16 +1,18 @@
 #pragma once
 
 #include "IDrawable.h"
+#include "TextBox.h"
 #include "Enemy.h"
 #include <memory>
 #include <Menu.h>
 #include "Baby.h"
 #include "Player.h"
-#include "TextBox.h"
 
+
+
+class TextBox;
 class EncounterState;
 class GameRun;
-
 
 enum class EncounterStateType {
 	Idle,
@@ -56,8 +58,6 @@ private:
 
 	Enemy m_enemy;
 
-	std::shared_ptr<EncounterStateType> m_encounterStateType;
-
 	std::shared_ptr<EncounterState> m_currentEncounterState;
 	std::shared_ptr<EncounterState> m_encounterIdle;
 	std::shared_ptr<EncounterState> m_encounterActing;
@@ -72,13 +72,12 @@ private:
 	sf::RectangleShape background_hp_enemy;
 	sf::RectangleShape HP_bar_enemy;
 
-	//Baby baby;
 	sf::Text name_baby;
 	sf::RectangleShape background_happiness_baby;
 	sf::RectangleShape happiness_bar_baby;
 	sf::Text damage_mult;
 
-	Player player = Player{ Config::DEFAULT_PLAYER_NAME, Config::DEFAULT_PLAYER_MAX_HP };
+	Player& player;
 	sf::Text name_player;
 	sf::RectangleShape background_hp_player;
 	sf::RectangleShape HP_bar_player;
@@ -86,5 +85,6 @@ private:
 	std::vector<ActionData*> m_enemyActions;
 	sf::Sprite m_background;
 	sf::Texture m_backgroundTexture;
+
 	TextBox m_dialogueBox;
 };

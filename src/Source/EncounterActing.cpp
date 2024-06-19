@@ -1,5 +1,6 @@
 #include "EncounterActing.h"
 #include "Button.h"
+#include "Encounter.h"
 #include <iostream>
 
 EncounterActing::EncounterActing(Encounter* parentEncounter) :

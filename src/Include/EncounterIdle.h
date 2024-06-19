@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "EncounterState.h"
 
 class EncounterIdle : public EncounterState {
