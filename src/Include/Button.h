@@ -42,7 +42,7 @@ private:
 	// This should be in the IDrawable class, we got no time to refactor it
 	// Or better, two derived classes : one for texture and one for text
 	std::string m_textToDisplay; 
-	sf::Font m_font;
+	sf::Font m_buttonTextFont;
 	sf::Text m_text;
 
 	std::function<void()> m_OnClickEvent = nullptr;

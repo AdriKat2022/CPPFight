@@ -44,7 +44,7 @@ void EncounterActing::OnExit()
 
 void EncounterActing::Draw(sf::RenderWindow& window) const
 {
-	for (auto& button : m_actionButtons)
+	for (const auto& button : m_actionButtons)
 	{
 		button.Draw(window);
 	}
@@ -60,7 +60,8 @@ void EncounterActing::BuildActionButtons()
 	int xIndex = 0;
 	int yIndex = 0;
 
-	for (auto& action : *m_parentEncounter->GetPossibleActions())
+
+	for (const auto& action : *m_parentEncounter->GetPossibleActions())
 	{
 		// Initalizing the text buttons from the center of the screen
 
@@ -69,7 +70,9 @@ void EncounterActing::BuildActionButtons()
 			static_cast<float>(m_window.getSize().y / 2 + Anchors::ACTION_BUTTONS_FROM_MIDDLE[yIndex])
 			}, action->Name, [this, &action]() { this->ProcessAction(action); }, true);
 
-		
+
+		//m_parentEncounter->GetDialogueBox().SetPosition(button.GetPosition().x, button.GetPosition().y + 100);
+
 		xIndex++;
 
 		if (xIndex > 1)
@@ -77,7 +80,18 @@ void EncounterActing::BuildActionButtons()
 			xIndex = 0;
 			yIndex++;
 		}
+
+		//const auto& button = m_actionButtons.at(static_cast<size_t>(xIndex + 2 * yIndex - 1));
+
+		//button.Draw(m_parentEncounter->GetWindow());
+		//button.Draw(m_parentEncounter->GetWindow());
 	}
+
+	m_actionButtons[0].Draw(m_parentEncounter->GetWindow());
+	m_actionButtons.at(1).Draw(m_parentEncounter->GetWindow());
+	m_actionButtons.at(2).Draw(m_parentEncounter->GetWindow());
+
+	m_parentEncounter->GetWindow().display();
 
 	std::cout << "Built " << m_actionButtons.size() << " action buttons." << std::endl;
 }

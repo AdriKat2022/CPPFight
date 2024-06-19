@@ -25,11 +25,12 @@ Button::Button(const sf::Vector2f & position, const std::string& text, std::func
 	m_changeColorOnHover(changeColorOnHover),
 	m_hasText(true)
 {
-	Move(position);
-	m_font.loadFromFile(FilePaths::FONT_MAIN);
+	m_buttonTextFont.loadFromFile(FilePaths::FONT_MAIN);
+	m_text.setFont(m_buttonTextFont);
+	m_text.setPosition(position);
 	m_text.setString(m_textToDisplay);
 	m_text.setFillColor(sf::Color::White);
-	m_text.setFont(m_font);
+
 }
 
 // We would need to rename this function to something more appropriate
@@ -48,13 +49,15 @@ void Button::Update(sf::RenderWindow& renderWindow, float deltaTime)
 
 void Button::Draw(sf::RenderWindow& window) const
 {
+	if(!m_isActive)
+		return;
+
 	IDrawable::Draw(window);
 
 	if(!m_hasText)
 		return;
 
 	window.draw(m_text);
-
 }
 
 void Button::HandleStates(const sf::RenderWindow& renderWindow) {
