@@ -27,6 +27,7 @@ public:
 	void Run(float deltaTime);
 	void Render();
 
+	void LaunchRun();
 	void AddEnemy(EnemyData* enemy);
 	void InitNextEncounter();
 
@@ -56,4 +57,5 @@ private:
 
 	int m_nextEncounterIndex = 0;
 	float m_timer = 2.f;
+	bool m_runReady = false;
 };

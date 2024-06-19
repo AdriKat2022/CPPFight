@@ -10,10 +10,7 @@ add_library(lib_cppfight
     "Include/IDrawable.h"
     "Include/Clickable.h"
     "Include/TextBox.h"
-    "Include/SpecificActionButton.h"
     "Include/Button.h"
-    
-    
     "Include/EncounterState.h"
     "Include/Encounter.h"
     "Include/EncounterFighting.h"
@@ -23,7 +20,6 @@ add_library(lib_cppfight
     "Include/EnemyData.h"
     "Include/EnemyLoader.h"
     "Include/Configs.h"
-    
     "Include/Game.h"
     "Include/Menu.h")
 
@@ -37,17 +33,17 @@ target_sources(lib_cppfight
     "Source/Enemy.cpp"
     "Source/Encounter.cpp"
     "Source/EnemyLoader.cpp"
-    
-    
     "Source/Button.cpp"
     "Source/IDrawable.cpp"
     "Source/Clickable.cpp"
     "Source/Game.cpp"
     "Source/Menu.cpp"
-    "Source/EncounterFighting.cpp"
     "Source/TextBox.cpp"
+    "Source/EncounterIdle.cpp"
+    "Source/EncounterFighting.cpp"
     "Source/EncounterActing.cpp"
- "Source/EncounterMonsterTurn.cpp")
+    "Source/EncounterMonsterTurn.cpp"
+)
 
 target_include_directories(lib_cppfight
     PUBLIC
@@ -62,7 +58,7 @@ target_link_libraries(lib_cppfight
 
 add_executable(cppfight
     Source/Main.cpp
- "Source/EncounterFighting.cpp")
+ )
 
 target_link_libraries(cppfight
     PRIVATE

@@ -28,6 +28,8 @@ void Game::RunGame()
 		sf::Time elapsed = clock.restart();
 		float deltaTime = elapsed.asSeconds();
 
+		m_window.clear();
+
 		UpdateGame(deltaTime);
 
 		m_window.display();
@@ -165,6 +167,7 @@ void Game::BeginNewRun()
 	std::cout << "Starting a new run !\n";
 
 	m_currentRun = NewRun();
+	m_currentRun->LaunchRun();
 	m_mainMenuMusic.stop();
 	m_currentState = GameState::InRun;
 }

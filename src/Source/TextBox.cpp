@@ -51,6 +51,7 @@ void TextBox::ShowNext()
 {
 	if (m_remainingDialogues == 0)
 	{
+		m_text.setString("");
 		m_hasClickedAfterFinish = true;
 		return;
 	}

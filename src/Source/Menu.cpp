@@ -15,6 +15,7 @@ void Menu::AddSprite(const std::string& spritePath, sf::Vector2f position, sf::V
 	m_drawables.push_back(sprite);
 }
 
+
 void Menu::Draw(sf::RenderWindow& window) const
 {
 	for (const auto& drawable : m_drawables) {

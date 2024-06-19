@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Encounter.h"
+#include <SFML/Graphics.hpp>
+
+class Encounter;
 
 class EncounterState {
 

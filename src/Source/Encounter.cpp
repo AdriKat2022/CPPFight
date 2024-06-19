@@ -1,20 +1,20 @@
 #include "Encounter.h"
 #include "Configs.h"
-#include "TextBox.h"
-#include "Player.h"
 #include "GameRun.h"
-#include "EncounterState.h"
 #include <format>
 #include <iostream>
 
-
+#include "EncounterActing.h"
+#include "EncounterFighting.h"
+#include "EncounterIdle.h"
+#include "EncounterMonsterTurn.h"
 
 Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	m_window(gameRun.GetWindow()),
 	m_parentRun(gameRun),
-	m_enemy(enemy)
+	m_enemy(enemy),
+	player(m_parentRun.GetPlayer())
 {
-	m_encounterStateType = std::make_shared<EncounterStateType>(EncounterStateType::Idle);
 	undertale_font.loadFromFile(FilePaths::FONT_MAIN);
 
 	//definition du nom de l'ennemi
@@ -55,7 +55,6 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	damage_mult.setFillColor(sf::Color::White);
 
 	//définition du nom du joueur
-	player = m_parentRun.GetPlayer();
 	name_player.setString(player.GetName());
 	name_player.setPosition(350, 560);
 	name_player.setFont(undertale_font);
@@ -81,15 +80,22 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	{
 		m_enemyActions.push_back(&action);
 	}
+
+
+	m_encounterIdle = std::make_shared<EncounterIdle>(this);
+	m_encounterActing = std::make_shared<EncounterActing>(this);
+	m_encounterFighting = std::make_shared<EncounterFighting>(this);
+	m_encounterMonsterTurn = std::make_shared<EncounterMonsterTurn>(this);
+
 }
 
 
 void Encounter::Update(float deltaTime)
 {
-
-	if (m_enemy.IsDead() == true) {
-		m_parentRun.SetState(RunState::InTransition);
-	}
+	// Already done by the encounter state of MonsterTurn
+	//if (m_enemy.IsDead() == true) {
+	//	m_parentRun.SetState(RunState::InTransition);
+	//}
 
 	if(m_currentEncounterState)
 		m_currentEncounterState->Update(deltaTime);
@@ -143,13 +149,16 @@ std::vector<ActionData*>* Encounter::GetPossibleActions()
 }
 
 void Encounter::GenerateMenus() {
-	m_menu_select.AddButton(FilePaths::SP_SH_FIGHT_BTN, sf::Vector2f(400, 100), [this]() { this->SetState(EncounterStateType::Fighting); });
-	m_menu_select.AddButton(FilePaths::SP_SH_ACTION_BTN, sf::Vector2f(400, 300), [this]() { this->SetState(EncounterStateType::Acting);  });
+	m_menu_select.AddButton(FilePaths::SP_SH_FIGHT_BTN, sf::Vector2f(200, 500), [this]() { this->SetState(EncounterStateType::Fighting); });
+	m_menu_select.AddButton(FilePaths::SP_SH_ACTION_BTN, sf::Vector2f(600, 500), [this]() { this->SetState(EncounterStateType::Acting);  });
 }
 
 
 void Encounter::SetState(EncounterStateType type)
 {
+	if (m_currentEncounterState)
+		m_currentEncounterState->OnExit();
+
 	switch (type)
 	{
 		using enum EncounterStateType;
@@ -170,11 +179,23 @@ void Encounter::SetState(EncounterStateType type)
 		m_currentEncounterState = m_encounterMonsterTurn;
 		break;
 	}
+
+	m_currentEncounterState->OnEnter();
 }
 
 TextBox& Encounter::GetDialogueBox()
 {
 	return m_dialogueBox;
+}
+
+float Encounter::GetMonsterSpeed() const
+{
+	return m_enemy.GetSpeed();
+}
+
+float Encounter::GetMonsterAttackPower() const
+{
+	return m_enemy.GetAttackPower();
 }
 
 void Encounter::DamageMonster(int damage)

@@ -36,8 +36,8 @@ namespace FilePaths {
 	constexpr char SP_SH_ACTION_BTN[] = "resources/Sprites/action_button.png";
 
 	// Attack Assets
-	constexpr char SP_SH_ATTACK_BOX[] = "resources/Sprites/attack_box.png";
-	constexpr char SP_SH_CURSOR[] = "resources/Sprites/cursor.png"; 
+	constexpr char SP_SH_ATTACK_BOX[] = "resources/Sprites/attack_target.png";
+	constexpr char SP_SH_CURSOR[] = "resources/Sprites/cursor_sh.png"; 
 
 
 	constexpr char ENEMY_DATA_LIST[] = "resources/Enemies/Enemies.txt";
@@ -55,8 +55,10 @@ namespace Config {
 
 	constexpr float GLOBAL_ATTACK_TIME = 1.5f;
 	constexpr float GLOBAL_ATTACK_TIME_VARIANCE = .3f;
-	constexpr float WAIT_TIME_AFTER_ATTACK = 1.8f;
+	constexpr float WAIT_TIME_AFTER_ATTACK = 3.f;
 
+	constexpr float MAX_WAIT_ATTACK_TIME = 4.f;
+	constexpr float MIN_WAIT_ATTACK_TIME = 1.8f;
 
 	// Window config
 	constexpr char WINDOW_TITLE[] = "Cpp Game";
@@ -78,11 +80,11 @@ namespace Anchors {
 	// TextBox
 	constexpr std::array<short int, 2> TEXT_BOX_FROM_MIDDLE = { 0, 200 };
 	// AttackBox
-	constexpr std::array<short int, 2> ATTACK_BOX_FROM_MIDDLE = { 0, 200 };
+	constexpr std::array<short int, 2> ATTACK_BOX_FROM_MIDDLE = { 0, 100 };
 	// DamageText
 	constexpr std::array<short int, 2> MULT_TEXT_FROM_DMG_TEXT = { 50, 20 };
 	// ActionButtons
-	constexpr std::array<short int, 4> ACTION_BUTTONS_FROM_MIDDLE = { 50, 150, -100, 100}; // First row, second row, first column, second column
+	constexpr std::array<short int, 4> ACTION_BUTTONS_FROM_MIDDLE = { -100, 100, 50, 150}; // First column, second column, first row, second row
 }
 
 namespace Colors {

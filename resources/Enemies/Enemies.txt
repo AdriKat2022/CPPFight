@@ -348,7 +348,7 @@ Health: 15
 Damage: 3
 Defense: 0
 Speed: 1
-Actions: calin_1 pleurer_1 insulter_1
+Actions: calin_1 pleurer_1 insulter_1 -
 [/Enemy]
 
 
@@ -358,7 +358,7 @@ Health: 20
 Damage: 5
 Defense: 0
 Speed: 2
-Actions: calin_1 pleurer_2 insulter_2 coder_1
+Actions: calin_1 pleurer_2 insulter_2 coder_1 -
 [/Enemy]
 
 
@@ -368,7 +368,7 @@ Health: 35
 Damage: 5
 Defense: 0
 Speed: 2
-Actions: calin_1 pleurer_2 insulter_1 coder_3
+Actions: calin_1 pleurer_2 insulter_1 coder_3 -
 [/Enemy]
 
 
@@ -378,7 +378,7 @@ Health: 50
 Damage: 6
 Defense: 1
 Speed: 3
-Actions: calin_2 gouter_bebe insulter_3_trap coder_2
+Actions: calin_2 gouter_bebe insulter_3_trap coder_2 -
 [/Enemy]
 
 
@@ -388,7 +388,7 @@ Health: 60
 Damage: 5
 Defense: 0
 Speed: 4
-Actions: sprint_interieur pablo insulter_3_trap mixer
+Actions: sprint_interieur pablo insulter_3_trap mixer -
 [/Enemy]
 
 
@@ -398,6 +398,6 @@ Health: 70
 Damage: 4
 Defense: 0
 Speed: 5
-Actions: sprint_exterieur pablo_2 salto_isaac mixer_bad
+Actions: sprint_exterieur pablo_2 salto_isaac mixer_bad -
 [/Enemy]
 

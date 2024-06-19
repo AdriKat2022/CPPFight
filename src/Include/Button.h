@@ -26,6 +26,7 @@ public:
 	Button(const sf::Vector2f& position, const std::string& text, std::function<void()> OnClickEvent, bool changeColorOnHover = true);
 
 	void Update(sf::RenderWindow& renderWindow, float deltaTime = 0.01f);
+	void Draw(sf::RenderWindow& window) const override;
 
 	void OnClick(sf::Vector2f position) const;
 	void SetOnClickEvent(std::function<void()> OnClickEvent);
@@ -35,7 +36,6 @@ public:
 private:
 	void HandleStates(const sf::RenderWindow & renderWindow);
 	void ScaleButton(float deltaTime);
-	void ChangeColorOnHover();
 	void SetState(ButtonState state);
 
 
@@ -53,4 +53,5 @@ private:
 	bool m_isActive = true;
 	bool m_scaleOnHover = true;
 	bool m_changeColorOnHover = true;
+	bool m_hasText = false;
 };

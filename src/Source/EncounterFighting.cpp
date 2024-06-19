@@ -1,20 +1,21 @@
-#include "EncounterFighting.h"
-#include "Configs.h"
-
 #include <random>
+#include <iostream>
 #include <format>
+#include "EncounterFighting.h"
+#include "Encounter.h"
 
 EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 	EncounterState(parentEncounter)
 {
-	m_attackBox = IDrawable({ 0, 0 }, FilePaths::SP_SH_ATTACK_BOX, { 1, 1 }, true);
-	m_cursor = IDrawable({ 0, 0 }, FilePaths::SP_SH_CURSOR, {1, 1}, true);
-
 	m_attackBoxWidth = m_attackBox.GetSprite().getGlobalBounds().width;
 	m_damageFont.loadFromFile(FilePaths::FONT_DAMAGE);
 	m_damageText.setFont(m_damageFont);
 	m_multText.setFont(m_damageFont);
-
+	m_multText.setFillColor({
+		Colors::MULT_TEXT_COLOR[0],
+		Colors::MULT_TEXT_COLOR[1],
+		Colors::MULT_TEXT_COLOR[2]
+		});
 	m_attackSoundBuffer.loadFromFile(FilePaths::SOUND_HIT);
 	m_attackSound.setBuffer(m_attackSoundBuffer);
 }
@@ -22,6 +23,12 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 
 void EncounterFighting::OnEnter()
 {
+	std::cout << "Fighting" << std::endl;
+	m_damageText.setString("");
+	m_multText.setString("");
+	m_state = AttackState::Attacking;
+	m_timer = Config::WAIT_TIME_AFTER_ATTACK;
+	m_parentEncounter->SetButtonsActive(false);
 	InitAttackBox();
 }
 
@@ -31,7 +38,7 @@ void EncounterFighting::Update(float deltaTime)
 	{
 		case AttackState::Attacking:
 
-			m_cursor.Move({ 0, m_cursorSpeed * deltaTime });
+			m_cursor.Move({ m_cursorSpeed * deltaTime, 0 });
 
 			if (m_cursor.GetPosition().x >= m_attackBox.GetPosition().x + m_attackBoxWidth / 2)
 				m_state = AttackState::Failed;
@@ -79,12 +86,12 @@ void EncounterFighting::Update(float deltaTime)
 
 				m_damageTotalShown = false;
 				m_upcomingDamage = static_cast<int>(static_cast<float>(damage) * babyMult);
+				m_timer = Config::WAIT_TIME_AFTER_ATTACK;
 
 			}
-			else if (m_timer <= 1.5f && !m_damageTotalShown)
+			else if (m_timer <= 2.f && !m_damageTotalShown)
 			{
 				m_damageTotalShown = true;
-				m_parentEncounter->SetState(EncounterStateType::MonsterTurn);
 				m_attackSound.play();
 
 
@@ -97,19 +104,20 @@ void EncounterFighting::Update(float deltaTime)
 			
 		case AttackState::Failed:
 
-			if (m_initFailed) break;
+			if (!m_initFailed)
+			{
+				m_initFailed = true;
 
-			m_initFailed = true;
-
-			// Update the text and show it
-			m_damageText.setString(std::format("Manqué"));
-			m_damageText.setPosition(m_cursor.GetPosition().x, m_cursor.GetPosition().y - 100);
-
-			m_damageText.setFillColor({
-				Colors::DAMAGE_TEXT_COLOR_MISSED[0],
-				Colors::DAMAGE_TEXT_COLOR_MISSED[1],
-				Colors::DAMAGE_TEXT_COLOR_MISSED[2]
-				});
+				// Update the text and show it
+				m_damageText.setString(std::format("Miss"));
+				m_damageText.setPosition(m_cursor.GetPosition().x - 100, m_cursor.GetPosition().y - 100);
+				m_damageText.setCharacterSize(48);
+				m_damageText.setFillColor({
+					Colors::DAMAGE_TEXT_COLOR_MISSED[0],
+					Colors::DAMAGE_TEXT_COLOR_MISSED[1],
+					Colors::DAMAGE_TEXT_COLOR_MISSED[2]
+					});
+			}
 
 
 			break;
@@ -127,6 +135,9 @@ void EncounterFighting::Update(float deltaTime)
 		}
 	}
 
+	// Display the current state in the console
+	std::cout << "State: " << m_state << std::endl;
+
 }
 
 void EncounterFighting::OnExit()
@@ -138,7 +149,7 @@ void EncounterFighting::InitAttackBox()
 {
 	auto windowSize = m_parentEncounter->GetWindow().getSize();
 
-	m_attackBox.Move(sf::Vector2f{
+	m_attackBox.SetPosition(sf::Vector2f{
 		static_cast<float>(windowSize.x) / 2 + Anchors::ATTACK_BOX_FROM_MIDDLE[0],
 		static_cast<float>(windowSize.y) / 2 + Anchors::ATTACK_BOX_FROM_MIDDLE[1]
 		});
@@ -146,7 +157,7 @@ void EncounterFighting::InitAttackBox()
 
 	// Place the cursor at the beginning of the attack box according to the dimensions of the attack box
 
-	m_cursor.Move(sf::Vector2f{
+	m_cursor.SetPosition(sf::Vector2f{
 		m_attackBox.GetPosition().x - m_attackBoxWidth / 2,
 		m_attackBox.GetPosition().y
 		});
@@ -161,6 +172,8 @@ void EncounterFighting::InitAttackBox()
 	m_initFailed = false;
 
 	m_timer = Config::WAIT_TIME_AFTER_ATTACK;
+
+	m_state = AttackState::Attacking;
 }
 
 void EncounterFighting::CloseAttackBox()

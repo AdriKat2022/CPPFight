@@ -19,6 +19,7 @@ public:
 	virtual void Draw(sf::RenderWindow&) const;
 	
 	void Move(const sf::Vector2f& offset);
+	void SetPosition(const sf::Vector2f& position);
 	sf::Vector2f GetPosition() const;
 
 

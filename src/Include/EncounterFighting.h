@@ -2,6 +2,9 @@
 
 #include "IDrawable.h"
 #include "EncounterState.h"
+#include "Configs.h"
+#include <SFML/Audio.hpp>
+
 
 class EncounterFighting : public EncounterState {
 
@@ -23,8 +26,8 @@ private:
 	void InitAttackBox();
 	void CloseAttackBox();
 
-	IDrawable m_cursor;
-	IDrawable m_attackBox;
+	IDrawable m_cursor{ { 0, 0 }, FilePaths::SP_SH_CURSOR, {1, 2}, true };
+	IDrawable m_attackBox{ { 0, 0 }, FilePaths::SP_SH_ATTACK_BOX, { 1, 1 }, true };
 
 	float m_timer = 0;
 	float m_attackBoxWidth = 0;
