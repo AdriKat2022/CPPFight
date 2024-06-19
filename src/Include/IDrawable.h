@@ -22,8 +22,8 @@ public:
 	void SetPosition(const sf::Vector2f& position);
 	sf::Vector2f GetPosition() const;
 
-
-	void SetAnimation(float animationSpeed); // In frames per second
+	void SetActive(bool isActive);
+	void SetAnimation(float animationSpeed, int nLoops); // In frames per second
 	void DefineSpriteSheet(const sf::Vector2i& dimensions);
 	void SwitchSprite(int xIndex, int yIndex = 0);
 	void StepSprite();
@@ -44,7 +44,9 @@ private:
 
 	int m_xIndex = 0;
 	int m_yIndex = 0;
+	int m_nLoops = 0;
 
+	bool m_isActive = true;
 	bool m_isAnimated = false;
 
 	float m_spriteIntervals = 0;

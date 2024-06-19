@@ -4,10 +4,12 @@
 #include "EncounterFighting.h"
 #include "Encounter.h"
 #include "GameRun.h"
+#include "Configs.h"
 
 EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 	EncounterState(parentEncounter)
 {
+	// Load the attack box and the cursor and the fonts
 	m_attackBoxWidth = m_attackBox.GetSprite().getGlobalBounds().width;
 	m_damageFont.loadFromFile(FilePaths::FONT_DAMAGE);
 	m_damageText.setFont(m_damageFont);
@@ -17,13 +19,15 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 		Colors::MULT_TEXT_COLOR[1],
 		Colors::MULT_TEXT_COLOR[2]
 		});
+
+	// Load sounds
 	m_hitAttack.loadFromFile(FilePaths::SOUND_HIT);
 	m_criticalHitAttack.loadFromFile(FilePaths::SOUND_CRITICAL_HIT);
 	m_unbelievableAttack.loadFromFile(FilePaths::SOUND_UNBELIEVABLE_ATTACK);
 	m_perfectAttack.loadFromFile(FilePaths::SOUND_PERFECT_ATTACK);
 	m_excellentAttack.loadFromFile(FilePaths::SOUND_EXCELLENT_ATTACK);
 	m_normalAttack.loadFromFile(FilePaths::SOUND_NORMAL_ATTACK);
-	m_attackSound.setVolume(50);
+	m_attackSound.setVolume(50*Config::GLOBAL_VOLUME_MULT);
 	m_cursor.GetSprite().setScale(2, 2);
 }
 
@@ -34,7 +38,7 @@ void EncounterFighting::OnEnter()
 	m_damageText.setString("");
 	m_multText.setString("");
 	m_state = AttackState::Attacking;
-	m_cursor.SetAnimation(0);
+	m_cursor.SetAnimation(0, 0);
 	m_timer = Config::WAIT_TIME_AFTER_ATTACK;
 	m_parentEncounter->SetButtonsActive(false);
 	InitAttackBox();
@@ -96,7 +100,14 @@ void EncounterFighting::Update(float deltaTime)
 					Colors::DAMAGE_TEXT_COLOR_HIT[2]
 					});
 
-				m_cursor.SetAnimation(10.f);
+				// Set the attack animation at the center of the screen
+				m_attackAnimation.SetPosition(sf::Vector2f{
+					static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2,
+					static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2 - 75
+					});
+				m_attackAnimation.SetActive(true);
+				m_attackAnimation.SetAnimation(7, 1);
+				m_cursor.SetAnimation(10.f, 0);
 
 				m_damageTotalShown = false;
 				m_upcomingDamage = static_cast<int>(static_cast<float>(damage) * babyMult);
@@ -111,8 +122,6 @@ void EncounterFighting::Update(float deltaTime)
 					m_attackSound.setBuffer(m_normalAttack);
 
 				m_attackSound.play();
-
-				
 
 			}
 			else if (m_timer <= Config::WAIT_TIME_AFTER_ATTACK / 2 && !m_damageTotalShown)
@@ -143,6 +152,10 @@ void EncounterFighting::Update(float deltaTime)
 				baby.Modify(-baby.GetHappiness()/2);
 
 				m_parentEncounter->DamageMonster(m_upcomingDamage);
+			}
+			else
+			{
+				m_attackAnimation.Update(deltaTime);
 			}
 
 
@@ -237,4 +250,6 @@ void EncounterFighting::Draw(sf::RenderWindow& window) const
 	{
 		window.draw(m_damageText);
 	}
+	if(m_state == AttackState::Succeeded)
+		m_attackAnimation.Draw(window);
 }

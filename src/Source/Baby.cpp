@@ -80,7 +80,7 @@ void Baby::Modify(int modifier, bool playSound)
 	{
 		m_source.setBuffer(m_cryingSoundBuffer);
 	}
-
+	m_source.setVolume(50 * Config::GLOBAL_VOLUME_MULT);
 	m_source.play();
 }
 
