@@ -73,7 +73,7 @@ void EnemyLoader::LoadEnemy(std::ifstream& stream)
 			while (true) {
 				stream >> buffer;
 
-				if (!isdigit(buffer.at(0)))
+				if (buffer == "-")
 					break;
 
 				std::string actionID = buffer;

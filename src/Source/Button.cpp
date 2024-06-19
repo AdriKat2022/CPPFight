@@ -18,15 +18,17 @@ Button::Button(const sf::Vector2f& position, const std::string& texturePath, std
 {}
 
 // Make a text button rather than a texture button
-Button::Button(const sf::Vector2f & position, const std::string & text, std::function<void()> OnClickEvent, bool changeColorOnHover) :
+Button::Button(const sf::Vector2f & position, const std::string& text, std::function<void()> OnClickEvent, bool changeColorOnHover) :
 	m_textToDisplay(text),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleOnHover(false),
-	m_changeColorOnHover(changeColorOnHover)
+	m_changeColorOnHover(changeColorOnHover),
+	m_hasText(true)
 {
 	Move(position);
 	m_font.loadFromFile(FilePaths::FONT_MAIN);
 	m_text.setString(m_textToDisplay);
+	m_text.setFillColor(sf::Color::White);
 	m_text.setFont(m_font);
 }
 
@@ -42,6 +44,17 @@ void Button::Update(sf::RenderWindow& renderWindow, float deltaTime)
 
 	HandleStates(renderWindow);
 	ScaleButton(deltaTime);
+}
+
+void Button::Draw(sf::RenderWindow& window) const
+{
+	IDrawable::Draw(window);
+
+	if(!m_hasText)
+		return;
+
+	window.draw(m_text);
+
 }
 
 void Button::HandleStates(const sf::RenderWindow& renderWindow) {
@@ -107,10 +120,6 @@ void Button::ScaleButton(float deltaTime)
 	auto newScale = currentScale + (m_targetScale - currentScale) * deltaTime * m_scaleSpeed;
 
 	GetSprite().setScale(newScale, newScale);
-}
-
-void Button::ChangeColorOnHover()
-{
 }
 
 void Button::OnClick(sf::Vector2f position) const

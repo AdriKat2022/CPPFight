@@ -1,8 +1,11 @@
 #include "EncounterMonsterTurn.h"
 #include "Encounter.h"
+#include <iostream>
 
 void EncounterMonsterTurn::OnEnter()
 {
+	std::cout << "Monster turn" << std::endl;
+
 	// Check death of monster
 	m_isDead = m_parentEncounter->IsMonsterDead();
 }

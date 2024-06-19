@@ -20,13 +20,12 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 
 	// Create the reward menu
 	// TODO: Add multiple buttons for several rewards (more power, more health, or full heal)
-	m_rewardMenu.AddButton("", {200, 200}, [this]() {
+	/*m_rewardMenu.AddButton("", {200, 200}, [this]() {
 		InitNextEncounter();
-	});
-	//TODO initialize the list of enemis
+	});*/
+
 
 	std::cout << "Run constructed." << std::endl;
-	//Render();
 }
 
 void GameRun::AddEnemy(EnemyData* enemy)
@@ -36,12 +35,13 @@ void GameRun::AddEnemy(EnemyData* enemy)
 
 void GameRun::Run(float deltaTime)
 {
+	
+
 	switch (m_state)
 	{
 		using enum RunState;
 
 		case Intro:
-			InitNextEncounter();
 			break;
 
 		case InEncounter:
@@ -57,6 +57,11 @@ void GameRun::Run(float deltaTime)
 
 			break;
 	}
+}
+
+void GameRun::LaunchRun()
+{
+	InitNextEncounter();
 }
 
 void GameRun::InitNextEncounter()
@@ -93,8 +98,11 @@ Player& GameRun::GetPlayer()
 
 void GameRun::Render()
 {
+	// Should take care of rendering the baby and the player (not done yet, for now the encounter does it)
+
 	if(m_state == RunState::InEncounter)
 		m_currentEncounter->Draw(m_window);
+
 }
 
 void GameRun::SetState(RunState state) {

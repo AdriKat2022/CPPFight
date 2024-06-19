@@ -12,6 +12,8 @@ EncounterActing::EncounterActing(Encounter* parentEncounter) :
 
 void EncounterActing::OnEnter()
 {
+	std::cout << "Acting" << std::endl;
+	m_acted = false;
 	m_parentEncounter->SetButtonsActive(false);
 }
 
@@ -70,7 +72,7 @@ void EncounterActing::BuildActionButtons()
 		
 		xIndex++;
 
-		if (xIndex)
+		if (xIndex > 1)
 		{
 			xIndex = 0;
 			yIndex++;
