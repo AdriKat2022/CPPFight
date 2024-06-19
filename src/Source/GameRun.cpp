@@ -15,7 +15,7 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 
 	// Run music
 	m_currentMusic.openFromFile(FilePaths::MUSIC_RUN_MAIN);
-	m_currentMusic.setVolume(25*Config::GLOBAL_VOLUME_MULT);
+	m_currentMusic.setVolume(75*Config::GLOBAL_VOLUME_MULT);
 	m_currentMusic.play();
 	m_currentMusic.setLoop(true);
 
