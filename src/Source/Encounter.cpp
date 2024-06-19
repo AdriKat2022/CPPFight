@@ -72,8 +72,8 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	HP_bar_player.setScale(sf::Vector2f(static_cast<float>(player.GetHP()) / static_cast<float>(player.GetMaxHP()), 1));
 	HP_bar_player.setFillColor(sf::Color::Red);
 	HP_bar_player.setPosition({
-		static_cast<float>(m_window.getSize().x / 2) - background_hp_player.getGlobalBounds().width / 2,
-		static_cast<float>(m_window.getSize().y) - 150 + background_hp_player.getGlobalBounds().height/2});
+		static_cast<float>(m_window.getSize().x / 2) - HP_bar_player.getGlobalBounds().width / 2,
+		static_cast<float>(m_window.getSize().y) - 160 + HP_bar_player.getGlobalBounds().height/2});
 
 	// Background
 	m_backgroundTexture.loadFromFile(FilePaths::ENCOUNTER_BG);
