@@ -67,7 +67,7 @@ namespace Config {
 	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 40;
 	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 21;
 	constexpr unsigned short int GLOBAL_MONSTER_HP_MULT = 2;
-	constexpr float DEFAULT_MONSTER_ATTACK_BASE_MULT = 100.f;
+	constexpr float DEFAULT_MONSTER_ATTACK_BASE_MULT = 1.f;
 	constexpr char DEFAULT_PLAYER_NAME[] = "Charles";
 
 	constexpr char DEFAULT_BABY_NAME[] = "Baboum";

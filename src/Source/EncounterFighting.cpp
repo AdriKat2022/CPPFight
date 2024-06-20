@@ -265,10 +265,10 @@ void EncounterFighting::ShowTotalDamage()
 
 	auto& baby = m_parentEncounter->GetParentRun()->GetBaby();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
-		baby.ModifyHappiness(32);
-	else
-		baby.ModifyHappiness(std::min(-baby.GetHappiness() / 2, -5));
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+	//	baby.ModifyHappiness(32);
+	//else
+	baby.ModifyHappiness(std::min(-baby.GetHappiness() / 3, -5));
 
 	m_parentEncounter->DamageMonster(m_upcomingDamage);
 }
