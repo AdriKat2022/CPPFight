@@ -28,7 +28,7 @@ public:
 	void Update(sf::RenderWindow& renderWindow, float deltaTime = 0.01f);
 	void Draw(sf::RenderWindow& window) const override;
 
-	void OnClick(sf::Vector2f position) const;
+	void OnClick() const;
 	void SetOnClickEvent(std::function<void()> OnClickEvent);
 
 	void SetActive(bool active);

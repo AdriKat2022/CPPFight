@@ -93,7 +93,7 @@ void Button::HandleStates(const sf::RenderWindow& renderWindow) {
 	}
 	else if (m_state == Pressed && !MouseData::IsMousePressed)
 	{
-		OnClick(mousePos);
+		OnClick();
 		SetState(Hover);
 	}
 }
@@ -129,7 +129,7 @@ void Button::ScaleButton(float deltaTime)
 	GetSprite().setScale(newScale, newScale);
 }
 
-void Button::OnClick(sf::Vector2f position) const
+void Button::OnClick() const
 {
 	if (m_isActive && m_OnClickEvent)
 	{
