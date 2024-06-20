@@ -2,6 +2,7 @@
 
 #include "EncounterState.h"
 #include "SFML/Audio.hpp"
+#include "Shaker.h"
 
 class EncounterMonsterTurn : public EncounterState {
 
@@ -30,6 +31,7 @@ private:
 	void OnMiss();
 	void OnReceiveDamage();
 
+	Shaker m_readyTextShaker;
 
 	MonsterState m_monsterState = MonsterState::Ready;
 

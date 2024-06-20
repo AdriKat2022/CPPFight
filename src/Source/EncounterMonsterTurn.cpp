@@ -29,6 +29,8 @@ EncounterMonsterTurn::EncounterMonsterTurn(Encounter* parentEncounter) :
 			Colors::DAMAGE_PLAYER_TEXT_COLOR[2]
 		});
 
+	m_readyTextShaker.SetObjectToShake(&m_readyText);
+	m_readyTextShaker.SetMaxAmplitude(5.f);
 }
 
 void EncounterMonsterTurn::OnEnter()
@@ -124,6 +126,7 @@ void EncounterMonsterTurn::Update(float deltaTime)
 		case Wait:
 			if (m_timer <= 0)
 			{
+				m_readyTextShaker.StopShake();
 				m_timer = 1.5f;
 				m_monsterState = ReceiveDamage;
 				m_entry = false;
@@ -147,6 +150,7 @@ void EncounterMonsterTurn::Update(float deltaTime)
 			break;
 
 	}
+	m_readyTextShaker.Update(deltaTime);
 }
 
 void EncounterMonsterTurn::OnExit()
@@ -211,6 +215,9 @@ void EncounterMonsterTurn::Showdown()
 	m_audioSource.setBuffer(m_showdown);
 	m_audioSource.setVolume(75 * Config::GLOBAL_VOLUME_MULT);
 	m_audioSource.play();
+	m_readyTextShaker.ResetBasePosition();
+	m_readyTextShaker.AddShakeStress(1.f);
+	m_readyTextShaker.SetKeepShake(true);
 }
 
 void EncounterMonsterTurn::OnParry()

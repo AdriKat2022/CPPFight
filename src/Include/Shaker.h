@@ -14,13 +14,17 @@ public:
 	void Update(float deltaTime);
 	void SetObjectToShake(sf::Transformable* object);
 	void SetPreferedVector(const sf::Vector2f& vector);
+	void SetMaxAmplitude(float amplitude);
+	void ResetBasePosition();
 	void AddShakeStress(float stress);
+	void SetShakeStress(float stress);
 	void SetShakeActive(bool active);
 	void SetKeepShake(bool keepShake);
 	void SetDrainSpeed(float speed);
+	void StopShake();
 
 private:
-	void ShakeObject(float maxAmplitude);
+	void ShakeObject(float multiplier);
 
 	sf::Transformable* m_objectToShake = nullptr;
 
@@ -34,5 +38,6 @@ private:
 	bool m_keepShake = false;
 
 	float m_shakeStress = .0f;
-	float m_shakeDrainSpeed = 1.f;
+	float m_shakeDrainSpeed = 2.f;
+	float m_maxAmplitude = 1.f;
 };

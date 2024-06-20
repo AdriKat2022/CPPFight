@@ -17,7 +17,7 @@ Shaker::Shaker(sf::Transformable * object, bool keepShake) :
 
 void Shaker::Update(float deltaTime)
 {
-	if (!m_shakeActive && m_shakeStress <= 0)
+	if (!m_shakeActive || m_shakeStress <= 0)
 		return;
 
 	ShakeObject(m_shakeStress);
@@ -29,6 +29,7 @@ void Shaker::Update(float deltaTime)
 void Shaker::SetObjectToShake(sf::Transformable* object)
 {
 	m_objectToShake = object;
+	ResetBasePosition();
 }
 
 void Shaker::SetPreferedVector(const sf::Vector2f& vector)
@@ -36,9 +37,24 @@ void Shaker::SetPreferedVector(const sf::Vector2f& vector)
 	m_preferedVector = vector;
 }
 
+void Shaker::SetMaxAmplitude(float amplitude)
+{
+	m_maxAmplitude = amplitude;
+}
+
+void Shaker::ResetBasePosition()
+{
+	m_basePosition = m_objectToShake->getPosition();
+}
+
 void Shaker::AddShakeStress(float stress)
 {
 	m_shakeStress += stress;
+}
+
+void Shaker::SetShakeStress(float stress)
+{
+	m_shakeStress = stress;
 }
 
 void Shaker::SetShakeActive(bool active)
@@ -56,15 +72,20 @@ void Shaker::SetDrainSpeed(float drainSpeed)
 	m_shakeDrainSpeed = drainSpeed;
 }
 
-void Shaker::ShakeObject(float maxAmplitude)
+void Shaker::StopShake()
+{
+	m_shakeStress = 0;
+	m_keepShake = false;
+}
+
+void Shaker::ShakeObject(float stressMultiplier)
 {
 	if (m_objectToShake == nullptr)
 		return;
 
-	float x = static_cast<float>(dis(gen) - .5f) * maxAmplitude * 2;
-	float y = static_cast<float>(dis(gen) - .5f) * maxAmplitude * 2;
+	float x = static_cast<float>(dis(gen) - .5f) * m_maxAmplitude * 2 * stressMultiplier;
+	float y = static_cast<float>(dis(gen) - .5f) * m_maxAmplitude * 2 * stressMultiplier;
 	
-
-	m_objectToShake->move(x, y);
+	m_objectToShake->setPosition(m_basePosition.x + x, m_basePosition.y + y);
 }
 

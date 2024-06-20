@@ -66,12 +66,18 @@ Baby::Baby()
 		});
 
 	m_currentDamageMult = GetMult();
+
+	m_multTextShaker.SetObjectToShake(&m_currentDamageMultText);
+
+	UpdateHappinessTextMult();
+	UpdateHappinessBar();
 }
 
 void Baby::Update(float deltaTime)
 {
 	AnimateTextNotification(deltaTime);
 	AnimateWarning(deltaTime);
+	m_multTextShaker.Update(deltaTime);
 }
 
 void Baby::Draw(sf::RenderWindow& window) const
@@ -154,8 +160,8 @@ void Baby::Modify(int modifier, bool playSound)
 	}
 
 	MakeWarning(GetMult() - m_currentDamageMult);
-	UpdateHappinessTextMult();
 	MakeNotification(m_happinessLvl - oldHappiness);
+	UpdateHappinessTextMult();
 	UpdateHappinessBar();
 
 	m_currentDamageMult = GetMult();
@@ -217,6 +223,17 @@ void Baby::MakeNotification(int delta)
 void Baby::UpdateHappinessTextMult()
 {
 	m_currentDamageMultText.setString(std::format("{}{}", Config::HAPPINESS_MULT_PRE_TEXT,GetMult()));
+	if (GetMult() >= 3.5)
+	{
+		m_multTextShaker.SetKeepShake(true);
+		m_multTextShaker.AddShakeStress(2.f);
+		m_currentDamageMultText.setFillColor(sf::Color::Blue);
+	}
+	else {
+		m_multTextShaker.SetKeepShake(false);
+		m_multTextShaker.AddShakeStress(2.f);
+		m_currentDamageMultText.setFillColor(sf::Color::White);
+	}
 }
 
 void Baby::UpdateHappinessBar()

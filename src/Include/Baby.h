@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Configs.h"
+#include "Shaker.h"
 
 class Baby {
 
@@ -40,6 +41,7 @@ private:
 	sf::RectangleShape m_background_happiness_baby;
 	sf::RectangleShape m_happiness_bar_baby;
 
+	Shaker m_multTextShaker;
 	sf::Text m_currentDamageMultText;
 	sf::Text m_babyName;
 	sf::Font m_statsFont;
