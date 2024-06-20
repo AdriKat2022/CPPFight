@@ -18,18 +18,23 @@ Button::Button(const sf::Vector2f& position, const std::string& texturePath, std
 {}
 
 // Make a text button rather than a texture button
-Button::Button(const sf::Vector2f& position, const std::string& text, std::function<void()> OnClickEvent, bool changeColorOnHover) :
+Button::Button(const sf::Vector2f& position, const std::string& text, int textSize, std::function<void()> OnClickEvent, bool changeColorOnHover) :
 	m_textToDisplay(text),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleOnHover(false),
 	m_changeColorOnHover(changeColorOnHover),
 	m_hasText(true)
 {
-	Move(position);
 	m_font.loadFromFile(FilePaths::FONT_MAIN);
 	m_text.setString(m_textToDisplay);
+	m_text.setCharacterSize(textSize);
 	m_text.setFillColor(sf::Color::White);
 	m_text.setFont(m_font);
+
+	m_text.setPosition({
+		position.x - m_text.getGlobalBounds().width / 2,
+		position.y - m_text.getGlobalBounds().height / 2
+		});
 }
 
 // We would need to rename this function to something more appropriate
@@ -63,18 +68,20 @@ void Button::HandleStates(const sf::RenderWindow& renderWindow) {
 	auto mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition(renderWindow));
 
 	// Check for Hovering
-	if (IsInBoundsOfSprite(mousePos))
+	if (IsInBoundsOfSprite(mousePos) || (m_hasText && m_text.getGlobalBounds().contains(mousePos)))
 	{
 		if (m_state != Pressed && m_state != Hover) {
 			SetState(Hover);
-			SwitchSprite(0, 1);
+			if(!m_hasText)
+				SwitchSprite(0, 1);
 		}
 	}
 	else
 	{
 		if (m_state != Idle) {
 			SetState(Idle);
-			SwitchSprite(0, 0);
+			if (!m_hasText)
+				SwitchSprite(0, 0);
 		}
 		return;
 	}

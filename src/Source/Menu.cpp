@@ -5,7 +5,7 @@
 
 void Menu::AddButton(const std::string& textToDisplay, sf::Vector2f position, [[maybe_unused]] int textSize, std::function<void()> OnClickEvent)
 {
-	auto button = std::make_shared<Button>(position, textToDisplay, OnClickEvent, true);
+	auto button = std::make_shared<Button>(position, textToDisplay, textSize, OnClickEvent, true);
 	m_buttons.push_back(button);
 }
 
