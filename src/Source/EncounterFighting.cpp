@@ -13,7 +13,7 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 	m_attackBoxWidth = m_attackBox.GetSprite().getGlobalBounds().width;
 	m_damageFont.loadFromFile(FilePaths::FONT_DAMAGE);
 	m_critText.setFont(m_damageFont);
-	m_critText.setCharacterSize(30);
+	m_critText.setCharacterSize(20);
 	m_critText.setPosition(
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2 + 80,
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2 - 35
@@ -95,11 +95,11 @@ void EncounterFighting::Update(float deltaTime)
 			else
 				m_attackAnimation.Update(deltaTime);
 			
-
+			// Crit animation
 			if (m_wasCritical)
 			{
 				auto scale = m_critText.getScale().x;
-				scale -= (scale - 1) * deltaTime * 6;
+				scale -= (scale - 1) * deltaTime * 15;
 				m_critText.setScale(scale, scale);
 			}
 
@@ -187,10 +187,13 @@ void EncounterFighting::ShowSucceededAttack()
 	{
 		damage = static_cast<int>(static_cast<float>(damage) * Config::INCREDIBLE_ATTACK_MULT);
 		m_critText.setString(Config::CRIT_TEXT);
-		m_critText.setScale(3, 3);
+		m_critText.setOrigin(m_critText.getGlobalBounds().width / 2, m_critText.getGlobalBounds().height / 2);
+		m_critText.setPosition(
+			static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2 - 250,
+			static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2
+		);
+		m_critText.setScale(2, 2);
 	}
-
-	std::cout << m_critText.getPosition().x << " " << m_critText.getPosition().y << std::endl;
 
 	// Update the text and show it
 	m_damageText.setCharacterSize(30);
