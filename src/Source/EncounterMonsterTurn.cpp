@@ -262,7 +262,7 @@ void EncounterMonsterTurn::OnReceiveDamage()
 			static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2 - m_readyText.getGlobalBounds().width / 2,
 			static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2 - m_readyText.getGlobalBounds().height / 2 + 100
 		);
-		auto damage = static_cast<int>(Config::DEFAULT_MONSTER_BASE_MULT * m_parentEncounter->GetMonsterAttackPower());
+		auto damage = static_cast<int>(Config::DEFAULT_MONSTER_ATTACK_BASE_MULT * m_parentEncounter->GetMonsterAttackPower());
 		m_parentEncounter->DamagePlayer(damage);
 		m_damageNumberText.setString(std::format("{}", damage));
 		m_damageNumberText.setPosition(
@@ -279,7 +279,7 @@ void EncounterMonsterTurn::OnReceiveDamage()
 			static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2 - m_readyText.getGlobalBounds().width / 2,
 			static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2 - m_readyText.getGlobalBounds().height / 2 + 100
 		);
-		auto damage = static_cast<int>(Config::DEFAULT_MONSTER_BASE_MULT * m_parentEncounter->GetMonsterAttackPower() / Config::PARRY_BONUS_DEFENSE_MULT);
+		auto damage = static_cast<int>(Config::DEFAULT_MONSTER_ATTACK_BASE_MULT * m_parentEncounter->GetMonsterAttackPower() / Config::PARRY_BONUS_DEFENSE_MULT);
 		m_parentEncounter->DamagePlayer(damage);
 		m_damageNumberText.setString(std::format("{}", damage));
 		m_damageNumberText.setPosition(

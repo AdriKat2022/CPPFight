@@ -64,10 +64,10 @@ namespace Config {
 	// Gameplay config
 	constexpr unsigned short int MAX_RUN_ENEMIES = 3;
 	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 20;
-	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 20;
+	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 40;
 	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 21;
 	constexpr unsigned short int GLOBAL_MONSTER_HP_MULT = 2;
-	constexpr float DEFAULT_MONSTER_BASE_MULT = 3.f;
+	constexpr float DEFAULT_MONSTER_ATTACK_BASE_MULT = 1.f;
 	constexpr char DEFAULT_PLAYER_NAME[] = "Charles";
 
 	constexpr char DEFAULT_BABY_NAME[] = "Baboum";
@@ -78,7 +78,7 @@ namespace Config {
 	constexpr char CRIT_TEXT[] = "CRIT (x3)";
 
 	constexpr char PARRY_TEXT[] = "GARDE";
-	constexpr float PARRY_BONUS_DEFENSE_MULT = 2.f;
+	constexpr float PARRY_BONUS_DEFENSE_MULT = 3.f;
 
 	constexpr float GLOBAL_ATTACK_TIME = 1.3f;
 	constexpr float GLOBAL_ATTACK_TIME_VARIANCE = .3f;
