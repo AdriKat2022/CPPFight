@@ -21,8 +21,10 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 
 	// Create the reward menu
 	// TODO: Add multiple buttons for several rewards (more power, more health, or full heal)
-	/*m_rewardMenu.AddButton("", {200, 200}, [this]() {
-		InitNextEncounter();
+
+	/*m_rewardMenu.AddButton("Soins entiers", {200, 200}, [this]() {
+		this->FullHeal();
+		this->InitNextEncounter();
 	});*/
 
 
@@ -84,6 +86,16 @@ sf::RenderWindow& GameRun::GetWindow() const
 
 sf::Vector2f GameRun::GetMousePosition() const {
 	return static_cast<sf::Vector2f>(sf::Mouse::getPosition(m_window));
+}
+
+void GameRun::FullHeal()
+{
+	m_player.Damage(-9999);
+}
+
+void GameRun::DamagePlayer(int damage)
+{
+	m_player.Damage(damage);
 }
 
 Baby& GameRun::GetBaby()

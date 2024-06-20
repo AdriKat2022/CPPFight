@@ -61,7 +61,7 @@ void Game::GenerateMenus()
 
 void Game::UpdateGame(float deltaTime)
 {
-	// The Rules menu has been done in a hurry, so it's loading a lot of resources
+	// The Rules menu has been done in a hurry, so it's loading a lot of resources (a LOT)
 	sf::Text rules;
 	sf::Font font;
 	switch (m_currentState)
@@ -96,7 +96,7 @@ void Game::UpdateGame(float deltaTime)
 		m_rulesMenu.Draw(m_window);
 		m_window.draw(rules);
 		break;
-	case PreRunScreen:
+	case PreRunScreen: // Unused state
 		m_preRunMenu.Draw(m_window); // Unused cause of time
 		break;
 	case InRun:
@@ -145,6 +145,8 @@ std::unique_ptr<GameRun> Game::NewRun()
 	newRun->AddEnemy(&m_enemyDataBank->at(0));
 	newRun->AddEnemy(&m_enemyDataBank->at(2));
 	newRun->AddEnemy(&m_enemyDataBank->at(3));
+	newRun->AddEnemy(&m_enemyDataBank->at(4));
+	newRun->AddEnemy(&m_enemyDataBank->at(5));
 
 	return std::move(newRun);
 }
@@ -158,12 +160,11 @@ void Game::PrepareNewRun()
 
 	m_currentState = GameState::PreRunScreen;
 
-	BeginNewRun(); // No time to make a real preparation
+	BeginNewRun(); // No time to make a real preparation, let's just start the run
 }
 
 void Game::BeginNewRun()
 {
-	// TODO : Start a new run
 	std::cout << "Starting a new run !\n";
 
 	m_currentRun = NewRun();
@@ -174,7 +175,6 @@ void Game::BeginNewRun()
 
 void Game::ShowRules()
 {
-	// TODO : Show the RULES menu DONE
 	std::cout << "Showing the rules!\n";
 
 	m_currentState = GameState::RulesMenu;

@@ -83,6 +83,7 @@ namespace Config {
 	constexpr float GLOBAL_ATTACK_TIME = 1.3f;
 	constexpr float GLOBAL_ATTACK_TIME_VARIANCE = .3f;
 	constexpr float WAIT_TIME_AFTER_ATTACK = 2.f;
+	constexpr float WAIT_TIME_AFTER_DISPLAY = 1.5f;
 
 	constexpr float MAX_WAIT_ATTACK_TIME = 4.f;
 	constexpr float MIN_WAIT_ATTACK_TIME = 1.f;

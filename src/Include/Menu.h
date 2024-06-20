@@ -16,6 +16,7 @@ class Menu {
 public:
 	Menu() = default;
 
+	void AddButton(const std::string& textToDisplay, sf::Vector2f position, int textSize, std::function<void()> OnClickEvent);
 	void AddButton(const std::string& spritePath, sf::Vector2f position, std::function<void()> OnClickEvent);
 	void AddSprite(const std::string& spritePath, sf::Vector2f position, sf::Vector2i dimensions = { 1, 1 }, bool centerOrigin = true);
 
