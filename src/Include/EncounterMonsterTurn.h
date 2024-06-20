@@ -23,6 +23,14 @@ public:
 	void Draw(sf::RenderWindow& window) const override;
 
 private:
+	void ManageDeath(float deltaTime);
+	void ShowReady();
+	void Showdown();
+	void OnParry();
+	void OnMiss();
+	void OnReceiveDamage();
+
+
 	MonsterState m_monsterState = MonsterState::Ready;
 
 	sf::Text m_readyText;
