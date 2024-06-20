@@ -31,7 +31,8 @@ public:
 	void OnClick() const;
 	void SetOnClickEvent(const std::function<void()>& OnClickEvent);
 
-	void SetActive(bool active) override;
+	void SetEnabled(bool active) override;
+	void SetVisible(bool visible);
 
 private:
 	void HandleStates(const sf::RenderWindow & renderWindow);
@@ -50,7 +51,8 @@ private:
 	ButtonState m_state = ButtonState::Idle;
 	float m_scaleSpeed = 1.0f;
 	float m_targetScale = 1.f;
-	bool m_isActive = true;
+	bool m_isDisabled = false;
+	bool m_isVisible = true;
 	bool m_scaleOnHover = true;
 	bool m_changeColorOnHover = true;
 	bool m_hasText = false;

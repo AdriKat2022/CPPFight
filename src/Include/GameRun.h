@@ -8,21 +8,22 @@
 #include "Encounter.h"
 
 
+class Game;
 class Enemy;
-
 
 
 enum class RunState {
 	Intro,
 	InEncounter,
 	InTransition,
-	InWin
+	InWin,
+	Lose
 };
 
 class GameRun {
 
 public:
-	explicit GameRun(sf::RenderWindow& rWindow);
+	explicit GameRun(Game& parentGame, sf::RenderWindow& rWindow);
 
 	void Run(float deltaTime);
 	void Render();
@@ -40,7 +41,11 @@ public:
 	Player& GetPlayer();
 	void SetState(RunState);
 
+	void Gameover();
+
 private:
+	Game& m_parentGame;
+
 	Player m_player = Player{ Config::DEFAULT_PLAYER_NAME, Config::DEFAULT_PLAYER_MAX_HP };
 	Baby m_baby;
 
@@ -52,6 +57,7 @@ private:
 	std::vector<EnemyData*> m_enemies;
 	
 	Menu m_rewardMenu;
+	Menu m_gameoverMenu;
 
 	RunState m_state = RunState::Intro;
 

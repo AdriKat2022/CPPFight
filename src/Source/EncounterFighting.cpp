@@ -221,7 +221,7 @@ void EncounterFighting::ShowSucceededAttack()
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2,
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2 - 75
 		});
-	m_attackAnimation.SetActive(true);
+	m_attackAnimation.SetEnabled(true);
 	m_attackAnimation.SetAnimation(7, 1);
 	m_cursor.SetAnimation(10.f, 0);
 

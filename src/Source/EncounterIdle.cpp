@@ -1,5 +1,6 @@
 #include "EncounterIdle.h"
 #include "Encounter.h"
+#include "GameRun.h"
 #include <iostream>
 
 
@@ -12,8 +13,13 @@ EncounterIdle::EncounterIdle(Encounter* parentEncounter) :
 
 void EncounterIdle::OnEnter()
 {
-	std::cout << "Idle" << std::endl;
 	m_parentEncounter->SetButtonsActive(true);
+
+
+	if (m_parentEncounter->GetParentRun()->GetPlayer().IsDead())
+	{
+		m_parentEncounter->GetParentRun()->Gameover();
+	}
 }
 
 void EncounterIdle::Update(float deltaTime)

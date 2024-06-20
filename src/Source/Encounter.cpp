@@ -108,6 +108,8 @@ void Encounter::Update(float deltaTime)
 
 	if(m_currentEncounterState)
 		m_currentEncounterState->Update(deltaTime);
+
+	m_dialogueBox.Update(deltaTime);
 }
 
 void Encounter::Draw(sf::RenderWindow& window) const
@@ -133,9 +135,11 @@ void Encounter::Draw(sf::RenderWindow& window) const
 
 	// affichage des boutons attaque et action et du dialogue
 	m_menu_select.Draw(window);
+	m_dialogueBox.Draw(window);
 
 	if(m_currentEncounterState)
 		m_currentEncounterState->Draw(window);
+
 }
 
 sf::RenderWindow& Encounter::GetWindow() const
@@ -156,6 +160,7 @@ GameRun* Encounter::GetParentRun() const
 void Encounter::SetDialogue(Dialogue& dialogue)
 {
 	m_dialogueBox.SetDialogue(dialogue);
+	m_dialogueBox.Show();
 }
 
 std::vector<ActionData*>* Encounter::GetPossibleActions()

@@ -41,18 +41,21 @@ Button::Button(const sf::Vector2f& position, const std::string& text, int textSi
 // Since its update needs also a renderWindow or a way to get the mouse position
 void Button::Update(const sf::RenderWindow& renderWindow, float deltaTime)
 {
-	if (!m_isActive)
+	ScaleButton(deltaTime);
+
+	if (m_isDisabled)
 	{
 		SetState(ButtonState::Disabled);
 		return;
 	}
-
 	HandleStates(renderWindow);
-	ScaleButton(deltaTime);
 }
 
 void Button::Draw(sf::RenderWindow& window) const
 {
+	if(!m_isVisible)
+		return;
+
 	IDrawable::Draw(window);
 
 	if(!m_hasText)
@@ -131,7 +134,7 @@ void Button::ScaleButton(float deltaTime)
 
 void Button::OnClick() const
 {
-	if (m_isActive && m_OnClickEvent)
+	if (!m_isDisabled && m_OnClickEvent)
 	{
 		m_OnClickEvent();
 	}
@@ -142,9 +145,10 @@ void Button::SetOnClickEvent(const std::function<void()>& OnClickEvent)
 	m_OnClickEvent = OnClickEvent;
 }
 
-void Button::SetActive(bool active)
+void Button::SetEnabled(bool active)
 {
-	m_isActive = active;
+	m_isDisabled = !active;
+
 	if(active)
 	{
 		SetState(ButtonState::Idle);
@@ -153,6 +157,11 @@ void Button::SetActive(bool active)
 	{
 		SetState(ButtonState::Disabled);
 	}
+}
+
+void Button::SetVisible(bool visible)
+{
+	m_isVisible = visible;
 }
 
 void Button::SetState(ButtonState state) {

@@ -36,6 +36,6 @@ void Menu::Draw(sf::RenderWindow& window) const
 void Menu::SetButtonsActive(bool active) const
 {
 	for (const auto& button : m_buttons) {
-		button->SetActive(active);
+		button->SetEnabled(active);
 	}
 }

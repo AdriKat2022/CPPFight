@@ -10,32 +10,35 @@
 class TextBox {
 	
 public:
-	TextBox();
+	explicit TextBox(const sf::Vector2f& position);
 
 	void SetVisible(const bool);
-	void Show() const;
-	void Hide() const;
+	void Show();
+	void Hide();
 	void SetDialogue(Dialogue& dialogue);
-	void SetString(const std::string_view& string);
-	void SetPosition(float x, float y);
 	void ShowNext();
-	void Update();
+	void Update(float deltaTime);
 	
 	void Draw(sf::RenderWindow&) const;
+
+	void LockTextBox(bool lock);
 
 	bool IsFinished() const;
 
 private:
 	size_t m_remainingDialogues = 0;
-	bool m_isVisible;
+
+	bool m_lastFrameClick = false;
+	bool m_isVisible = false;
 	bool m_hasClickedAfterFinish = true;
+	bool m_textBoxLocked = true;
+
 	Dialogue* m_currentDialogue;
 	sf::Color m_backgroundColor;
-	sf::Vector2f m_position;
 	sf::Vector2f m_size = {300, 200};
 	std::string m_string;
 	sf::Text m_text;
-	sf::RectangleShape m_background_text;
+	sf::RectangleShape m_textBoxBackground;
 	sf::Font m_undertale_font;
 
 };

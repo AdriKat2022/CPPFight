@@ -30,6 +30,7 @@ public:
 
 	// Run the game in general (window, events, etc) functions finishes when the game is closed
 	void RunGame();
+	void ToMainMenu();
 
 private:
 	// Initializing functions (called once)

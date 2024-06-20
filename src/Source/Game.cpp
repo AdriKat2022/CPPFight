@@ -34,7 +34,11 @@ void Game::RunGame()
 
 		m_window.display();
 	}
+}
 
+void Game::ToMainMenu()
+{
+	m_currentState = GameState::MainMenu;
 }
 
 void Game::LoadEnemiesData()
@@ -140,9 +144,10 @@ void Game::ManageWindowEvents()
 
 std::unique_ptr<GameRun> Game::NewRun()
 {
-	auto newRun = std::make_unique<GameRun>(m_window);
+	auto newRun = std::make_unique<GameRun>(*this, m_window);
 
 	newRun->AddEnemy(&m_enemyDataBank->at(0));
+	newRun->AddEnemy(&m_enemyDataBank->at(1));
 	newRun->AddEnemy(&m_enemyDataBank->at(2));
 	newRun->AddEnemy(&m_enemyDataBank->at(3));
 	newRun->AddEnemy(&m_enemyDataBank->at(4));

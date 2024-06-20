@@ -18,14 +18,16 @@ public:
 
 
 private:
-
+	void SetActionsActive(bool active) const;
 	void ProcessAction(ActionData* action);
 	void BuildActionButtons();
 
 	sf::RenderWindow& m_window;
 
-	std::vector<Button> m_actionButtons;
+	std::vector<std::unique_ptr<Button>> m_actionButtons;
 
 	bool m_acted = false;
+
+	int m_upcomingModifier = 0;
 
 };

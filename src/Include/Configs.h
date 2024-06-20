@@ -67,7 +67,7 @@ namespace Config {
 	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 40;
 	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 21;
 	constexpr unsigned short int GLOBAL_MONSTER_HP_MULT = 2;
-	constexpr float DEFAULT_MONSTER_ATTACK_BASE_MULT = 1.f;
+	constexpr float DEFAULT_MONSTER_ATTACK_BASE_MULT = 100.f;
 	constexpr char DEFAULT_PLAYER_NAME[] = "Charles";
 
 	constexpr char DEFAULT_BABY_NAME[] = "Baboum";
@@ -108,13 +108,15 @@ namespace Config {
 namespace Anchors {
 
 	// TextBox
-	constexpr std::array<short int, 2> TEXT_BOX_FROM_MIDDLE = { 0, 200 };
+	constexpr std::array<short int, 2> TEXT_BOX_FROM_MIDDLE = { 0, 50 };
+	constexpr std::array<short int, 2> TEXT_BOX_SIZE = { 450, 150 };
+	constexpr std::array<short int, 4> TEXT_MARGINS_IN_TEXT_BOX = { 20, 20, 10, 10 }; // Left, Right, Top, Bottom
 	// AttackBox
 	constexpr std::array<short int, 2> ATTACK_BOX_FROM_MIDDLE = { 0, 100 };
 	// DamageText
 	constexpr std::array<short int, 2> MULT_TEXT_FROM_DMG_TEXT = { 50, 20 };
 	// ActionButtons
-	constexpr std::array<short int, 4> ACTION_BUTTONS_FROM_MIDDLE = { -100, 100, 50, 150}; // First column, second column, first row, second row
+	constexpr std::array<short int, 4> ACTION_BUTTONS_FROM_MIDDLE = { -100, 100, 0, 55 }; // First column, second column, first row, second row
 	// Baby and HappinessBar
 	constexpr std::array<short int, 2> BABY_NAME_FROM_BOTTOM_RIGHT = { 75, 40 };
 	constexpr std::array<short int, 2> BABY_HAPPINESS_BAR_FROM_BOTTOM_RIGHT_BG = { 75, 120 };

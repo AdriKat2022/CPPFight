@@ -3,10 +3,12 @@
 #include "Button.h"
 #include "MouseData.h"
 #include "Configs.h"
+#include "Game.h"
 
 
 
-GameRun::GameRun(sf::RenderWindow& rWindow) :
+GameRun::GameRun(Game& parentGame, sf::RenderWindow& rWindow) :
+	m_parentGame(parentGame),
 	m_window(rWindow)
 {
 	// Construct the game
@@ -35,6 +37,11 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 		this->InitNextEncounter();
 		});
 
+	// Create the gameover menu
+
+	m_gameoverMenu.AddButton("Retour au menu", { Config::WINDOW_WIDTH / 2, Config::WINDOW_HEIGHT / 2 + 150}, 40, [this]() {
+		this->m_parentGame.ToMainMenu();
+		});
 
 	std::cout << "Run constructed." << std::endl;
 }
@@ -61,6 +68,10 @@ void GameRun::Run(float deltaTime)
 		case InTransition:
 			// Show a win message (and normaly a reward menu before the next encounter)
 			m_rewardMenu.Draw(m_window);
+			break;
+
+		case Lose:
+			m_gameoverMenu.Draw(m_window);
 			break;
 
 		case InWin:
@@ -114,6 +125,11 @@ Baby& GameRun::GetBaby()
 Player& GameRun::GetPlayer()
 {
 	return m_player;
+}
+
+void GameRun::Gameover()
+{
+	m_state = RunState::Lose;
 }
 
 void GameRun::Render()

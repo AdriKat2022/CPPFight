@@ -17,7 +17,7 @@ public:
 
 	virtual void Update(float deltaTime);
 	virtual void Draw(sf::RenderWindow&) const;
-	virtual void SetActive(bool isActive);
+	virtual void SetEnabled(bool isActive);
 	
 	void Move(const sf::Vector2f& offset);
 	void SetPosition(const sf::Vector2f& position);
