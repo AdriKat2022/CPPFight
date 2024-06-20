@@ -21,8 +21,9 @@ public:
 
 private:
 	void LoadEnemy(std::ifstream& stream);
-	void CacheAction(std::ifstream& stream);
-
+	void ProcessActions(std::ifstream& stream);
+	void AssignActionsFromStreamToEnemyData(std::ifstream& stream, EnemyData& enemyData);
+	void CacheAction(const std::string& actionID, const ActionData& actionData);
 	void GetDialogue(std::ifstream& stream, std::vector<std::string>& buffer) const;
 
 

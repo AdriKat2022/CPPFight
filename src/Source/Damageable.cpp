@@ -29,5 +29,5 @@ void Damageable::Damage(int damage) {
 
 bool Damageable::IsDead() const
 {
-	return m_HP == 0;
+	return m_HP <= 0;
 }

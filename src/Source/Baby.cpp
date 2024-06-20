@@ -143,7 +143,7 @@ float Baby::GetMult() const
 	}
 }
 
-void Baby::Modify(int modifier, bool playSound)
+void Baby::ModifyHappiness(int modifier, bool playSound)
 {
 	if(modifier == 0) return;
 

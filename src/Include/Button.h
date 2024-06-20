@@ -21,17 +21,18 @@ class Button : public IDrawable
 {
 public:
 	using IDrawable::IDrawable;
-	Button(const sf::Vector2f& position, const sf::Texture& texture, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
-	Button(const sf::Vector2f& position, const std::string& texturePath, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
-	Button(const sf::Vector2f& position, const std::string& text, int textSize, std::function<void()> OnClickEvent, bool changeColorOnHover = true);
+	Button(const sf::Vector2f& position, const sf::Texture& texture, const std::function<void()>& OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
+	Button(const sf::Vector2f& position, const std::string& texturePath, const std::function<void()>& OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
+	Button(const sf::Vector2f& position, const std::string& text, int textSize, const std::function<void()>& OnClickEvent, bool changeColorOnHover = true);
 
-	void Update(sf::RenderWindow& renderWindow, float deltaTime = 0.01f);
+	void Update(const sf::RenderWindow& renderWindow, float deltaTime = 0.01f);
 	void Draw(sf::RenderWindow& window) const override;
 
-	void OnClick(sf::Vector2f position) const;
-	void SetOnClickEvent(std::function<void()> OnClickEvent);
+	void OnClick() const;
+	void SetOnClickEvent(const std::function<void()>& OnClickEvent);
 
-	void SetActive(bool active);
+	void SetEnabled(bool active) override;
+	void SetVisible(bool visible);
 
 private:
 	void HandleStates(const sf::RenderWindow & renderWindow);
@@ -50,7 +51,8 @@ private:
 	ButtonState m_state = ButtonState::Idle;
 	float m_scaleSpeed = 1.0f;
 	float m_targetScale = 1.f;
-	bool m_isActive = true;
+	bool m_isDisabled = false;
+	bool m_isVisible = true;
 	bool m_scaleOnHover = true;
 	bool m_changeColorOnHover = true;
 	bool m_hasText = false;

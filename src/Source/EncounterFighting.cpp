@@ -221,7 +221,7 @@ void EncounterFighting::ShowSucceededAttack()
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2,
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2 - 75
 		});
-	m_attackAnimation.SetActive(true);
+	m_attackAnimation.SetEnabled(true);
 	m_attackAnimation.SetAnimation(7, 1);
 	m_cursor.SetAnimation(10.f, 0);
 
@@ -266,9 +266,9 @@ void EncounterFighting::ShowTotalDamage()
 	auto& baby = m_parentEncounter->GetParentRun()->GetBaby();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
-		baby.Modify(32);
+		baby.ModifyHappiness(32);
 	else
-		baby.Modify(std::min(-baby.GetHappiness() / 2, -5));
+		baby.ModifyHappiness(std::min(-baby.GetHappiness() / 2, -5));
 
 	m_parentEncounter->DamageMonster(m_upcomingDamage);
 }

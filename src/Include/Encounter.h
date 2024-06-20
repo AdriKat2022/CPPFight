@@ -1,9 +1,9 @@
 #pragma once
 
+#include <memory>
 #include "IDrawable.h"
 #include "TextBox.h"
 #include "Enemy.h"
-#include <memory>
 #include <Menu.h>
 #include "Baby.h"
 #include "Player.h"
@@ -91,5 +91,8 @@ private:
 	sf::Sprite m_background;
 	sf::Texture m_backgroundTexture;
 
-	TextBox m_dialogueBox;
+	TextBox m_dialogueBox{ {
+			Config::WINDOW_WIDTH / 2 + Anchors::TEXT_BOX_FROM_MIDDLE[0],
+		Config::WINDOW_HEIGHT / 2 + Anchors::TEXT_BOX_FROM_MIDDLE[1]
+		}};
 };

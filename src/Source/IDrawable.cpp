@@ -57,7 +57,7 @@ void IDrawable::Update(float deltaTime)
 	}
 }
 
-void IDrawable::SetActive(bool isActive)
+void IDrawable::SetEnabled(bool isActive)
 {
 	m_isActive = isActive;
 }
@@ -118,9 +118,6 @@ void IDrawable::SwitchSprite(int xIndex, int yIndex)
 		m_sprite.getTexture()->getSize().x / m_dimensions.x,
 		m_sprite.getTexture()->getSize().y / m_dimensions.y
 	));
-	
-
-	//std::cout << m_sprite.getTextureRect().left << ", " << m_sprite.getTextureRect().top << ", " << m_sprite.getTextureRect().width << ", " << m_sprite.getTextureRect().height << std::endl;
 }
 
 void IDrawable::StepSprite()
@@ -142,7 +139,7 @@ void IDrawable::StepSprite()
 		if (m_nLoops == 0)
 		{
 			SetAnimation(0, 0);
-			SetActive(false);
+			SetEnabled(false);
 			return;
 		}
 

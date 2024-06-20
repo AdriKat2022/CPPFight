@@ -108,6 +108,8 @@ void Encounter::Update(float deltaTime)
 
 	if(m_currentEncounterState)
 		m_currentEncounterState->Update(deltaTime);
+
+	m_dialogueBox.Update(deltaTime);
 }
 
 void Encounter::Draw(sf::RenderWindow& window) const
@@ -133,9 +135,11 @@ void Encounter::Draw(sf::RenderWindow& window) const
 
 	// affichage des boutons attaque et action et du dialogue
 	m_menu_select.Draw(window);
+	m_dialogueBox.Draw(window);
 
 	if(m_currentEncounterState)
 		m_currentEncounterState->Draw(window);
+
 }
 
 sf::RenderWindow& Encounter::GetWindow() const
@@ -156,6 +160,7 @@ GameRun* Encounter::GetParentRun() const
 void Encounter::SetDialogue(Dialogue& dialogue)
 {
 	m_dialogueBox.SetDialogue(dialogue);
+	m_dialogueBox.Show();
 }
 
 std::vector<ActionData*>* Encounter::GetPossibleActions()
@@ -227,7 +232,7 @@ void Encounter::DamagePlayer(int damage)
 
 void Encounter::ModifyBabyHappiness(int modifier)
 {
-	m_parentRun.GetBaby().Modify(modifier);
+	m_parentRun.GetBaby().ModifyHappiness(modifier);
 	happiness_bar_baby.setScale(sf::Vector2f(1, static_cast<float>(m_parentRun.GetBaby().GetHappiness()) / 100.f));
 }
 
