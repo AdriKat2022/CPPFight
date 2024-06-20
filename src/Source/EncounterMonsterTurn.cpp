@@ -3,6 +3,7 @@
 #include "Configs.h"
 #include <iostream>
 #include <random>
+#include <format>
 
 
 EncounterMonsterTurn::EncounterMonsterTurn(Encounter* parentEncounter) :
@@ -19,6 +20,13 @@ EncounterMonsterTurn::EncounterMonsterTurn(Encounter* parentEncounter) :
 	m_fontDmg.loadFromFile(FilePaths::FONT_DAMAGE);
 	m_hitText.setFont(m_fontDmg);
 	m_hitText.setCharacterSize(50);
+	m_damageNumberText.setFont(m_fontDmg);
+	m_damageNumberText.setCharacterSize(50);
+	m_damageNumberText.setFillColor({
+			Colors::DAMAGE_PLAYER_TEXT_COLOR[0],
+			Colors::DAMAGE_PLAYER_TEXT_COLOR[1],
+			Colors::DAMAGE_PLAYER_TEXT_COLOR[2]
+		});
 
 	// Center the texts
 	sf::FloatRect textRect = m_readyText.getLocalBounds();
@@ -38,6 +46,7 @@ void EncounterMonsterTurn::OnEnter()
 
 	m_readyText.setString("");
 	m_hitText.setString("");
+	m_damageNumberText.setString("");
 	m_readyText.setCharacterSize(45);
 	m_readyText.setFillColor({
 		Colors::MULT_TEXT_COLOR[0],
@@ -53,6 +62,13 @@ void EncounterMonsterTurn::OnEnter()
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2 - 200,
 		static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2
 	);
+
+	m_damageNumberText.setPosition(
+		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2,
+		static_cast<float>(m_parentEncounter->GetWindow().getSize().y) - 200
+	);
+
+	m_damageTextSpeed = 200.f;
 
 	m_parry = false;
 	m_entry = false;
@@ -107,7 +123,8 @@ void EncounterMonsterTurn::Update(float deltaTime)
 				m_entry = true;
 				m_readyText.setString("Attention");
 				m_hitText.setString("");
-				m_audioSource.setVolume(100*Config::GLOBAL_VOLUME_MULT);
+				m_damageNumberText.setString("");
+				m_audioSource.setVolume(100 * Config::GLOBAL_VOLUME_MULT);
 				m_audioSource.setBuffer(m_getReady);
 				m_audioSource.play();
 			}
@@ -145,7 +162,7 @@ void EncounterMonsterTurn::Update(float deltaTime)
 			{
 				m_timer = 2.f;
 				m_readyText.setString("");
-				m_hitText.setString("SHIELDED");
+				m_hitText.setString(Config::PARRY_TEXT);
 				m_hitText.setFillColor(sf::Color::Blue);
 				m_audioSource.stop();
 				m_audioSource.setBuffer(m_success);
@@ -170,19 +187,26 @@ void EncounterMonsterTurn::Update(float deltaTime)
 				m_entry = true;
 				m_readyText.setCharacterSize(40);
 				m_readyText.setString("Ouch !");
-				m_parentEncounter->DamagePlayer(static_cast<int>(Config::DEFAULT_MONSTER_BASE_MULT * m_parentEncounter->GetMonsterAttackPower()));
+				auto damage = static_cast<int>(Config::DEFAULT_MONSTER_BASE_MULT * m_parentEncounter->GetMonsterAttackPower());
+				m_parentEncounter->DamagePlayer(damage);
+				m_damageNumberText.setString(std::format("{}", damage));
 			}
 			if (!m_entry && m_parry)
 			{
 				m_entry = true;
 				m_readyText.setCharacterSize(35);
 				m_readyText.setString("Dommages réduits !");
-				m_parentEncounter->DamagePlayer(static_cast<int>(Config::DEFAULT_MONSTER_BASE_MULT * m_parentEncounter->GetMonsterAttackPower()/2));
+				auto damage = static_cast<int>(Config::DEFAULT_MONSTER_BASE_MULT * m_parentEncounter->GetMonsterAttackPower() / Config::PARRY_BONUS_DEFENSE_MULT);
+				m_parentEncounter->DamagePlayer(damage);
+				m_damageNumberText.setString(std::format("{}", damage));
 			}
 			if (m_timer <= 0)
 			{
 				m_parentEncounter->SetState(EncounterStateType::Idle);
 			}
+			m_damageNumberText.move(0, -deltaTime * m_damageTextSpeed);
+			m_damageTextSpeed -= deltaTime * 250;
+
 			break;
 
 	}
@@ -199,4 +223,5 @@ void EncounterMonsterTurn::Draw(sf::RenderWindow& window) const
 {
 	window.draw(m_readyText);
 	window.draw(m_hitText);
+	window.draw(m_damageNumberText);
 }

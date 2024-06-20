@@ -33,6 +33,7 @@ private:
 	float m_timer = 0;
 	float m_attackBoxWidth = 0;
 	float m_cursorSpeed = 0;
+	float m_damageTextSpeed = 0;
 
 	int m_upcomingDamage = 0;
 
@@ -43,6 +44,7 @@ private:
 
 	sf::Text m_damageText;
 	sf::Text m_multText;
+	sf::Text m_critText;
 	sf::Font m_damageFont;
 
 	sf::SoundBuffer m_hitAttack;

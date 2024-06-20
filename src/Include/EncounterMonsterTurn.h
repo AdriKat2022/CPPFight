@@ -27,6 +27,7 @@ private:
 
 	sf::Text m_readyText;
 	sf::Text m_hitText;
+	sf::Text m_damageNumberText;
 
 	sf::Font m_fontDmg;
 	sf::Font m_fontMain;
@@ -42,5 +43,5 @@ private:
 	bool m_parry = false;
 	float m_exitTimer = 1.5f;
 	float m_timer = 0.0f;
-
+	float m_damageTextSpeed = 0.f;
 };

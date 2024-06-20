@@ -12,6 +12,18 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 	// Load the attack box and the cursor and the fonts
 	m_attackBoxWidth = m_attackBox.GetSprite().getGlobalBounds().width;
 	m_damageFont.loadFromFile(FilePaths::FONT_DAMAGE);
+	m_critText.setFont(m_damageFont);
+	m_critText.setCharacterSize(30);
+	m_critText.setPosition(
+		static_cast<float>(m_parentEncounter->GetWindow().getSize().x) / 2 + 80,
+		static_cast<float>(m_parentEncounter->GetWindow().getSize().y) / 2 - 35
+		);
+	m_critText.setString("");
+	m_critText.setFillColor({
+		Colors::CRIT_TEXT_COLOR[0],
+		Colors::CRIT_TEXT_COLOR[1],
+		Colors::CRIT_TEXT_COLOR[2]
+		});
 	m_damageText.setFont(m_damageFont);
 	m_multText.setFont(m_damageFont);
 	m_multText.setFillColor({
@@ -35,8 +47,10 @@ EncounterFighting::EncounterFighting(Encounter* parentEncounter) :
 void EncounterFighting::OnEnter()
 {
 	std::cout << "Fighting" << std::endl;
+	m_damageTextSpeed = 350;
 	m_damageText.setString("");
 	m_multText.setString("");
+	m_critText.setString("");
 	m_state = AttackState::Attacking;
 	m_cursor.SetAnimation(0, 0);
 	m_timer = Config::WAIT_TIME_AFTER_ATTACK;
@@ -81,7 +95,13 @@ void EncounterFighting::Update(float deltaTime)
 				m_wasCritical = dmgMult >= (1-Config::INCREDIBLE_ATTACK_TOLERANCE);
 
 				if (m_wasCritical)
+				{
 					damage = static_cast<int>(static_cast<float>(damage) * Config::INCREDIBLE_ATTACK_MULT);
+					m_critText.setString(Config::CRIT_TEXT);
+					m_critText.setScale(3, 3);
+				}
+
+				std::cout << m_critText.getPosition().x << " " << m_critText.getPosition().y << std::endl;
 
 				// Update the text and show it
 				m_damageText.setCharacterSize(30);
@@ -149,7 +169,7 @@ void EncounterFighting::Update(float deltaTime)
 
 				auto& baby = m_parentEncounter->GetParentRun()->GetBaby();
 
-				baby.Modify(-baby.GetHappiness()/2);
+				baby.Modify(std::min(-baby.GetHappiness() / 2, -5));
 
 				m_parentEncounter->DamageMonster(m_upcomingDamage);
 			}
@@ -158,6 +178,19 @@ void EncounterFighting::Update(float deltaTime)
 				m_attackAnimation.Update(deltaTime);
 			}
 
+			if (m_wasCritical)
+			{
+				auto scale = m_critText.getScale().x;
+				scale -= (scale - 1) * deltaTime * 6;
+				m_critText.setScale(scale, scale);
+			}
+
+
+			if (m_damageTextSpeed > -320 && m_damageTotalShown)
+			{
+				m_damageText.move(0, -deltaTime * m_damageTextSpeed);
+				m_damageTextSpeed -= deltaTime * 800;
+			}
 
 			break;
 
@@ -230,7 +263,6 @@ void EncounterFighting::InitAttackBox()
 	m_initFailed = false;
 
 	m_timer = Config::WAIT_TIME_AFTER_ATTACK;
-
 	m_state = AttackState::Attacking;
 }
 
@@ -245,6 +277,7 @@ void EncounterFighting::Draw(sf::RenderWindow& window) const
 	m_attackBox.Draw(window);
 	m_cursor.Draw(window);
 	window.draw(m_multText);
+	window.draw(m_critText);
 
 	if (m_state != AttackState::Attacking)
 	{

@@ -47,7 +47,7 @@ namespace FilePaths {
 	// Attack Assets
 	constexpr char SP_SH_ATTACK_BOX[] = "resources/Sprites/attack_target.png";
 	constexpr char SP_SH_CURSOR[] = "resources/Sprites/cursor_sh.png"; 
-	constexpr char SP_SH_ATTACK_ANIMATION[] = "resources/Sprites/slash_noOutline.png";
+	constexpr char SP_SH_ATTACK_ANIMATION[] = "resources/Sprites/slash_outline.png";
 
 
 	constexpr char ENEMY_DATA_LIST[] = "resources/Enemies/Enemies.txt";
@@ -59,14 +59,20 @@ namespace FilePaths {
 namespace Config {
 
 	// Gameplay config
-	constexpr float INCREDIBLE_ATTACK_MULT = 3.f;
-	constexpr float INCREDIBLE_ATTACK_TOLERANCE = 0.02f;
 	constexpr unsigned short int MAX_RUN_ENEMIES = 3;
 	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 100;
 	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 20;
-	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 11;
+	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 21;
+	constexpr unsigned short int GLOBAL_MONSTER_HP_MULT = 2;
 	constexpr float DEFAULT_MONSTER_BASE_MULT = 3.f;
 	constexpr char DEFAULT_PLAYER_NAME[] = "Chara";
+
+	constexpr float INCREDIBLE_ATTACK_TOLERANCE = 0.02f;
+	constexpr float INCREDIBLE_ATTACK_MULT = 3.f;
+	constexpr char CRIT_TEXT[] = "CRIT (x3)";
+
+	constexpr char PARRY_TEXT[] = "GARDE";
+	constexpr float PARRY_BONUS_DEFENSE_MULT = 2.f;
 
 	constexpr float GLOBAL_ATTACK_TIME = 1.3f;
 	constexpr float GLOBAL_ATTACK_TIME_VARIANCE = .3f;
@@ -107,8 +113,10 @@ namespace Anchors {
 namespace Colors {
 
 	// DamageText
+	constexpr std::array<unsigned short int, 4> DAMAGE_PLAYER_TEXT_COLOR = { 255, 210, 10, 255 }; // Orange-Yellow
 	constexpr std::array<unsigned short int, 4> DAMAGE_TEXT_COLOR_HIT = { 255, 0, 0, 255 }; // Red
 	constexpr std::array<unsigned short int, 4> DAMAGE_TEXT_COLOR_MISSED = { 128, 128, 128, 255 }; // Gray
 	constexpr std::array<unsigned short int, 4> MULT_TEXT_COLOR = { 210, 111, 0, 255 }; // Orange
+	constexpr std::array<unsigned short int, 4> CRIT_TEXT_COLOR = { 60, 150, 255, 255 }; // Blueish
 
 }

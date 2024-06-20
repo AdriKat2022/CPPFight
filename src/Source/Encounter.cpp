@@ -43,12 +43,10 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	{
 		enemy_sprite.setScale(200.f / enemy_sprite.getGlobalBounds().height, 200.f / enemy_sprite.getGlobalBounds().height);
 	}
-
-
 	// Fully center the sprite in the screen
 	enemy_sprite.setPosition(
 		static_cast<float>(m_window.getSize().x / 2) - enemy_sprite.getGlobalBounds().width / 2,
-		static_cast<float>(m_window.getSize().y / 2) - enemy_sprite.getGlobalBounds().height / 2 - 50
+		static_cast<float>(m_window.getSize().y / 2) - enemy_sprite.getGlobalBounds().height / 2 - 100
 	);
 
 

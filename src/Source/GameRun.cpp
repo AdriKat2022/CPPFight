@@ -36,8 +36,6 @@ void GameRun::AddEnemy(EnemyData* enemy)
 
 void GameRun::Run(float deltaTime)
 {
-	
-
 	switch (m_state)
 	{
 		using enum RunState;
@@ -47,6 +45,7 @@ void GameRun::Run(float deltaTime)
 
 		case InEncounter:
 			m_currentEncounter->Update(deltaTime);
+			m_baby.Update(deltaTime);
 			break;
 
 		case InTransition:
@@ -101,8 +100,11 @@ void GameRun::Render()
 {
 	// Should take care of rendering the baby and the player (not done yet, for now the encounter does it)
 
-	if(m_state == RunState::InEncounter)
+	if (m_state == RunState::InEncounter)
+	{
 		m_currentEncounter->Draw(m_window);
+		m_baby.Draw(m_window);
+	}
 
 }
 

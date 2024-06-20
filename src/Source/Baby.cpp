@@ -1,8 +1,14 @@
 #include "Baby.h"
+#include <format>
 
-Baby::Baby() {
+
+Baby::Baby()
+{
 	m_cryingSoundBuffer.loadFromFile(FilePaths::SOUND_BABY_CRYING);
 	m_happySoundBuffer.loadFromFile(FilePaths::SOUND_BABY_LAUGHING);
+
+	m_font.loadFromFile(FilePaths::FONT_DAMAGE);
+	m_happinessText.setFont(m_font);
 }
 
 float Baby::GetMult() const
@@ -59,6 +65,9 @@ float Baby::GetMult() const
 
 void Baby::Modify(int modifier, bool playSound)
 {
+	if(modifier == 0) return;
+
+	int oldHappiness = m_happinessLvl;
 	m_happinessLvl += modifier;
 
 	if (m_happinessLvl > 100)
@@ -69,6 +78,8 @@ void Baby::Modify(int modifier, bool playSound)
 	{
 		m_happinessLvl = 0;
 	}
+
+	ResetNotification(m_happinessLvl - oldHappiness);
 
 	if (!playSound) return;
 
@@ -87,4 +98,59 @@ void Baby::Modify(int modifier, bool playSound)
 int Baby::GetHappiness() const
 {
 	return m_happinessLvl;
+}
+
+void Baby::Update(float deltaTime)
+{
+	AnimateTextNotification(deltaTime);
+}
+
+void Baby::Draw(sf::RenderWindow& window) const
+{
+	window.draw(m_happinessText);
+}
+
+void Baby::ResetNotification(int delta)
+{
+	// Set text at bottom right of the screen
+	m_happinessText.setPosition(
+		static_cast<float>(Config::WINDOW_WIDTH - 150),
+		static_cast<float>(Config::WINDOW_HEIGHT - 200)
+	);
+
+	m_animationTextSpeed = -150;
+	if (delta > 0)
+	{
+		m_happinessText.setString(std::format("+{}%", delta));
+		m_happinessText.setFillColor(sf::Color::Green);
+	}
+	else if (delta < 0)
+	{
+		m_happinessText.setString(std::format("{}%", delta));
+		m_happinessText.setFillColor(sf::Color::Red);
+	}
+	else
+	{
+		if (m_happinessLvl == 100)
+		{
+			m_happinessText.setString("MAX");
+			m_happinessText.setFillColor(sf::Color::Green);
+		}
+		else if (m_happinessLvl == 0)
+		{
+			m_happinessText.setString("MIN");
+			m_happinessText.setFillColor(sf::Color::Red);
+		}
+	}
+}
+
+void Baby::AnimateTextNotification(float deltaTime)
+{
+	if (m_animationTextSpeed < 0)
+	{
+		m_animationTextSpeed += deltaTime * 100;
+		m_happinessText.move(0, deltaTime * m_animationTextSpeed);
+	}
+	else
+		m_happinessText.setString("");
 }

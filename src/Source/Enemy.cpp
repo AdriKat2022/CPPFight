@@ -2,7 +2,7 @@
 
 
 Enemy::Enemy(const EnemyData& enemyData) :
-	Damageable(enemyData.Health),
+	Damageable(enemyData.Health * Config::GLOBAL_MONSTER_HP_MULT),
 	m_name(enemyData.Name),
 	m_attackPower(enemyData.Attack),
 	m_speed(enemyData.Speed),
@@ -11,7 +11,7 @@ Enemy::Enemy(const EnemyData& enemyData) :
 {}
 
 Enemy::Enemy(const EnemyData* enemyData) :
-	Damageable(enemyData->Health),
+	Damageable(enemyData->Health * Config::GLOBAL_MONSTER_HP_MULT),
 	m_name(enemyData->Name),
 	m_attackPower(enemyData->Attack),
 	m_speed(enemyData->Speed),

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Configs.h"
 
@@ -12,7 +13,19 @@ public:
 	int GetHappiness() const;
 	void Modify(int happiness, bool playSound = true);
 
+	void Update(float deltaTime);
+	void Draw(sf::RenderWindow& window) const;
+
 private:
+
+	void ResetNotification(int delta);
+	void AnimateTextNotification(float deltaTime);
+
+
+	float m_animationTextSpeed = 0.f;
+
+	sf::Text m_happinessText;
+	sf::Font m_font;
 
 	sf::SoundBuffer m_happySoundBuffer;
 	sf::SoundBuffer m_cryingSoundBuffer;
