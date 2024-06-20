@@ -67,7 +67,7 @@ void EncounterActing::BuildActionButtons()
 		m_actionButtons.emplace_back(sf::Vector2f{
 			static_cast<float>(m_window.getSize().x / 2 + Anchors::ACTION_BUTTONS_FROM_MIDDLE[xIndex]),
 			static_cast<float>(m_window.getSize().y / 2 + Anchors::ACTION_BUTTONS_FROM_MIDDLE[yIndex])
-			}, action->Name, [this, &action]() { this->ProcessAction(action); }, true);
+			}, action->Name, 30, [this, &action]() { this->ProcessAction(action); }, true);
 
 		
 		xIndex++;

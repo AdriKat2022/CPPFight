@@ -22,10 +22,20 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 	// Create the reward menu
 	// TODO: Add multiple buttons for several rewards (more power, more health, or full heal)
 
-	/*m_rewardMenu.AddButton("Soins entiers", {200, 200}, [this]() {
+	m_rewardMenu.AddButton("Soins entiers", { Config::WINDOW_WIDTH/2 - 200, Config::WINDOW_HEIGHT/2 - 100 }, 40, [this]() {
 		this->FullHeal();
 		this->InitNextEncounter();
-	});*/
+		});
+
+	m_rewardMenu.AddButton("Boost d'attaque", { Config::WINDOW_WIDTH / 2 + 200, Config::WINDOW_HEIGHT / 2 - 100 }, 40, [this]() {
+		this->FullHeal();
+		this->InitNextEncounter();
+		});
+
+	m_rewardMenu.AddButton("Bonheur bébé MAX", { Config::WINDOW_WIDTH / 2, Config::WINDOW_HEIGHT / 2 + 100 }, 40, [this]() {
+		this->GetBaby().Modify(100);
+		this->InitNextEncounter();
+		});
 
 
 	std::cout << "Run constructed." << std::endl;
@@ -52,7 +62,7 @@ void GameRun::Run(float deltaTime)
 
 		case InTransition:
 			// Show a win message (and normaly a reward menu before the next encounter)
-			InitNextEncounter();
+			m_rewardMenu.Draw(m_window);
 			break;
 
 		case InWin:
