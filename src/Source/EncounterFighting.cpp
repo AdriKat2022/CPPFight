@@ -169,7 +169,10 @@ void EncounterFighting::Update(float deltaTime)
 
 				auto& baby = m_parentEncounter->GetParentRun()->GetBaby();
 
-				baby.Modify(std::min(-baby.GetHappiness() / 2, -5));
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+					baby.Modify(30);
+				else
+					baby.Modify(std::min(-baby.GetHappiness() / 2, -5));
 
 				m_parentEncounter->DamageMonster(m_upcomingDamage);
 			}
