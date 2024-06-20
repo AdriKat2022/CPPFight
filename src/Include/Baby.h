@@ -15,7 +15,7 @@ public:
 
 	float GetMult() const;
 	int GetHappiness() const;
-	void Modify(int happiness, bool playSound = true);
+	void ModifyHappiness(int happiness, bool playSound = true);
 
 
 private:

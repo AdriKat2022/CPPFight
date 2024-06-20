@@ -29,9 +29,9 @@ public:
 	void Draw(sf::RenderWindow& window) const override;
 
 	void OnClick() const;
-	void SetOnClickEvent(std::function<void()> OnClickEvent);
+	void SetOnClickEvent(const std::function<void()>& OnClickEvent);
 
-	void SetActive(bool active);
+	void SetActive(bool active) override;
 
 private:
 	void HandleStates(const sf::RenderWindow & renderWindow);

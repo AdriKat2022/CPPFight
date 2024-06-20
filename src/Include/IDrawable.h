@@ -17,12 +17,12 @@ public:
 
 	virtual void Update(float deltaTime);
 	virtual void Draw(sf::RenderWindow&) const;
+	virtual void SetActive(bool isActive);
 	
 	void Move(const sf::Vector2f& offset);
 	void SetPosition(const sf::Vector2f& position);
 	sf::Vector2f GetPosition() const;
 
-	void SetActive(bool isActive);
 	void SetAnimation(float animationSpeed, int nLoops); // In frames per second
 	void DefineSpriteSheet(const sf::Vector2i& dimensions);
 	void SwitchSprite(int xIndex, int yIndex = 0);

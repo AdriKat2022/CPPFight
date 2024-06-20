@@ -20,20 +20,18 @@ GameRun::GameRun(sf::RenderWindow& rWindow) :
 	m_currentMusic.setLoop(true);
 
 	// Create the reward menu
-	// TODO: Add multiple buttons for several rewards (more power, more health, or full heal)
 
 	m_rewardMenu.AddButton("Soins entiers", { Config::WINDOW_WIDTH/2 - 200, Config::WINDOW_HEIGHT/2 - 100 }, 40, [this]() {
 		this->FullHeal();
 		this->InitNextEncounter();
 		});
 
-	m_rewardMenu.AddButton("Boost d'attaque", { Config::WINDOW_WIDTH / 2 + 200, Config::WINDOW_HEIGHT / 2 - 100 }, 40, [this]() {
-		this->FullHeal();
+	m_rewardMenu.AddButton("Rien", { Config::WINDOW_WIDTH / 2 + 200, Config::WINDOW_HEIGHT / 2 - 100 }, 40, [this]() {
 		this->InitNextEncounter();
 		});
 
-	m_rewardMenu.AddButton("Bonheur bébé MAX", { Config::WINDOW_WIDTH / 2, Config::WINDOW_HEIGHT / 2 + 100 }, 40, [this]() {
-		this->GetBaby().Modify(100);
+	m_rewardMenu.AddButton("Bonheur bébé +35%", { Config::WINDOW_WIDTH / 2, Config::WINDOW_HEIGHT / 2 + 100 }, 40, [this]() {
+		this->GetBaby().ModifyHappiness(35);
 		this->InitNextEncounter();
 		});
 

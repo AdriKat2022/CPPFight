@@ -227,7 +227,7 @@ void Encounter::DamagePlayer(int damage)
 
 void Encounter::ModifyBabyHappiness(int modifier)
 {
-	m_parentRun.GetBaby().Modify(modifier);
+	m_parentRun.GetBaby().ModifyHappiness(modifier);
 	happiness_bar_baby.setScale(sf::Vector2f(1, static_cast<float>(m_parentRun.GetBaby().GetHappiness()) / 100.f));
 }
 

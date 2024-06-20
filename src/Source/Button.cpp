@@ -137,7 +137,7 @@ void Button::OnClick() const
 	}
 }
 
-void Button::SetOnClickEvent(std::function<void()> OnClickEvent)
+void Button::SetOnClickEvent(const std::function<void()>& OnClickEvent)
 {
 	m_OnClickEvent = OnClickEvent;
 }
