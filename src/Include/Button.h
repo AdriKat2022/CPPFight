@@ -21,11 +21,11 @@ class Button : public IDrawable
 {
 public:
 	using IDrawable::IDrawable;
-	Button(const sf::Vector2f& position, const sf::Texture& texture, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
-	Button(const sf::Vector2f& position, const std::string& texturePath, std::function<void()> OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
-	Button(const sf::Vector2f& position, const std::string& text, int textSize, std::function<void()> OnClickEvent, bool changeColorOnHover = true);
+	Button(const sf::Vector2f& position, const sf::Texture& texture, const std::function<void()>& OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
+	Button(const sf::Vector2f& position, const std::string& texturePath, const std::function<void()>& OnClickEvent, sf::Vector2i dimensions = { 1, 1 }, bool scaleOnHover = true);
+	Button(const sf::Vector2f& position, const std::string& text, int textSize, const std::function<void()>& OnClickEvent, bool changeColorOnHover = true);
 
-	void Update(sf::RenderWindow& renderWindow, float deltaTime = 0.01f);
+	void Update(const sf::RenderWindow& renderWindow, float deltaTime = 0.01f);
 	void Draw(sf::RenderWindow& window) const override;
 
 	void OnClick() const;

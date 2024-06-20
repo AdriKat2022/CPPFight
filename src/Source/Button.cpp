@@ -3,14 +3,14 @@
 
 #include <iostream>
 
-Button::Button(const sf::Vector2f& position, const sf::Texture& texture, std::function<void()> OnClickEvent, sf::Vector2i dimensions, bool scaleOnHover) :
+Button::Button(const sf::Vector2f& position, const sf::Texture& texture, const std::function<void()>& OnClickEvent, sf::Vector2i dimensions, bool scaleOnHover) :
 	IDrawable(position, texture, dimensions),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleSpeed(Config::BUTTON_SCALE_SPEED),
 	m_scaleOnHover(scaleOnHover)
 {}
 
-Button::Button(const sf::Vector2f& position, const std::string& texturePath, std::function<void()> OnClickEvent, sf::Vector2i dimensions, bool scaleOnHover) :
+Button::Button(const sf::Vector2f& position, const std::string& texturePath, const std::function<void()>& OnClickEvent, sf::Vector2i dimensions, bool scaleOnHover) :
 	IDrawable(position, texturePath, dimensions),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleSpeed(Config::BUTTON_SCALE_SPEED),
@@ -18,7 +18,7 @@ Button::Button(const sf::Vector2f& position, const std::string& texturePath, std
 {}
 
 // Make a text button rather than a texture button
-Button::Button(const sf::Vector2f& position, const std::string& text, int textSize, std::function<void()> OnClickEvent, bool changeColorOnHover) :
+Button::Button(const sf::Vector2f& position, const std::string& text, int textSize, const std::function<void()>& OnClickEvent, bool changeColorOnHover) :
 	m_textToDisplay(text),
 	m_OnClickEvent(OnClickEvent),
 	m_scaleOnHover(false),
@@ -39,7 +39,7 @@ Button::Button(const sf::Vector2f& position, const std::string& text, int textSi
 
 // We would need to rename this function to something more appropriate
 // Since its update needs also a renderWindow or a way to get the mouse position
-void Button::Update(sf::RenderWindow& renderWindow, float deltaTime)
+void Button::Update(const sf::RenderWindow& renderWindow, float deltaTime)
 {
 	if (!m_isActive)
 	{
