@@ -16,7 +16,7 @@ public:
 	void Show() const;
 	void Hide() const;
 	void SetDialogue(Dialogue& dialogue);
-	void SetString(const std::string& string);
+	void SetString(const std::string_view& string);
 	void SetPosition(float x, float y);
 	void ShowNext();
 	void Update();

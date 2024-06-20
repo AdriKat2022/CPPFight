@@ -31,7 +31,7 @@ void EnemyLoader::ReadFromFile(const std::string& fileName, std::unique_ptr<std:
 			LoadEnemy(file);
 
 		else if (buffer == "[Action]")
-			CacheAction(file);
+			ProcessActions(file);
 
 		else if (buffer != "")
 			std::cout << "(Warning) Unknown section: " << buffer << ". Ignoring." << std::endl;
@@ -72,26 +72,33 @@ void EnemyLoader::LoadEnemy(std::ifstream& stream)
 			stream >> enemyData.Speed;
 		else if (buffer == "Actions:")
 		{
-			while (true && stream) {
-				stream >> buffer;
-
-				if (buffer == "-")
-					break;
-
-				std::string actionID = buffer;
-
-				// Check if the action ID exists as a key in the cached actions
-				if (!m_cachedActions.contains(actionID))
-					std::cout << "Action ID " << actionID << " out of bounds. Ignoring.\n";
-				else
-					enemyData.Actions.push_back(m_cachedActions[actionID]);
-			}
+			AssignActionsFromStreamToEnemyData(stream, enemyData);
 		}
 		
 	}
 }
 
-void EnemyLoader::CacheAction(std::ifstream& stream)
+void EnemyLoader::AssignActionsFromStreamToEnemyData(std::ifstream& stream, EnemyData& enemyData)
+{
+	std::string buffer;
+
+	while (stream) {
+		stream >> buffer;
+
+		if (buffer == "-")
+			break;
+
+		std::string actionID = buffer;
+
+		// Check if the action ID exists as a key in the cached actions
+		if (!m_cachedActions.contains(actionID))
+			std::cout << "Action ID " << actionID << " does not exist (yet). Ignoring.\n";
+		else
+			enemyData.Actions.push_back(m_cachedActions[actionID]);
+	}
+}
+
+void EnemyLoader::ProcessActions(std::ifstream& stream)
 {
 	std::string buffer;
 	std::string actionID = "";
@@ -104,16 +111,7 @@ void EnemyLoader::CacheAction(std::ifstream& stream)
 
 		if (buffer == "[/Action]")
 		{
-			if (actionID == "") {
-				std::cout << "Action ID not found. Ignoring action.\n";
-				break;
-			}
-			
-			if(m_cachedActions.contains(actionID))
-				std::cout << "(Warning) Action ID " << actionID << " already exists. Overriding.\n";
-
-			m_cachedActions[actionID] = actionData;
-
+			CacheAction(actionID, actionData);
 			break;
 		}
 
@@ -127,6 +125,20 @@ void EnemyLoader::CacheAction(std::ifstream& stream)
 			GetDialogue(stream, actionData.AssociatedDialogue.GetLinesReference());
 	}
 }
+
+void EnemyLoader::CacheAction(const std::string& actionID, const ActionData& actionData)
+{
+	if (actionID == "") {
+		std::cout << "Action ID not found. Ignoring action.\n";
+	}
+	else
+	{
+		if (m_cachedActions.contains(actionID))
+			std::cout << "(Warning) Action ID " << actionID << " already exists. Overriding.\n";
+
+		m_cachedActions[actionID] = actionData;
+	}
+}	
 
 void EnemyLoader::GetDialogue(std::ifstream& stream, std::vector<std::string>& vectBuffer) const
 {

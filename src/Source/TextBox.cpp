@@ -43,7 +43,7 @@ void TextBox::SetDialogue(Dialogue& dialogue) {
 	}
 }
 
-void TextBox::SetString(const std::string& string) {
+void TextBox::SetString(const std::string_view& string) {
 	m_string = string;
 }
 
