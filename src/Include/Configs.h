@@ -3,6 +3,7 @@
 #include <string>
 #include <array>
 
+
 namespace FilePaths {
 
 	// Fonts for every text
@@ -49,6 +50,8 @@ namespace FilePaths {
 	constexpr char SP_SH_CURSOR[] = "resources/Sprites/cursor_sh.png"; 
 	constexpr char SP_SH_ATTACK_ANIMATION[] = "resources/Sprites/slash_outline.png";
 
+	// Misc
+	constexpr char WARNING_SIGN[] = "resources/Sprites/warning_sign.png";
 
 	constexpr char ENEMY_DATA_LIST[] = "resources/Enemies/Enemies.txt";
 
@@ -60,12 +63,15 @@ namespace Config {
 
 	// Gameplay config
 	constexpr unsigned short int MAX_RUN_ENEMIES = 3;
-	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 100;
+	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 20;
 	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 20;
 	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 21;
 	constexpr unsigned short int GLOBAL_MONSTER_HP_MULT = 2;
 	constexpr float DEFAULT_MONSTER_BASE_MULT = 3.f;
-	constexpr char DEFAULT_PLAYER_NAME[] = "Chara";
+	constexpr char DEFAULT_PLAYER_NAME[] = "Charles";
+
+	constexpr char DEFAULT_BABY_NAME[] = "Baboum";
+	constexpr char HAPPINESS_MULT_PRE_TEXT[] = "MULT\n\nx ";
 
 	constexpr float INCREDIBLE_ATTACK_TOLERANCE = 0.02f;
 	constexpr float INCREDIBLE_ATTACK_MULT = 3.f;
@@ -108,6 +114,22 @@ namespace Anchors {
 	constexpr std::array<short int, 2> MULT_TEXT_FROM_DMG_TEXT = { 50, 20 };
 	// ActionButtons
 	constexpr std::array<short int, 4> ACTION_BUTTONS_FROM_MIDDLE = { -100, 100, 50, 150}; // First column, second column, first row, second row
+	// Baby and HappinessBar
+	constexpr std::array<short int, 2> BABY_NAME_FROM_BOTTOM_RIGHT = { 75, 40 };
+	constexpr std::array<short int, 2> BABY_HAPPINESS_BAR_FROM_BOTTOM_RIGHT_BG = { 75, 120 };
+	constexpr std::array<short int, 2> BABY_HAPPINESS_BAR_FROM_BOTTOM_RIGHT = { 75, 120 };
+	constexpr std::array<short int, 2> BABY_HAPPINESS_MULT_TEXT_FROM_TOP_RIGHT = { 20, 50 };
+	constexpr std::array<short int, 2> BABY_WARNING_SIGN_FROM_MULT_TEXT = { 20, 0 };
+
+	// Player
+
+}
+
+namespace Sizes {
+
+	constexpr std::array<unsigned short int, 2> BABY_HAPPINESS_BAR_BG = { 40, 200 };
+	constexpr std::array<unsigned short int, 2> BABY_HAPPINESS_BAR = { 40, 200 };
+
 }
 
 namespace Colors {
@@ -117,6 +139,9 @@ namespace Colors {
 	constexpr std::array<unsigned short int, 4> DAMAGE_TEXT_COLOR_HIT = { 255, 0, 0, 255 }; // Red
 	constexpr std::array<unsigned short int, 4> DAMAGE_TEXT_COLOR_MISSED = { 128, 128, 128, 255 }; // Gray
 	constexpr std::array<unsigned short int, 4> MULT_TEXT_COLOR = { 210, 111, 0, 255 }; // Orange
-	constexpr std::array<unsigned short int, 4> CRIT_TEXT_COLOR = { 60, 150, 255, 255 }; // Blueish
+	constexpr std::array<unsigned short int, 4> CRIT_TEXT_COLOR = { 60, 150, 255, 255 }; // Blueish120
+	constexpr std::array<unsigned short int, 4> DANGER_COLOR = { 255, 20, 0, 255 }; // Red
+	constexpr std::array<unsigned short int, 4> WARNING_COLOR = { 210, 160, 0, 255 }; // Orange
+	constexpr std::array<unsigned short int, 4> INFO_COLOR = { 60, 150, 255, 255 }; // Blueish120
 
 }

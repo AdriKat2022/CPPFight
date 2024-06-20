@@ -19,9 +19,9 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 
 	//definition du nom de l'ennemi
 	name_enemy.setString(m_enemy.GetName());
-	name_enemy.setPosition({ 350, 10 });
 	name_enemy.setFont(undertale_font);
 	name_enemy.setCharacterSize(20);
+	name_enemy.setPosition({ Config::WINDOW_WIDTH/2 - name_enemy.getGlobalBounds().width/2, 10});
 	name_enemy.setFillColor(sf::Color::White);
 
 	//définition de la barre de vie de l'ennemi // TODO: move to enemy class and add a draw function
@@ -50,27 +50,12 @@ Encounter::Encounter(GameRun& gameRun, EnemyData* enemy) :
 	);
 
 
-	//définition du nom du bébé // TODO: move to baby class and add a draw function
-	name_baby.setString("Baboum");
-	name_baby.setPosition(680, 550);
-	name_baby.setFont(undertale_font);
-	name_baby.setCharacterSize(10);
-	name_baby.setFillColor(sf::Color::White);
+	//définition du nom du bébé // Done in baby class from now on
 
-	//définition de la barre de bonheur du bébé // TODO: move to baby class and add a draw function
-	background_happiness_baby.setSize({ 50, 100 });
-	background_happiness_baby.setFillColor(sf::Color::White);
-	background_happiness_baby.setPosition({ 700, 440 });
-	happiness_bar_baby.setSize(sf::Vector2f(40.f, static_cast<float>(m_parentRun.GetBaby().GetHappiness())));
-	happiness_bar_baby.setFillColor(sf::Color::Yellow);
-	happiness_bar_baby.setPosition(sf::Vector2f(705, static_cast<float>(440 + (100 - m_parentRun.GetBaby().GetHappiness()))));
+	//définition de la barre de bonheur du bébé // Done in baby class from now on
 
-	//définition du multiplicateur de dégats
-	damage_mult.setString(std::format("Dégats * \n {}", m_parentRun.GetBaby().GetMult()));
-	damage_mult.setPosition(760, 490);
-	damage_mult.setFont(undertale_font);
-	damage_mult.setCharacterSize(10);
-	damage_mult.setFillColor(sf::Color::White);
+	//définition du multiplicateur de dégats // Done in baby class from now on
+
 
 	//définition du nom du joueur // TODO: move to player class and add a draw function
 	name_player.setString(player.GetName());
@@ -136,7 +121,7 @@ void Encounter::Draw(sf::RenderWindow& window) const
 	window.draw(enemy_sprite);
 
 	//affichage du bébé via le background, son nom, sa barre de bonheur et du multiplicateur de dégats
-	window.draw(name_baby);
+	window.draw(name_baby); // Done in baby class from now on
 	window.draw(background_happiness_baby);
 	window.draw(happiness_bar_baby);
 	window.draw(damage_mult);
