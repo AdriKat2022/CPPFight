@@ -21,7 +21,8 @@ add_library(lib_cppfight
     "Include/EnemyLoader.h"
     "Include/Configs.h"
     "Include/Game.h"
-    "Include/Menu.h")
+    "Include/Menu.h"
+    "Include/Shaker.h")
 
 target_sources(lib_cppfight
     PRIVATE
@@ -43,7 +44,9 @@ target_sources(lib_cppfight
     "Source/EncounterFighting.cpp"
     "Source/EncounterActing.cpp"
     "Source/EncounterMonsterTurn.cpp"
-    "Source/MouseData.cpp")
+    "Source/MouseData.cpp"
+    "Source/Shaker.cpp"
+)
 
 target_include_directories(lib_cppfight
     PUBLIC

@@ -24,7 +24,11 @@ public:
 
 private:
 	void InitAttackBox();
-	void CloseAttackBox();
+
+	void ShowSucceededAttack();
+	void ShowTotalDamage();
+	void ShowMissedAttack();
+
 
 	IDrawable m_cursor{ { 0, 0 }, FilePaths::SP_SH_CURSOR, {1, 2}, true };
 	IDrawable m_attackBox{ { 0, 0 }, FilePaths::SP_SH_ATTACK_BOX, { 1, 1 }, true };
@@ -47,6 +51,7 @@ private:
 	sf::Text m_critText;
 	sf::Font m_damageFont;
 
+	sf::SoundBuffer m_missedAttack;
 	sf::SoundBuffer m_hitAttack;
 	sf::SoundBuffer m_criticalHitAttack;
 	sf::SoundBuffer m_unbelievableAttack;

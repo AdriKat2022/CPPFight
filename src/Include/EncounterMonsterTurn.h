@@ -2,6 +2,7 @@
 
 #include "EncounterState.h"
 #include "SFML/Audio.hpp"
+#include "Shaker.h"
 
 class EncounterMonsterTurn : public EncounterState {
 
@@ -23,6 +24,15 @@ public:
 	void Draw(sf::RenderWindow& window) const override;
 
 private:
+	void ManageDeath(float deltaTime);
+	void ShowReady();
+	void Showdown();
+	void OnParry();
+	void OnMiss();
+	void OnReceiveDamage();
+
+	Shaker m_readyTextShaker;
+
 	MonsterState m_monsterState = MonsterState::Ready;
 
 	sf::Text m_readyText;
