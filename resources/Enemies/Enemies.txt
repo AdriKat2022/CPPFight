@@ -334,6 +334,7 @@ HappinessModifier: -15
 
 # Each enemy has a :
 #	Name (the name of the enemy displayed at the player)
+#   SpritePath (the path to the sprite of the enemy)
 #	Health (how much health the enemy has)
 #	Damage (how much damage the enemy does)
 #	Defense (how much the enemy will resist the player's hits)

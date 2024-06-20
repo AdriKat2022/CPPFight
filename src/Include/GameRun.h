@@ -35,7 +35,7 @@ public:
 	sf::Vector2f GetMousePosition() const;
 
 	void DamagePlayer(int damage);
-	void FullHeal(int heal);
+	void FullHeal();
 	Baby& GetBaby();
 	Player& GetPlayer();
 	void SetState(RunState);

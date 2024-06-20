@@ -91,6 +91,7 @@ void EncounterFighting::Update(float deltaTime)
 			{
 				ShowTotalDamage();
 				m_damageTotalShown = true;
+				m_timer = Config::WAIT_TIME_AFTER_DISPLAY;
 			}
 			else
 				m_attackAnimation.Update(deltaTime);
