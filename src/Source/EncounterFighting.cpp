@@ -278,8 +278,8 @@ void EncounterFighting::ShowMissedAttack()
 	m_damageText.setCharacterSize(48);
 	m_damageText.setString(std::format("MISS"));
 	m_damageText.setPosition(
-		Config::WINDOW_WIDTH/2 - m_damageText.getGlobalBounds().width/2,
-		Config::WINDOW_HEIGHT/2 - m_damageText.getGlobalBounds().height/2
+		static_cast<float>(Config::WINDOW_WIDTH) / 2 - m_damageText.getGlobalBounds().width / 2,
+		static_cast<float>(Config::WINDOW_HEIGHT) / 2 - m_damageText.getGlobalBounds().height / 2
 	);
 	m_damageText.setFillColor({
 		Colors::DAMAGE_TEXT_COLOR_MISSED[0],
