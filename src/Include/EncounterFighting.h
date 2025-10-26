@@ -26,6 +26,7 @@ private:
 	void InitAttackBox();
 
 	void ShowSucceededAttack();
+	bool IsAttackCritical(float dmgMult);
 	void ShowTotalDamage();
 	void ShowMissedAttack();
 

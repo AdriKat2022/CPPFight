@@ -4,7 +4,8 @@
 #include <array>
 
 
-namespace FilePaths {
+namespace FilePaths
+{
 
 	// Fonts for every text
 	constexpr char FONT_DAMAGE[] = "resources/Font/HachicroUndertaleBattleFontRegular-L3zlg.ttf";
@@ -59,22 +60,25 @@ namespace FilePaths {
 
 }
 
-namespace Config {
-
+namespace Config
+{
 	// Gameplay config
 	constexpr unsigned short int MAX_RUN_ENEMIES = 3;
 	constexpr unsigned short int DEFAULT_BABY_START_HAPPINESS = 20;
 	constexpr unsigned short int DEFAULT_PLAYER_MAX_HP = 40;
 	constexpr unsigned short int DEFAULT_PLAYER_BASE_DAMAGE = 21;
 	constexpr unsigned short int GLOBAL_MONSTER_HP_MULT = 2;
-	constexpr float DEFAULT_MONSTER_ATTACK_BASE_MULT = 1.f;
+
+	constexpr float DEFAULT_MONSTER_ATTACK_BASE_MULT = 0.5f;
 	constexpr char DEFAULT_PLAYER_NAME[] = "Charles";
 
 	constexpr char DEFAULT_BABY_NAME[] = "Baboum";
 	constexpr char HAPPINESS_MULT_PRE_TEXT[] = "MULT\n\nx ";
 
-	constexpr float INCREDIBLE_ATTACK_TOLERANCE = 0.02f;
-	constexpr float INCREDIBLE_ATTACK_MULT = 3.f;
+	constexpr bool ENABLE_RANDOM_CRITS = false;
+	constexpr float CRITICAL_ATTACK_CHANCE = 0.05f;
+	constexpr float CRITICAL_ATTACK_TOLERANCE = 0.02f;
+	constexpr float CRITICAL_ATTACK_MULT = 3.f;
 	constexpr char CRIT_TEXT[] = "CRIT (x3)";
 
 	constexpr char PARRY_TEXT[] = "GARDE";
@@ -87,6 +91,7 @@ namespace Config {
 
 	constexpr float MAX_WAIT_ATTACK_TIME = 4.f;
 	constexpr float MIN_WAIT_ATTACK_TIME = 1.f;
+
 
 	// Window config
 	constexpr char WINDOW_TITLE[] = "Cpp Game";
@@ -101,11 +106,13 @@ namespace Config {
 	constexpr float BUTTON_TARGET_SCALE_PRESSED = 0.95f;
 	constexpr float BUTTON_TARGET_SCALE_DISABLED = 1.f;
 
+
 	// Volume
 	constexpr float GLOBAL_VOLUME_MULT = 1.f;
 }
 
-namespace Anchors {
+namespace Anchors
+{
 
 	// TextBox
 	constexpr std::array<short int, 2> TEXT_BOX_FROM_MIDDLE = { 0, 50 };
@@ -128,14 +135,16 @@ namespace Anchors {
 
 }
 
-namespace Sizes {
+namespace Sizes
+{
 
 	constexpr std::array<unsigned short int, 2> BABY_HAPPINESS_BAR_BG = { 40, 200 };
 	constexpr std::array<unsigned short int, 2> BABY_HAPPINESS_BAR = { 40, 200 };
 
 }
 
-namespace Colors {
+namespace Colors
+{
 
 	// DamageText
 	constexpr std::array<unsigned short int, 4> DAMAGE_PLAYER_TEXT_COLOR = { 255, 210, 10, 255 }; // Orange-Yellow

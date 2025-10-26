@@ -306,7 +306,7 @@ Ils s'ambiancent de fou.
 Un Teddy vous regarde de loin et est fier de vous.
 (+30 PB)
 ---
-HappinessModifier: 20
+HappinessModifier: 30
 [/Action]
 
 
@@ -355,7 +355,7 @@ Actions: calin_1 pleurer_1 insulter_1 -
 
 [Enemy]
 Name: C
-SpritePath: resources/Sprites/C.png
+SpritePath: resources/Sprites/Enemies/C.png
 Health: 20
 Attack: 8
 Defense: 0
@@ -366,7 +366,7 @@ Actions: calin_1 pleurer_2 insulter_2 coder_1 -
 
 [Enemy]
 Name: P
-SpritePath: resources/Sprites/P.png
+SpritePath: resources/Sprites/Enemies/P.png
 Health: 35
 Attack: 10
 Defense: 0
@@ -397,6 +397,7 @@ Actions: sprint_interieur pablo insulter_3_trap mixer -
 
 [Enemy]
 Name: Michel
+SpritePath: resources/Sprites/Enemies/Michel.png
 Health: 80
 Attack: 6
 Defense: 0

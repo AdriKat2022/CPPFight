@@ -182,11 +182,11 @@ void EncounterFighting::ShowSucceededAttack()
 	auto damage = static_cast<int>(dmgMult * Config::DEFAULT_PLAYER_BASE_DAMAGE);
 	auto babyMult = m_parentEncounter->GetDamageMultiplier();
 
-	m_wasCritical = dmgMult >= (1 - Config::INCREDIBLE_ATTACK_TOLERANCE);
+	m_wasCritical = IsAttackCritical(dmgMult);
 
 	if (m_wasCritical)
 	{
-		damage = static_cast<int>(static_cast<float>(damage) * Config::INCREDIBLE_ATTACK_MULT);
+		damage = static_cast<int>(static_cast<float>(damage) * Config::CRITICAL_ATTACK_MULT);
 		m_critText.setString(Config::CRIT_TEXT);
 		m_critText.setOrigin(m_critText.getGlobalBounds().width / 2, m_critText.getGlobalBounds().height / 2);
 		m_critText.setPosition(
@@ -238,6 +238,22 @@ void EncounterFighting::ShowSucceededAttack()
 		m_attackSound.setBuffer(m_normalAttack);
 
 	m_attackSound.play();
+}
+
+bool EncounterFighting::IsAttackCritical(float dmgMult)
+{
+	if (Config::ENABLE_RANDOM_CRITS)
+	{
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_real_distribution dis(0.f, 1.f);
+
+		return dis(gen) >= (1 - Config::CRITICAL_ATTACK_CHANCE);
+	}
+	else
+	{
+		return dmgMult >= (1 - Config::CRITICAL_ATTACK_TOLERANCE);
+	}
 }
 
 void EncounterFighting::ShowTotalDamage()
