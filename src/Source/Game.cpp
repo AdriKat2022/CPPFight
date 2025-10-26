@@ -82,7 +82,7 @@ void Game::UpdateGame(float deltaTime)
  ennemis qui lui font face, les C et les P. Pour défendre votre nourisson, 
  vous avez la possibilité d'attaquer le monstre en cliquant sur le bouton 'fight'.
  Le système d'attaque est simple : un curseur se déplace dans un rectangle 
- et il suffit de cliquer pour arrêter ce curseur : plus vous êtes proche du 
+ et il suffit d'appuyer sur espace pour arrêter ce curseur : plus vous êtes proche du 
  centre du rectangle, plus vous infligez de dégats. Mais attention attaquer 
  un monstre fait baisser la jauge de bonheur de votre enfant (car pendant 
  que vous attaquez, il n'a pas l'attention qu'il désire). Cette jauge est 
